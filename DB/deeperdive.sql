@@ -275,7 +275,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `deeperdivedb`;
-INSERT INTO `log_entry` (`id`, `user_id`, `site_id`, `log_content`, `title`, `dive_date`, `entry_time`, `rating`, `max_depth_meters`, `equipment`, `img_url`, `end_time`, `visibility`, `created_at`, `last_updated`, `start_pressure_bar`, `end_pressure_bar`, `air_type`, `attraction`) VALUES (1, 1, 1, 'Where do I being? I was there all alone, and then I saw all of these wonderful things on this dive', 'My Best Fake Dive', '2020-12-31 23:59:59', '8:00:00', 5, 200, '3mm shortie, other stuff, split fins', 'www.fakeimages.com/squidfins.jpg', '10:00:00', '4', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `log_entry` (`id`, `user_id`, `site_id`, `log_content`, `title`, `dive_date`, `entry_time`, `rating`, `max_depth_meters`, `equipment`, `img_url`, `end_time`, `visibility`, `created_at`, `last_updated`, `start_pressure_bar`, `end_pressure_bar`, `air_type`, `attraction`) VALUES (1, 1, 1, 'Where do I being? I was there all alone, and then I saw all of these wonderful things on this dive', 'My Best Fake Dive', '2020-12-31 23:59:59', '8:00:00', 5, 200, '3mm shortie, other stuff, split fins', 'www.fakeimages.com/squidfins.jpg', '10:00:00', '4', '2020-11-30 23:59:59', '2020-12-14 23:59:59', 200, 79, 'Nitrox', 'sunfish mola mola');
 
 COMMIT;
 
