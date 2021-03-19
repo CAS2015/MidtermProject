@@ -44,7 +44,7 @@ class LocationCommentTest {
 	@Test
 	void test_LocationComment_entitiy_mapping() {
 		assertNotNull(locationComment);
-		assertEquals("admin", locationComment.getContent());
+		assertEquals("I think this location is great too", locationComment.getContent());
 		assertEquals(1, locationComment.getId());
 	}
 
