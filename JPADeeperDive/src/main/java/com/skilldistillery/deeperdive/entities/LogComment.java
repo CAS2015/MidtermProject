@@ -21,6 +21,8 @@ public class LogComment {
 	@Column(name = "created_at")
 	private LocalDateTime createAt;
 
+//TODO add foreign key fields
+
 	public LogComment() {
 	}
 
@@ -78,6 +80,5 @@ public class LogComment {
 		return "LogComment [Id=" + Id + ", content=" + content + ", createAt=" + createAt + "]";
 	}
 
-//TODO add foreign key fields
 
 }
