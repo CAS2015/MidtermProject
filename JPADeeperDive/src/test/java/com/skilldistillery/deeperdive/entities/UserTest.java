@@ -44,6 +44,11 @@ class UserTest {
 	void test_User_entitiy_mapping() {
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());
+		assertEquals("admin", user.getFirstName());
+		assertEquals("admin", user.getLastName());
+		assertEquals("admin", user.getCreateDate());
+		assertEquals("admin", user.getImageUrl());
+		
 	}
 
 }
