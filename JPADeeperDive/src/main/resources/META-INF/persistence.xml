@@ -9,6 +9,10 @@
     </provider>
 
 <!-- entities -->
+<class>com.skilldistillery.deeperdive.entities.DiveType</class>
+<class>com.skilldistillery.deeperdive.entities.Location</class>
+<class>com.skilldistillery.deeperdive.entities.LocationComment</class>
+<class>com.skilldistillery.deeperdive.entities.LogComment</class>
 <class>com.skilldistillery.deeperdive.entities.User</class>
 
 
