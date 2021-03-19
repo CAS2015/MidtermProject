@@ -12,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class DiveTypeTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private DiveType diveType;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,24 +31,20 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		diveType = em.find(DiveType.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		diveType = null;
 	}
 
 	@Test
-	void test_User_entitiy_mapping() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
-		assertEquals("admin", user.getFirstName());
-		assertEquals("admin", user.getLastName());
-		assertEquals("admin", user.getCreateDate());
-		assertEquals("admin", user.getImageUrl());
-		
+	void test_DiveType_entitiy_mapping() {
+		assertNotNull(diveType);
+		assertEquals("admin", diveType.getName());
+		assertEquals(1, diveType.getId());
 	}
 
 }

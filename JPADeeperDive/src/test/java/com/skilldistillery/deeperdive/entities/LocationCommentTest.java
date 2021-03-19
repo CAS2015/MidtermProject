@@ -12,11 +12,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class LocationCommentTest {
+
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private LocationComment locationComment;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,24 +32,20 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		locationComment = em.find(LocationComment.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		locationComment = null;
 	}
 
 	@Test
-	void test_User_entitiy_mapping() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
-		assertEquals("admin", user.getFirstName());
-		assertEquals("admin", user.getLastName());
-		assertEquals("admin", user.getCreateDate());
-		assertEquals("admin", user.getImageUrl());
-		
+	void test_LocationComment_entitiy_mapping() {
+		assertNotNull(locationComment);
+		assertEquals("admin", locationComment.getContent());
+		assertEquals(1, locationComment.getId());
 	}
 
 }
