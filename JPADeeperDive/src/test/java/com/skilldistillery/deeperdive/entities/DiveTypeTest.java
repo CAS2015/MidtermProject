@@ -43,7 +43,7 @@ class DiveTypeTest {
 	@Test
 	void test_DiveType_entitiy_mapping() {
 		assertNotNull(diveType);
-		assertEquals("admin", diveType.getName());
+		assertEquals("Cave Dive", diveType.getName());
 		assertEquals(1, diveType.getId());
 	}
 
