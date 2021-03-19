@@ -135,9 +135,12 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", enabled=" + enabled
-				+ ", role=" + role + ", firstName=" + firstName + ", lastName=" + lastName + ", createDate="
-				+ createDate + ", imageUrl=" + imageUrl + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("User [id=").append(id).append(", username=").append(username).append(", password=")
+				.append(password).append(", enabled=").append(enabled).append(", role=").append(role)
+				.append(", firstName=").append(firstName).append(", lastName=").append(lastName).append(", createDate=")
+				.append(createDate).append(", imageUrl=").append(imageUrl).append("]");
+		return builder.toString();
 	}
 	
 	
