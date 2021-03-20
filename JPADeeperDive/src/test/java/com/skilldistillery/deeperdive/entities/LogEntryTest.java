@@ -63,5 +63,10 @@ class LogEntryTest {
 		assertEquals("Nitrox", logEntry.getAirType());
 		
 	}
-
+	
+	@Test
+	void test_LogEntry_to_User_entitiy_mapping() {
+		assertNotNull(logEntry.getUser());
+		assertEquals(1, logEntry.getUser().getId());
+	}
 }

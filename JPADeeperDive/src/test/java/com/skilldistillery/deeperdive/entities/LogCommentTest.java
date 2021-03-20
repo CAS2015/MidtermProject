@@ -47,5 +47,11 @@ class LogCommentTest {
 		assertTrue(logComment.getContent().length() > 0);
 		assertEquals(1, logComment.getId());
 	}
+	
+	@Test
+	void test_LogComment_to_User_entitiy_mapping() {
+		assertNotNull(logComment.getUser());
+		assertEquals(1, logComment.getUser().getId());
+	}
 
 }

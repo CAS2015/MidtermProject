@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -22,7 +24,10 @@ public class LogComment {
 	private LocalDateTime createAt;
 
 //TODO add foreign key fields
-
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	
 	public LogComment() {
 	}
 
@@ -48,6 +53,14 @@ public class LogComment {
 
 	public void setCreateAt(LocalDateTime createAt) {
 		this.createAt = createAt;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

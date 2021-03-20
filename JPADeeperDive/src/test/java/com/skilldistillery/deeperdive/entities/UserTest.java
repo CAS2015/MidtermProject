@@ -50,5 +50,26 @@ class UserTest {
 		assertEquals("www.freephotos.com/sunfish.jpg", user.getImageUrl());
 		
 	}
+	
+	@Test
+	void test_User_to_LocationComment_entitiy_mapping() {
+		assertNotNull(user.getLocationComments());
+		assertEquals(1, user.getLocationComments().size());
+		
+	}
+	
+	@Test
+	void test_User_to_LogComment_entitiy_mapping() {
+		assertNotNull(user.getLogComments());
+		assertEquals(1, user.getLogComments().size());
+		
+	}
+	
+	@Test
+	void test_User_to_LogEntry_entitiy_mapping() {
+		assertNotNull(user.getLogEntries());
+		assertEquals(1, user.getLogEntries().size());
+		
+	}
 
 }
