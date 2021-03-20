@@ -12,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class LocationTest {
+class SiteTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Location location;
+	private Site site;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,23 +31,21 @@ class LocationTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		location = em.find(Location.class, 1);
+		site = em.find(Site.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		location = null;
+		site = null;
 	}
 
 	@Test
-	void test_Location_entitiy_mapping() {
-		assertNotNull(location);
-		assertEquals("NotReal Location Name", location.getLocationName());
-		assertEquals("fresh water", location.getWaterType());
-		assertEquals(10, location.getMinTemp());
-		assertEquals(25, location.getMaxTemp());
-		assertNull(location.getImgUrl());
+	void test_Site_entitiy_mapping() {
+		assertNotNull(site);
+		assertEquals("Fake Lake ", site.getName());
+		assertEquals("open water", site.getMinimumCert());
+		assertEquals("Lots of stuff in this great diving site", site.getDescription());
 		
 	}
 
