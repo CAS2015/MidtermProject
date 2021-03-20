@@ -1,12 +1,14 @@
 package com.skilldistillery.deeperdive.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class User {
@@ -34,7 +36,15 @@ public class User {
 	@Column(name= "img_url")
 	private String imageUrl;
 	
-
+	@OneToMany(mappedBy= "user")
+	private List<LocationComment> locationComments;
+	
+	@OneToMany(mappedBy= "user")
+	private List<LogComment> logComments;
+	
+	@OneToMany(mappedBy= "user")
+	private List<LogEntry> logEntries;
+	
 	public User() {
 		super();
 	}
@@ -53,14 +63,6 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + id;
-		return result;
 	}
 
 	public String getPassword() {
@@ -117,6 +119,38 @@ public class User {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public List<LocationComment> getLocationComments() {
+		return locationComments;
+	}
+
+	public void setLocationComments(List<LocationComment> locationComments) {
+		this.locationComments = locationComments;
+	}
+
+	public List<LogComment> getLogComments() {
+		return logComments;
+	}
+
+	public void setLogComments(List<LogComment> logComments) {
+		this.logComments = logComments;
+	}
+	
+	public List<LogEntry> getLogEntries() {
+		return logEntries;
+	}
+
+	public void setLogEntries(List<LogEntry> logEntries) {
+		this.logEntries = logEntries;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		return result;
 	}
 
 	@Override

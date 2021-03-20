@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -60,6 +62,10 @@ public class LogEntry {
 	private String airType;
 	
 	private String attraction;
+	
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	public LogEntry() {
 		super();
@@ -199,6 +205,14 @@ public class LogEntry {
 
 	public void setAttraction(String attraction) {
 		this.attraction = attraction;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
