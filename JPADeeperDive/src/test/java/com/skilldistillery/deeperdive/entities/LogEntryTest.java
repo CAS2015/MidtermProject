@@ -69,4 +69,10 @@ class LogEntryTest {
 		assertNotNull(logEntry.getUser());
 		assertEquals(1, logEntry.getUser().getId());
 	}
+	
+	@Test
+	void test_LogEntry_to_Site_entitiy_mapping() {
+		assertNotNull(logEntry.getSite());
+		assertEquals(1, logEntry.getSite().getId());
+	}
 }

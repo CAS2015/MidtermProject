@@ -67,6 +67,10 @@ public class LogEntry {
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	@ManyToOne
+	@JoinColumn(name="site_id")
+	private Site site;
+	
 	public LogEntry() {
 		super();
 	}
@@ -213,6 +217,14 @@ public class LogEntry {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Site getSite() {
+		return site;
+	}
+
+	public void setSite(Site site) {
+		this.site = site;
 	}
 
 	@Override

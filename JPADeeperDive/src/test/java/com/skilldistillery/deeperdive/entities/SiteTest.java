@@ -54,5 +54,17 @@ class SiteTest {
 		assertNotNull(site.getLocation());
 		assertEquals(1, site.getLocation().getId());
 	}
+	
+	@Test
+	void test_Site_to_DiveType_entitiy_mapping() {
+		assertNotNull(site.getDiveType());
+		assertEquals(1, site.getDiveType().getId());
+	}
+	
+	@Test
+	void test_Site_to_LogEntry_entitiy_mapping() {
+		assertNotNull(site.getLogEntries());
+		assertEquals(1, site.getLogEntries().size());
+	}
 
 }

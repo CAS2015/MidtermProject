@@ -1,5 +1,7 @@
 package com.skilldistillery.deeperdive.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Site {
@@ -24,6 +28,13 @@ public class Site {
 	@ManyToOne()
 	@JoinColumn(name="location_id")
 	private Location location;
+	
+	@OneToOne
+	@JoinColumn(name="dive_type_id")
+	private DiveType diveType;
+	
+	@OneToMany(mappedBy = "site")
+	private List<LogEntry> logEntries;
 	
 	public Site() {
 		super();
@@ -67,6 +78,22 @@ public class Site {
 
 	public void setLocation(Location location) {
 		this.location = location;
+	}
+
+	public DiveType getDiveType() {
+		return diveType;
+	}
+
+	public void setDiveType(DiveType diveType) {
+		this.diveType = diveType;
+	}
+
+	public List<LogEntry> getLogEntries() {
+		return logEntries;
+	}
+
+	public void setLogEntries(List<LogEntry> logEntries) {
+		this.logEntries = logEntries;
 	}
 
 	@Override
