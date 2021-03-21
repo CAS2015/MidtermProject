@@ -70,10 +70,13 @@ public class LocationDaoJpaImpl implements LocationDAO {
 
 	@Override
 	public List<Location> findLocationsByKeyword(String keyword) {
+		List<Location> sites;
 		
+		String jpql = "SELECT l from Location l JOIN FETCH l.site.logEntries le WHERE le.content REGEXP :keyword OR le.attraction REGEXP :keyword;";
 		
+		sites = em.createNamedQuery(jpql, Location.class).setParameter("keyword", keyword).getResultList();
 		
-		return null;
+		return sites;
 	}
 
 }
