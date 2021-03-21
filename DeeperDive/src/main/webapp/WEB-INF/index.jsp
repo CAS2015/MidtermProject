@@ -11,9 +11,16 @@
 </head>
 <body>
 
+<c:if test="${registered==true}">Successfully Registered!</c:if>
+
+
 <h1>Dive Deeper with Deeper Dive!</h1>
 
 ${TEST }
+
+<form action="register.do" method="get">
+	<input class="button" type="submit" value="Register" />
+</form>
 
 </body>
 </html>
