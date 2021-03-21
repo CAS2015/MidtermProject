@@ -1,6 +1,7 @@
 package com.skilldistillery.deeperdive.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,6 +35,13 @@ public class LocationComment {
 	@JoinColumn(name="location_id")
 	private Location location;
 
+	@ManyToOne()
+	@JoinColumn(name="in_response_id")
+	private LocationComment originalPost;
+
+	@OneToMany(mappedBy="originalPost")
+	private List<LocationComment> responses;
+	
 	public LocationComment() {
 	}
 
@@ -76,6 +85,22 @@ public class LocationComment {
 
 	public void setLocation(Location location) {
 		this.location = location;
+	}
+
+	public LocationComment getOriginalPost() {
+		return originalPost;
+	}
+
+	public void setOriginalPost(LocationComment originalPost) {
+		this.originalPost = originalPost;
+	}
+
+	public List<LocationComment> getResponses() {
+		return responses;
+	}
+
+	public void setResponses(List<LocationComment> responses) {
+		this.responses = responses;
 	}
 
 	@Override
