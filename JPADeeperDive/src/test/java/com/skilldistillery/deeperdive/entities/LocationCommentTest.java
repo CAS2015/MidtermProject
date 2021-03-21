@@ -58,5 +58,17 @@ class LocationCommentTest {
 		assertNotNull(locationComment.getLocation());
 		assertEquals(1, locationComment.getLocation().getId());
 	}
+	
+	@Test
+	void test_LocationComment_to__originalPost_entitiy_mapping() {
+		assertNotNull(locationComment.getOriginalPost());
+		assertEquals(1, locationComment.getOriginalPost().getId());
+	}
+	
+	@Test
+	void test_LocationComment_to__responses_entitiy_mapping() {
+		assertNotNull(locationComment.getResponses());
+		assertEquals(1, locationComment.getResponses().size());
+	}
 
 }
