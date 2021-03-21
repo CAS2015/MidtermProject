@@ -28,6 +28,10 @@ public class LogComment {
 	@JoinColumn(name="user_id")
 	private User user;
 	
+	@ManyToOne
+	@JoinColumn(name="log_entry_id")
+	private LogEntry logEntry;
+	
 	public LogComment() {
 	}
 
@@ -61,6 +65,16 @@ public class LogComment {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	
+
+	public LogEntry getLogEntry() {
+		return logEntry;
+	}
+
+	public void setLogEntry(LogEntry logEntry) {
+		this.logEntry = logEntry;
 	}
 
 	@Override
