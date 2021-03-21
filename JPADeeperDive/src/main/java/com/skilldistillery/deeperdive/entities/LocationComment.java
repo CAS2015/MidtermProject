@@ -28,6 +28,10 @@ public class LocationComment {
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name="location_id")
+	private Location location;
 
 	public LocationComment() {
 	}
@@ -64,6 +68,14 @@ public class LocationComment {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 	@Override

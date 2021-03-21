@@ -1,10 +1,13 @@
 package com.skilldistillery.deeperdive.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Location {
@@ -32,6 +35,12 @@ public class Location {
 	
 	@Column(name="img_url")
 	private String imgUrl;
+	
+	@OneToMany(mappedBy= "location")
+	private List<Site> sites;
+	
+	@OneToMany(mappedBy= "location")
+	private List<LocationComment> locationComments;
 
 	public int getId() {
 		return id;
@@ -103,6 +112,22 @@ public class Location {
 
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
+	}
+
+	public List<Site> getSites() {
+		return sites;
+	}
+
+	public void setSites(List<Site> sites) {
+		this.sites = sites;
+	}
+
+	public List<LocationComment> getLocationComments() {
+		return locationComments;
+	}
+
+	public void setLocationComments(List<LocationComment> locationComments) {
+		this.locationComments = locationComments;
 	}
 
 	@Override
