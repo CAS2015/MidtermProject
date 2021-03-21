@@ -52,5 +52,11 @@ class LocationCommentTest {
 		assertNotNull(locationComment.getUser());
 		assertEquals(1, locationComment.getUser().getId());
 	}
+	
+	@Test
+	void test_LocationComment_to_Location_entitiy_mapping() {
+		assertNotNull(locationComment.getLocation());
+		assertEquals(1, locationComment.getLocation().getId());
+	}
 
 }

@@ -51,4 +51,15 @@ class LocationTest {
 		
 	}
 
+	@Test
+	void test_Location_to_Site_entitiy_mapping() {
+		assertNotNull(location.getSites());
+		assertEquals(1, location.getSites().size());;	
+	}
+	
+	@Test
+	void test_Location_to_LocationComment_entitiy_mapping() {
+		assertNotNull(location.getLocationComments());
+		assertEquals(1, location.getLocationComments().size());;	
+	}
 }

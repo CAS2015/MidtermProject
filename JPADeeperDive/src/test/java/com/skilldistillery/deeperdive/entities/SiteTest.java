@@ -48,5 +48,11 @@ class SiteTest {
 		assertEquals("Lots of stuff in this great diving site", site.getDescription());
 		
 	}
+	
+	@Test
+	void test_Site_to_Location_entitiy_mapping() {
+		assertNotNull(site.getLocation());
+		assertEquals(1, site.getLocation().getId());
+	}
 
 }

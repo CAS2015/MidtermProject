@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Site {
@@ -18,6 +20,10 @@ public class Site {
 	private String minimumCert;
 	
 	private String description;
+	
+	@ManyToOne()
+	@JoinColumn(name="location_id")
+	private Location location;
 	
 	public Site() {
 		super();
@@ -53,6 +59,14 @@ public class Site {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 	@Override
