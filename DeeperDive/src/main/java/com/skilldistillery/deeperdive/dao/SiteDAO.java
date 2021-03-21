@@ -10,12 +10,6 @@ public interface SiteDAO {
 	
 	List<Site> findAllSites();
 	
-	List<Site> findTopFiveSites();
-	
-	List<Site> findSitesAlphabetically();
-	
-	List<Site> findSitesByRating();
-	
 	List<Site> findSitesByKeyword(String keyword);
 	
 	

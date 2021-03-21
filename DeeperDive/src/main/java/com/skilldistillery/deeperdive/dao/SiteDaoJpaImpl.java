@@ -2,43 +2,43 @@ package com.skilldistillery.deeperdive.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
 import com.skilldistillery.deeperdive.entities.Site;
 
+@Service
+@Transactional
 public class SiteDaoJpaImpl implements SiteDAO {
+
+	@PersistenceContext
+	private EntityManager em;
 
 	@Override
 	public Site findSiteById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Site.class, id);
 	}
 
 	@Override
 	public List<Site> findAllSites() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Site> sites;
+
+		String jpql = "SELECT s FROM Site s";
+
+		sites = em.createQuery(jpql, Site.class).getResultList();
+
+		return sites;
 	}
 
-	@Override
-	public List<Site> findTopFiveSites() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Site> findSitesAlphabetically() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Site> findSitesByRating() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Site> findSitesByKeyword(String keyword) {
-		// TODO Auto-generated method stub
+		
+		
+		
 		return null;
 	}
 
