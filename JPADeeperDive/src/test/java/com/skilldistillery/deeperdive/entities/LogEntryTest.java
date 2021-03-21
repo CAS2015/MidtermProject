@@ -75,4 +75,6 @@ class LogEntryTest {
 		assertNotNull(logEntry.getSite());
 		assertEquals(1, logEntry.getSite().getId());
 	}
+	
+	
 }

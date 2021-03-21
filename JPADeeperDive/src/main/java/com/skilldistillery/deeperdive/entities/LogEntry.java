@@ -3,6 +3,7 @@ package com.skilldistillery.deeperdive.entities;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -70,6 +72,9 @@ public class LogEntry {
 	@ManyToOne
 	@JoinColumn(name="site_id")
 	private Site site;
+	
+	@OneToMany(mappedBy="logEntry")
+	private List<LogComment> logComments;
 	
 	public LogEntry() {
 		super();
@@ -225,6 +230,15 @@ public class LogEntry {
 
 	public void setSite(Site site) {
 		this.site = site;
+	}
+	
+
+	public List<LogComment> getLogComments() {
+		return logComments;
+	}
+
+	public void setLogComments(List<LogComment> logComments) {
+		this.logComments = logComments;
 	}
 
 	@Override

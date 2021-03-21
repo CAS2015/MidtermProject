@@ -53,5 +53,12 @@ class LogCommentTest {
 		assertNotNull(logComment.getUser());
 		assertEquals(1, logComment.getUser().getId());
 	}
+	
+	@Test
+	void test_LogComment_to_LogEntry_entity_mapping() {
+		assertNotNull(logComment.getLogEntry());
+		assertEquals("Where do I being? I was there all alone, and then I saw all of these wonderful things on this dive", logComment.getLogEntry().getLogContent());
+		assertEquals(31, logComment.getLogEntry().getDiveDate().getDayOfMonth());
+	}
 
 }
