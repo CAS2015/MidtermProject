@@ -60,9 +60,9 @@ public class LocationController {
 	}
 	
 	@RequestMapping(path = "getLocation.do")
-	public String getLocation(Location location, Model model) {
+	public String getLocation(int id, Model model) {
 		
-		Location loc = dao.findLocationById(location.getId());
+		Location loc = dao.findLocationById(id);
 		
 		model.addAttribute("location", loc);
 		

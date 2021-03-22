@@ -90,7 +90,7 @@ ${TEST }
 
 <ul>
 
-<li>${loc.locationName }</li>
+<li><a href="getLocation.do?id=${loc.id}">${loc.locationName }</a></li>
 
 </ul>
 
