@@ -68,6 +68,11 @@ ${TEST }
 <form action="locationsByRating.do" method="get">
 	<input class="button" type="submit" value="Sort Locations By Rating" />
 </form>
+<form action="locationsByKeyword.do" method="get">
+	Enter a keyword to search:
+    			<input type="text" name="keyword" size="30"/> 
+    			<input type="submit" value="search by keyword"/>
+</form>
 </div>
 
 
@@ -81,9 +86,8 @@ ${TEST }
 <c:if test="${ isByKeyword == true}"> 
 
 <c:if test="${ empty locations }"> <h3>No Locations Found</h3>      </c:if>
-<c:otherwise>
-<h3>Keyword Search Results</h3>      
-</c:otherwise>
+<c:if test="${not empty locations }">   <h3>Keyword Search Results</h3>       </c:if>
+     
 </c:if>
 
 <c:forEach var= "loc" items = "${locations }">
