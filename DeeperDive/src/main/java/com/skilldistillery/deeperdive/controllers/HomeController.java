@@ -6,17 +6,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.skilldistillery.deeperdive.dao.LocationDAO;
 import com.skilldistillery.deeperdive.dao.UserDAO;
 
 @Controller
 public class HomeController {
 	
 	@Autowired
-	private UserDAO userDao;
+	private LocationDAO locationDao;
 	
 	@RequestMapping(path = {"/", "home.do"})
 	public String home(Model model) {
-		model.addAttribute("TEST", userDao.findById(1));
+		
+		boolean isTopFive = true;
+		
+		model.addAttribute("locations", locationDao.findTopFiveLocations());
+		
+		model.addAttribute("isTopFive", isTopFive);
+		
 		return "index";
 	}
 	

@@ -83,9 +83,9 @@ public class LocationDaoJpaImpl implements LocationDAO {
 	public List<Location> findLocationsByKeyword(String keyword) {
 		List<Location> sites;
 
-		String jpql = "SELECT l from Location l JOIN l.sites si JOIN si.logEntries le WHERE le.content REGEXP :keyword OR le.attraction REGEXP :keyword;";
+		String jpql = "SELECT l from Location l JOIN l.sites si JOIN si.logEntries le WHERE le.logContent LIKE :keyword OR le.attraction LIKE :keyword";
 
-		sites = em.createNamedQuery(jpql, Location.class).setParameter("keyword", keyword).getResultList();
+		sites = em.createQuery(jpql, Location.class).setParameter("keyword", "%"+keyword+"%").getResultList();
 
 		return sites;
 	}

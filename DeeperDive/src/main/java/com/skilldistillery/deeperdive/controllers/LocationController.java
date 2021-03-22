@@ -16,22 +16,17 @@ public class LocationController {
 	@Autowired
 	private LocationDAO dao;
 
-	@RequestMapping(path = "topFiveLocations.do")
-	public String showTopFiveLocations(Model model) {
-
-		List<Location> topFive = dao.findTopFiveLocations();
-		model.addAttribute("locations", topFive);
-
-		return "index";
-	}
-
 	@RequestMapping(path = "locationsAlphabetically.do")
 	public String showLocationsAlphabetically(Model model) {
 
 		List<Location> locations = dao.findLocationsAlphabetically();
-
+		
+		boolean isAlphabetical = true;
+		
 		model.addAttribute("locations", locations);
-
+		//flag to change header
+		model.addAttribute("isAlphabetical", isAlphabetical);
+		
 		return "index";
 	}
 	
@@ -40,15 +35,19 @@ public class LocationController {
 		
 		List<Location> locations = dao.findLocationsByRating();
 		
+		boolean isByRating = true;
+		
 		model.addAttribute("locations", locations);
+		
+		model.addAttribute("isByRating", isByRating);
 		
 		return "index";
 	}
 	
 	@RequestMapping(path = "getLocation.do")
-	public String getLocation(Location location, Model model) {
+	public String getLocation(int id, Model model) {
 		
-		Location loc = dao.findLocationById(location.getId());
+		Location loc = dao.findLocationById(id);
 		
 		model.addAttribute("location", loc);
 		
@@ -60,7 +59,11 @@ public class LocationController {
 		
 		List<Location> locations = dao.findLocationsByKeyword(keyword);
 		
+		boolean isByKeyword = true;
+		
 		model.addAttribute("locations", locations);
+		
+		model.addAttribute("isByKeyword", isByKeyword);
 		
 		return "index";
 	}
