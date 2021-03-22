@@ -20,14 +20,27 @@ public class LocationDaoJpaImpl implements LocationDAO {
 
 	@Override
 	public Location findLocationById(int id) {
-		return em.find(Location.class, id);
+		
+		Location location = null;
+		
+		String jpql = "SELECT l FROM Location l JOIN l.sites si JOIN si.logEntries";
+		
+		try {
+			location = em.createQuery(jpql, Location.class).getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return location;
+	
+	
 	}
 
 	@Override
 	public List<Location> findAllLocations() {
 		List<Location> locations;
 
-		String jpql = "SELECT l FROM Location l";
+		String jpql = "SELECT l FROM Location l JOIN l.sites si JOIN si.logEntries";
 
 		locations = em.createQuery(jpql, Location.class).getResultList();
 
@@ -48,7 +61,7 @@ public class LocationDaoJpaImpl implements LocationDAO {
 	public List<Location> findLocationsAlphabetically() {
 		List<Location> locations;
 
-		String jpql = "SELECT l FROM Location l ORDER BY l.locationName";
+		String jpql = "SELECT l FROM Location l JOIN l.sites si JOIN si.logEntries ORDER BY l.locationName";
 
 		locations = em.createQuery(jpql, Location.class).getResultList();
 
