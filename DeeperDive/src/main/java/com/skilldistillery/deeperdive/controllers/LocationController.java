@@ -20,8 +20,14 @@ public class LocationController {
 	public String showTopFiveLocations(Model model) {
 
 		List<Location> topFive = dao.findTopFiveLocations();
+		boolean isTopFive = true;
+		
 		model.addAttribute("locations", topFive);
-
+		
+		//flag to change header
+		model.addAttribute("isTopFive", isTopFive);
+		
+		
 		return "index";
 	}
 
@@ -29,9 +35,13 @@ public class LocationController {
 	public String showLocationsAlphabetically(Model model) {
 
 		List<Location> locations = dao.findLocationsAlphabetically();
-
+		
+		boolean isAlphabetical = true;
+		
 		model.addAttribute("locations", locations);
-
+		//flag to change header
+		model.addAttribute("isAlphabetical", isAlphabetical);
+		
 		return "index";
 	}
 	
@@ -40,7 +50,11 @@ public class LocationController {
 		
 		List<Location> locations = dao.findLocationsByRating();
 		
+		boolean isByRating = true;
+		
 		model.addAttribute("locations", locations);
+		
+		model.addAttribute("isByRating", isByRating);
 		
 		return "index";
 	}
@@ -60,7 +74,11 @@ public class LocationController {
 		
 		List<Location> locations = dao.findLocationsByKeyword(keyword);
 		
+		boolean isByKeyword = true;
+		
 		model.addAttribute("locations", locations);
+		
+		model.addAttribute("isByKeyword", isByKeyword);
 		
 		return "index";
 	}
