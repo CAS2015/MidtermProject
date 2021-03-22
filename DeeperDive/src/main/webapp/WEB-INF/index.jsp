@@ -90,7 +90,7 @@ ${TEST }
      
 </c:if>
 
-<c:forEach var= "loc" items = "${locations }">
+<c:forEach items = "${locations }"  var= "loc" >
 
 <ul>
 

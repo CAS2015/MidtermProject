@@ -21,7 +21,6 @@ public class LocationController {
 
 		List<Location> topFive = dao.findTopFiveLocations();
 		boolean isTopFive = true;
-		
 		model.addAttribute("locations", topFive);
 		
 		//flag to change header

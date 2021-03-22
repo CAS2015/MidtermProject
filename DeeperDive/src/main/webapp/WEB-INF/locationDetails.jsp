@@ -42,7 +42,7 @@
 </c:when>
 </c:choose>
 
-<h2>${location.name } </h2>
+<h2>${location.locationName } </h2>
 <h3>${location.region }, ${location.country } </h3>
 <h5> AVG RATING FIXME</h5>
 <h5> Water Type: ${location.waterType}, Temperature Range: ${location.minTemp} - ${location.maxTemp} degrees C</h5>
