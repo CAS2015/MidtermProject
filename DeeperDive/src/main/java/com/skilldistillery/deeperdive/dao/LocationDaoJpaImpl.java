@@ -20,7 +20,20 @@ public class LocationDaoJpaImpl implements LocationDAO {
 
 	@Override
 	public Location findLocationById(int id) {
-		return em.find(Location.class, id);
+		
+		Location location = null;
+		
+		String jpql = "SELECT l FROM Location l JOIN l.sites si JOIN si.logEntries";
+		
+		try {
+			location = em.createQuery(jpql, Location.class).getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return location;
+	
+	
 	}
 
 	@Override
