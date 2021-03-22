@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +28,7 @@ public class LogEntry {
 	
 	private String title;
 	
+//	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name= "dive_date")
 	private LocalDate diveDate;
 
