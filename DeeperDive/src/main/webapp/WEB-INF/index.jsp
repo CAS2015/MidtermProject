@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
   
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     
 <!DOCTYPE html>
 <html>
@@ -44,15 +45,59 @@
 
 <h1>Dive Deeper with Deeper Dive!</h1>
 
+
+
 ${TEST }
 
+<c:if test="${empty loggedInUser }">
+<form action="login.do" method="get">
+	<input class="button" type="submit" value="Login" />
+</form>
+</c:if>
 
+
+<br>
+<div>
 
 <form action="topFiveLocations.do" method="get">
 	<input class="button" type="submit" value="Top 5 Locations" />
 </form>
+<form action="locationsAlphabetically.do" method="get">
+	<input class="button" type="submit" value="Sort Locations Alphabetically" />
+</form>
+<form action="locationsByRating.do" method="get">
+	<input class="button" type="submit" value="Sort Locations By Rating" />
+</form>
+</div>
 
-${locations }
+
+
+<div style="width:700px;height:200px;border:1px solid #000;">
+
+<c:if test="${ isTopFive == true}"> <h3>Top Five Locations by Rating</h3>      </c:if>
+<c:if test="${ isAlphabetical == true}"> <h3>Locations Sorted Alphabetically</h3>      </c:if>
+<c:if test="${ isByRating == true}"> <h3>Locations Sorted By Rating - Highest to Lowest</h3>      </c:if>
+
+<c:if test="${ isByKeyword == true}"> 
+
+<c:if test="${ empty locations }"> <h3>No Locations Found</h3>      </c:if>
+<c:otherwise>
+<h3>Keyword Search Results</h3>      
+</c:otherwise>
+</c:if>
+
+<c:forEach var= "loc" items = "${locations }">
+
+<ul>
+
+<li>${loc.locationName }</li>
+
+</ul>
+
+</c:forEach>
+
+
+</div>
 
 </body>
 </html>
