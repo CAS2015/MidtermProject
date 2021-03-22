@@ -17,11 +17,10 @@ public class LogCommentJpaDaoImpl implements LogCommentDAO {
 	
 	
 	@Override
-	public void createLogComment(LogComment logComment) {
-
-		
-		
-		
+	public LogComment createLogComment(LogComment logComment) {
+		em.persist(logComment);
+		em.flush();
+		return logComment;
 	}
 
 }

@@ -21,4 +21,9 @@ public class LogEntryDaoJpaImpl implements LogEntryDAO {
 		return logEntry;
 	}
 
+	@Override
+	public LogEntry findById(int id) {
+		return em.find(LogEntry.class, id);
+	}
+
 }

@@ -4,6 +4,6 @@ import com.skilldistillery.deeperdive.entities.LogComment;
 
 public interface LogCommentDAO {
 
-  public void createLogComment(LogComment logComment);
+  public LogComment createLogComment(LogComment logComment);
 	
 }
