@@ -15,8 +15,8 @@
 
 
 <c:if test="${failed == true }">Invalid Username or Password! Login failed.</c:if>
-
-
+<c:choose>
+<c:when test="${empty loggedInUser }">
 <form action="login.do" method="POST" id="loginUserForm">
 		<div class="loginUser">
 		<h4>Login</h4>
@@ -31,26 +31,22 @@
 
 		<input class="button" type="submit" value="Login" />
 	</form>
-
-<c:if test="${ ! empty loggedInUser }">Welcome ${loggedInUser.firstName}!
+	<form action="register.do" method="get">
+	<input class="button" type="submit" value="Sign Up" />
+</form>
+</c:when>
+<c:when test="${ ! empty loggedInUser }">Welcome ${loggedInUser.firstName}!
 <form action="logout.do" >
 	<input class="button" type="submit" value="Logout" />
 </form>
-</c:if>
-
+</c:when>
+</c:choose>
 
 <h1>Dive Deeper with Deeper Dive!</h1>
 
 ${TEST }
 
-<c:if test="${empty loggedInUser }">
-<form action="register.do" method="get">
-	<input class="button" type="submit" value="Register" />
-</form>
-<form action="login.do" method="get">
-	<input class="button" type="submit" value="Login" />
-</form>
-</c:if>
+
 
 <form action="topFiveLocations.do" method="get">
 	<input class="button" type="submit" value="Top 5 Locations" />
