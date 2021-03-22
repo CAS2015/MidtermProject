@@ -33,5 +33,11 @@ ${TEST }
 </form>
 </c:if>
 
+<form action="topFiveLocations.do" method="get">
+	<input class="button" type="submit" value="Top 5 Locations" />
+</form>
+
+${locations }
+
 </body>
 </html>
