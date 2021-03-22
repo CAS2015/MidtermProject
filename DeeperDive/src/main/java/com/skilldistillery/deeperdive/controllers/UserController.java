@@ -2,6 +2,8 @@ package com.skilldistillery.deeperdive.controllers;
 
 import java.time.LocalDateTime;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +21,7 @@ public class UserController {
 	private UserDAO userDao;
 	
 	@RequestMapping(path = "register.do", method=RequestMethod.POST)
-	public ModelAndView register(User user, RedirectAttributes redir) {
+	public ModelAndView register(User user, RedirectAttributes redir, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		user.setCreateDate(LocalDateTime.now());
 		
@@ -30,11 +32,53 @@ public class UserController {
 			mv.addObject("failed", true);
 		}
 		else {
-			redir.addFlashAttribute("user", newUser);
+			session.setAttribute("loggedInUser", newUser);
 			redir.addFlashAttribute("registered",true);
-			mv.setViewName("redirect:home.do");	
+			mv.setViewName("redirect:login.do");	
 			
 		}
+		return mv;
+	}
+	
+	@RequestMapping(path = "login.do", method=RequestMethod.GET)
+	public ModelAndView logintest(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		if(session.getAttribute("loggedInUser") != null) {
+			mv.setViewName("redirect:home.do");
+			return mv;	
+		}
+		
+		mv.setViewName("login");
+	    return mv;
+	}
+	
+	@RequestMapping(path = "login.do", method=RequestMethod.POST)
+	public ModelAndView login(String username, String password, RedirectAttributes redir, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		
+		if(session.getAttribute("loggedInUser") != null) {
+			mv.setViewName("redirect:home.do");
+			return mv;
+		}
+		
+		User user = userDao.login(username, password);
+		
+		if (user == null) {
+			mv.setViewName("login");
+			mv.addObject("failed", true);
+		}
+		else {
+			session.setAttribute("loggedInUser", user);
+			mv.setViewName("redirect:home.do");		
+		}
+		return mv;
+	}
+	
+	@RequestMapping(path = "logout.do")
+	public ModelAndView logout(HttpSession session, RedirectAttributes redir) {
+		ModelAndView mv = new ModelAndView();
+		session.removeAttribute("loggedInUser");
+		mv.setViewName("redirect:home.do");
 		return mv;
 	}
 
