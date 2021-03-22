@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.deeperdive.entities.Location;
-import com.skilldistillery.deeperdive.entities.Site;
 
 @Service
 @Transactional
@@ -20,11 +19,11 @@ public class LocationDaoJpaImpl implements LocationDAO {
 
 	@Override
 	public Location findLocationById(int id) {
-		
+
 		Location location = null;
-		
+
 		String jpql = "SELECT l FROM Location l JOIN l.sites si JOIN si.logEntries";
-		
+
 		try {
 			location = em.createQuery(jpql, Location.class).getSingleResult();
 		} catch (Exception e) {
@@ -32,8 +31,7 @@ public class LocationDaoJpaImpl implements LocationDAO {
 		}
 
 		return location;
-	
-	
+
 	}
 
 	@Override
@@ -52,6 +50,7 @@ public class LocationDaoJpaImpl implements LocationDAO {
 		List<Location> topFive;
 
 		String jpql = "SELECT l FROM Location l JOIN l.sites si JOIN si.logEntries le GROUP BY l.id ORDER BY AVG(le.rating) DESC";
+		
 		topFive = em.createQuery(jpql, Location.class).setMaxResults(5).getResultList();
 
 		return topFive;
@@ -74,7 +73,7 @@ public class LocationDaoJpaImpl implements LocationDAO {
 		List<Location> sites;
 
 		String jpql = "SELECT l FROM Location l JOIN l.sites si JOIN si.logEntries le GROUP BY l.id ORDER BY AVG(le.rating) DESC";
-		
+
 		sites = em.createQuery(jpql, Location.class).getResultList();
 
 		return sites;
@@ -83,11 +82,11 @@ public class LocationDaoJpaImpl implements LocationDAO {
 	@Override
 	public List<Location> findLocationsByKeyword(String keyword) {
 		List<Location> sites;
-		
+
 		String jpql = "SELECT l from Location l JOIN l.sites si JOIN si.logEntries le WHERE le.content REGEXP :keyword OR le.attraction REGEXP :keyword;";
-		
+
 		sites = em.createNamedQuery(jpql, Location.class).setParameter("keyword", keyword).getResultList();
-		
+
 		return sites;
 	}
 
