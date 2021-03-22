@@ -47,6 +47,11 @@
 <h5> AVG RATING FIXME</h5>
 <h5> Water Type: ${location.waterType}, Temperature Range: ${location.minTemp} - ${location.maxTemp} degrees C</h5>
 
+<!-- Add Log Button  -->
+<form action="logForm.do" method="GET">
+	<input class="btn btn-primary" type="submit" value="Add A New Log!"/>
+</form>
+
 
 </body>
 </html>
