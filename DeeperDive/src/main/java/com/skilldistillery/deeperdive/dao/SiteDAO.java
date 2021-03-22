@@ -10,7 +10,7 @@ public interface SiteDAO {
 	
 	List<Site> findAllSites();
 	
-	List<Site> findSitesByKeyword(String keyword);
+	Site findSitesByName(String siteName);
 	
 	
 }

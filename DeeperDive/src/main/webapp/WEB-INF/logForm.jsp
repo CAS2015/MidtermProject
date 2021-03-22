@@ -28,9 +28,9 @@
 			<label>Dive Date:</label> 
 			<input type="date" name="diveDate"/><br>
 			<label>Entry Time:</label> 
-			<input type="date" name="entryTime"/><br>
+			<input type="time" name="entryTime"/><br>
 			<label>End Time:</label> 
-			<input type="date" name="endTime"/><br>
+			<input type="time" name="endTime"/><br>
 
 			<label for="rating">Rating:</label> <select id="rating" name="rating">
 				<option value="1">1</option>
@@ -38,7 +38,8 @@
 				<option value="3">3</option>
 				<option value="4">4</option>
 				<option value="5">5</option>
-			</select> 
+			</select>
+			<br> 
 			<label>Max Depth (meters):</label> 
 			<input type="number" name="maxDepthMeters"/><br> 
 			<label>Equipment:</label> 

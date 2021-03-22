@@ -35,11 +35,17 @@ public class SiteDaoJpaImpl implements SiteDAO {
 
 
 	@Override
-	public List<Site> findSitesByKeyword(String keyword) {
+	public Site findSitesByName(String siteName) {
+		Site site = null;
 		
+		String jpql = "SELECT s FROM Site s WHERE s.name = :siteName";
 		
-		
-		return null;
+		try {
+			site = em.createQuery(jpql, Site.class).setParameter("siteName",siteName).getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}		
+		return site;
 	}
 
 }
