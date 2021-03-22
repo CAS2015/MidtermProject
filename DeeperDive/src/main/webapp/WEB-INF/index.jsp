@@ -13,6 +13,25 @@
 
 <c:if test="${registered==true}">Successfully Registered!</c:if>
 
+
+<c:if test="${failed == true }">Invalid Username or Password! Login failed.</c:if>
+
+
+<form action="login.do" method="POST" id="loginUserForm">
+		<div class="loginUser">
+		<h4>Login</h4>
+		</div>
+		
+		<div class="loginFormBody">
+		<b>Username:</b>
+		<input type="text"  name="username" required="required"/><br> 
+		<b>Password:</b>
+		<input type="password" name="password" required="required"/><br> 
+		</div>
+
+		<input class="button" type="submit" value="Login" />
+	</form>
+
 <c:if test="${ ! empty loggedInUser }">Welcome ${loggedInUser.firstName}!
 <form action="logout.do" >
 	<input class="button" type="submit" value="Logout" />
