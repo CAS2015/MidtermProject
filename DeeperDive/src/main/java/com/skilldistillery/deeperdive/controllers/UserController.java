@@ -20,7 +20,7 @@ public class UserController {
 	@Autowired
 	private UserDAO userDao;
 	
-	@RequestMapping(path = "register.do", method=RequestMethod.POST)
+	@RequestMapping(path = "register.do", method= RequestMethod.POST)
 	public ModelAndView register(User user, RedirectAttributes redir, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		user.setCreateDate(LocalDateTime.now());
@@ -39,20 +39,8 @@ public class UserController {
 		}
 		return mv;
 	}
-	
-	@RequestMapping(path = "login.do", method=RequestMethod.GET)
-	public ModelAndView logintest(HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		if(session.getAttribute("loggedInUser") != null) {
-			mv.setViewName("redirect:home.do");
-			return mv;	
-		}
-		
-		mv.setViewName("login");
-	    return mv;
-	}
-	
-	@RequestMapping(path = "login.do", method=RequestMethod.POST)
+
+	@RequestMapping(path = "login.do", method={RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView login(String username, String password, RedirectAttributes redir, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		
