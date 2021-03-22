@@ -20,23 +20,67 @@ public class UserDaoJpaImpl implements UserDAO {
 	public User findById(int userId) {
 		return em.find(User.class, userId);
 	}
+	
+	@Override
+	public User findByUsername(String username) {
+		String query = "SELECT u FROM User u WHERE u.username = :username";
+		
+		try {
+			User user = em.createQuery(query, User.class).setParameter("username", username).getResultList().get(0);
+			return user;
+		} catch (Exception e) {
+			return null;
+		}
+		
+	}
 
 	@Override
 	public User create(User user) {
-		String query = "SELECT u.id FROM User u WHERE u.username = :username";
 		
 		//Getting any users that already have that username
-		int userNameInUser = em.createQuery(query).setParameter("username", user.getUsername())
-		.getResultList().size();
+		boolean alreadyUsername = isValidUsername(user);
 		
 		//If a user already has username, don't create user, otherwise create new user
-		if(userNameInUser > 0) {
-			return null;
-		}
-		else {
+		if(alreadyUsername == false) {
 			em.persist(user);
 			return user;		
 		}
+		else {
+			return null;
+		}
+	}
+
+	@Override
+	public boolean isValidUsername(User user) {
+
+		if (findByUsername(user.getUsername()) == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	
+	@Override
+	public User login(String username, String password) {
+		String query = "SELECT u FROM User u WHERE u.username = :username";
+		User validUser = null;
+		
+		try {
+			validUser = em.createQuery(query,User.class).setParameter("username", username).
+					getResultList().get(0);
+			
+		} catch (Exception e) {
+			return null;
+		}
+		
+		if(validUser == null || !validUser.getPassword().equals(password)) {
+			return null;	
+		}
+		else {
+			return validUser;
+		}
+		
 	}
 
 	

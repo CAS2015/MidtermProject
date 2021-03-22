@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<c:if test="${failed == true }">Invalid Username! Registration Failed.</c:if>
+<c:if test="${failed == true }"> Invalid Username! Registration failed.</c:if>
 
 
 <form action="register.do" method="POST" id="addUserForm">
