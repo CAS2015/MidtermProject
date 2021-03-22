@@ -38,9 +38,8 @@ public class LocationDaoJpaImpl implements LocationDAO {
 	public List<Location> findTopFiveLocations() {
 		List<Location> topFive;
 
-		String jpql = "SELECT l FROM Location l Join Site s ON l.id = s.location.id JOIN LogEntry le ON s.id = le.site.id ORDER BY (SELECT AVG(le.rating) FROM le) DESC LIMIT 5";
-
-		topFive = em.createQuery(jpql, Location.class).getResultList();
+		String jpql = "SELECT l FROM Location l JOIN l.sites si JOIN si.logEntries le GROUP BY l.id ORDER BY AVG(le.rating) DESC";
+		topFive = em.createQuery(jpql, Location.class).setMaxResults(5).getResultList();
 
 		return topFive;
 	}
@@ -61,8 +60,7 @@ public class LocationDaoJpaImpl implements LocationDAO {
 
 		List<Location> sites;
 
-		String jpql = "SELECT l FROM Location l JOIN Site s ON l.id = s.location.id JOIN LogEntry le ON s.id = le.site.id ORDER BY (SELECT AVG(le.rating) FROM le) DESC";
-
+		String jpql = "SELECT l FROM Location l JOIN l.sites si JOIN si.logEntries le GROUP BY l.id ORDER BY AVG(le.rating) DESC";
 		sites = em.createQuery(jpql, Location.class).getResultList();
 
 		return sites;
@@ -72,7 +70,7 @@ public class LocationDaoJpaImpl implements LocationDAO {
 	public List<Location> findLocationsByKeyword(String keyword) {
 		List<Location> sites;
 		
-		String jpql = "SELECT l from Location l JOIN FETCH l.site.logEntries le WHERE le.content REGEXP :keyword OR le.attraction REGEXP :keyword;";
+		String jpql = "SELECT l from Location l JOIN  l.site si JOIN si.logEntries le WHERE le.content REGEXP :keyword OR le.attraction REGEXP :keyword;";
 		
 		sites = em.createNamedQuery(jpql, Location.class).setParameter("keyword", keyword).getResultList();
 		
