@@ -61,6 +61,7 @@ public class LocationDaoJpaImpl implements LocationDAO {
 		List<Location> sites;
 
 		String jpql = "SELECT l FROM Location l JOIN l.sites si JOIN si.logEntries le GROUP BY l.id ORDER BY AVG(le.rating) DESC";
+		
 		sites = em.createQuery(jpql, Location.class).getResultList();
 
 		return sites;
@@ -70,7 +71,7 @@ public class LocationDaoJpaImpl implements LocationDAO {
 	public List<Location> findLocationsByKeyword(String keyword) {
 		List<Location> sites;
 		
-		String jpql = "SELECT l from Location l JOIN  l.site si JOIN si.logEntries le WHERE le.content REGEXP :keyword OR le.attraction REGEXP :keyword;";
+		String jpql = "SELECT l from Location l JOIN l.sites si JOIN si.logEntries le WHERE le.content REGEXP :keyword OR le.attraction REGEXP :keyword;";
 		
 		sites = em.createNamedQuery(jpql, Location.class).setParameter("keyword", keyword).getResultList();
 		
