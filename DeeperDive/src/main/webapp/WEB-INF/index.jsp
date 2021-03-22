@@ -90,11 +90,11 @@ ${TEST }
      
 </c:if>
 
-<c:forEach var= "loc" items = "${locations }">
+<c:forEach items = "${locations }"  var= "loc" >
 
 <ul>
 
-<li>${loc.locationName }</li>
+<li><a href="getLocation.do?id=${loc.id}">${loc.locationName }</a></li>
 
 </ul>
 
