@@ -12,89 +12,55 @@
 
 <h1>Log Form here! (YOU SHOULD REMOVE THIS)</h1>
 
-<form:form action="createLog.do" modelAttribute="logEntry"  method="POST">
-		<table>
-			<tr>
-				<td>Title:</td>
-				<td><form:input path="title"/>
-				</td>
-			</tr>
-			<tr>
-				<td>Log Content:</td>
-				<td><form:input path="log_content"/>
-				</td>
-			</tr>
-			<tr>
-				<td>Dive Date:</td>
-				<td><form:input path="dive_date"/>
-				</td>
-			</tr>
-			<tr>
-				<td>Dive Entry Time:</td>
-				<td><form:input path="entry_time"/>
-				</td>
-			</tr>
-			<tr>
-				<td>Dive End Time:</td>
-				<td><form:input path="end_time"/>
-				</td>
-			</tr>
-			<tr>
-				<td>Rating:</td>
-				<!-- Constrains of 1 to 5 -->
-				<td><form:input path="rating"/>
-				</td>
-			</tr>
-			<tr>
-				<td>Max Depth in Meters:</td>
-				<td><form:input path="max_depth_meters"/>
-				</td>
-			</tr>
-			<tr>
-				<td>Equipment</td>
-				<td><form:input path="equipment"/>
-				</td>
-			</tr>
-			<tr>
-				<td>Photos (add URL link)</td>
-				<td><form:input path="img_url"/>
-				</td>
-			</tr>
-			<tr>
-				<td>Visibility</td>
-				<td><form:input path="visibility"/>
-				</td>
-			</tr>
-			<tr>
-				<td>Starting Pressure (bar)</td>
-				<td><form:input path="start_pressure_bar"/>
-				</td>
-			</tr>
-			<tr>
-				<td>Ending Pressure (bar)</td>
-				<td><form:input path="end_pressure_bar"/>
-				</td>
-			</tr>
-			<tr>
-				<td>Air Type</td>
-				<td><form:input path="air_type"/>
-				</td>
-			</tr>
-			<tr>				
-				<td><form:input type="hidden" path="created_at" value ="${logEntry.###_PassLocalDateTime.Now()}"/>
-				</td>
-			</tr>
-			<tr>				
-				<td><form:input type="hidden" path="last_updated" value ="${logEntry.###_PassLocalDateTime.Now()}"/>
-				</td>
-			</tr>	
-			<!-- Submit -->
-			<tr>
-				<td><input type="submit" value="Log Submit"/>
-				</td>
-			</tr>
-		</table>		
-</form:form>
+
+<form action="createLog.do" method="POST" >
+		<div class="newLog">
+		<h4>Add Your Log </h4>
+		</div>
+		
+		<div class="createALogForm">
+		
+		<label>Title:</label>
+		<input type="text"  name="title"/><br> 
+		<label>Log Content:</label>
+		<input type="text" name="logContent"/><br> 
+		<label>Dive Date:</label>
+		<input type="date" name="diveDate"/><br> 
+		<label>Entry Time:</label>
+		<input type="date" name="entryTime"/><br> 
+		<label>End Time:</label>
+		<input type="date" name="endTime"/><br>
+		 
+		 <!-- input type submit might be wrong. Need to check how to pass the info  -->
+		<label>Rating:</label>
+		<select id="cars" name="rating">
+    		<option value="1">1</option>
+    		<option value="2">2</option>
+    		<option value="3">3</option>
+    		<option value="4">4</option>
+    		<option value="5">5</option>
+  		</select>
+  		<input type="submit" name="rating">
+   
+		<label>Max Depth (meters):</label>
+		<input type="number" name="maxDepthMeters"/><br> 
+		<label>Equipment:</label>
+		<input type="text"  name="equipment"/><br> 
+		<label>Visibility:</label>
+		
+		<!-- xxxxxxxxxxxxxxxxxxxxxx -->
+		
+		<input type="text" name="logContent"/><br> 
+		<label>Dive Date:</label>
+		</div>
+		<input type="hidden" name="created_at" value="PassLocalDateTime.Now()">
+		<input type="hidden" name="last_updated" value="PassLocalDateTime.Now()">
+		
+		
+		
+
+		<input class="button" type="submit" value="Submit Your Log" />
+	</form>
 
 
 </body>

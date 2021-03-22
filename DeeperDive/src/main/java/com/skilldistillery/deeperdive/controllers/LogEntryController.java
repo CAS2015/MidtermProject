@@ -21,9 +21,14 @@ public class LogEntryController {
 //		return "siteDetails";
 //	}
 	
-	@RequestMapping(path = "createLog.do", method = RequestMethod.GET)
-	public String siteDetails() {
+	@RequestMapping(path = "showSitesDetails.do", method = RequestMethod.GET)
+	public String showSiteDetails() {
 		return "siteDetails";
+	}
+	
+	@RequestMapping(path = "createLog.do", method = RequestMethod.GET)
+	public String addALog() {
+		return "logForm";
 	}
 	
 }
