@@ -16,20 +16,6 @@ public class LocationController {
 	@Autowired
 	private LocationDAO dao;
 
-	@RequestMapping(path = "topFiveLocations.do")
-	public String showTopFiveLocations(Model model) {
-
-		List<Location> topFive = dao.findTopFiveLocations();
-		boolean isTopFive = true;
-		model.addAttribute("locations", topFive);
-		
-		//flag to change header
-		model.addAttribute("isTopFive", isTopFive);
-		
-		
-		return "index";
-	}
-
 	@RequestMapping(path = "locationsAlphabetically.do")
 	public String showLocationsAlphabetically(Model model) {
 
