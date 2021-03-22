@@ -59,9 +59,6 @@ ${TEST }
 <br>
 <div>
 
-<form action="topFiveLocations.do" method="get">
-	<input class="button" type="submit" value="Top 5 Locations" />
-</form>
 <form action="locationsAlphabetically.do" method="get">
 	<input class="button" type="submit" value="Sort Locations Alphabetically" />
 </form>
