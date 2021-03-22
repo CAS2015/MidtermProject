@@ -6,5 +6,5 @@ public interface LogEntryDAO {
 
 	LogEntry createLog(LogEntry logEntry);
 	
-	
+	LogEntry findById(int id);
 }
