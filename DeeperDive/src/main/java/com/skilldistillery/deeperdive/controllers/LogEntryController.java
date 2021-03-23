@@ -54,21 +54,90 @@ public class LogEntryController {
 		logEntry.setLastUpdated(LocalDateTime.now());
 		LogEntry newLog = logEntryDao.createLog(logEntry);
 		if (newLog == null) {
-			mv.addObject("failed", true);
+			redir.addFlashAttribute("failed", true);
 			mv.setViewName("redirect:logForm.do");
 		} else {
-			redir.addFlashAttribute("logEntry", newLog);
-			mv.setViewName("redirect:logCreated.do");
+			redir.addFlashAttribute("log", newLog);
+			mv.setViewName("redirect:logCreated.do?id=" + newLog.getSite().getLocation().getId());
 		}
 		return mv;
 	}
 	
 	@RequestMapping(path = "logCreated.do", method = RequestMethod.GET)
-	public ModelAndView logCreated() {
+	public ModelAndView logCreated(int id) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("locationDetails");
+		mv.setViewName("redirect:getLocation.do?id=" + id);
 		return mv;
 	}
+	
+	
+	@RequestMapping(path = "updateLogForm.do", method = RequestMethod.GET)
+	public ModelAndView updateALog(int logId) {
+		ModelAndView mv = new ModelAndView();
+		LogEntry entry = logEntryDao.findById(logId);
+		mv.addObject("update", true);
+		mv.addObject("log", entry);
+		mv.setViewName("logForm");
+		return mv;
+	}
+	
+	@RequestMapping(path = "updateLog.do", method = RequestMethod.POST)
+	public ModelAndView updateLog(LogEntry logEntry, String diveSiteName, RedirectAttributes redir) {
+		// add site_id, and user_id (HARCODED FOR NOW)
+		ModelAndView mv = new ModelAndView();
+		Site site = siteDao.findSitesByName(diveSiteName);
+		if (site == null) {
+			logEntry.setSite(siteDao.findSiteById(1));			
+		} else {
+			logEntry.setSite(site);			
+		}
+		// add created_at, last_updated hidden fields
+		logEntry.setLastUpdated(LocalDateTime.now());
+		
+		LogEntry updateLog = logEntryDao.updateLog(logEntry);
+		
+		if (updateLog == null) {
+			redir.addFlashAttribute("failed", true);
+			mv.setViewName("redirect:logForm.do");
+		} else {
+			redir.addFlashAttribute("logEntry", updateLog);
+			mv.setViewName("redirect:logUpdate.do?id=" + updateLog.getSite().getLocation().getId());
+		}
+		return mv;
+	}
+	
+	@RequestMapping(path = "logUpdate.do", method = RequestMethod.GET)
+	public ModelAndView logUpdated(int id) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:getLocation.do?id=" + id);
+		return mv;
+	}
+	
+	
+	@RequestMapping(path = "removeLog.do", method = RequestMethod.POST)
+	public ModelAndView deleteLog(int logId, RedirectAttributes redir) {
+		// add site_id, and user_id (HARCODED FOR NOW)
+		ModelAndView mv = new ModelAndView();
+		LogEntry logEntry = logEntryDao.findById(logId);
+
+		boolean success = logEntryDao.deleteLog(logEntry);
+		
+		if (success == false) {
+			mv.addObject("failed", true);
+			mv.setViewName("redirect:logDelete.do?id=" + logEntry.getSite().getLocation().getId());
+		} else {
+			mv.addObject("success", true);
+			mv.setViewName("redirect:logDelete.do?id=" + logEntry.getSite().getLocation().getId());
+		}
+		return mv;
+	}
+	
+	@RequestMapping(path = "logDelete.do", method = RequestMethod.GET)
+	public ModelAndView logUpdated(int id, ModelAndView mv) {
+		mv.setViewName("redirect:getLocation.do?id=" + id);
+		return mv;
+	}
+	
 	
 	// From ROB ---------------------------------
 	

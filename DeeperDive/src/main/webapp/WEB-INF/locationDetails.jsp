@@ -56,7 +56,16 @@
 </form>
 </c:if>
 <c:forEach items="${logs}"  var="log" >
-
+<c:if test="${log.user.id == loggedInUser.id}">
+<form id="updateLog" action="updateLogForm.do" method="GET">
+	<input type="hidden" name="logId" value="${log.id}">
+	<input class="btn btn-primary" type="submit" value="Update Log"/>
+</form>
+<form id="removeLog" action="removeLog.do" method="POST">
+	<input type="hidden" name="logId" value="${log.id}">
+	<input class="btn btn-primary" type="submit" value="Delete Log"/>
+</form>
+</c:if>
 <table>
 <tr>
 	<td>${log.site.name}</td>
@@ -75,6 +84,15 @@
 	 <c:forEach items= "${log.logComments }" var= "comment">
 	 <td colspan="2">
 	${comment.content }
+	<c:if test="${comment.user.id == loggedInUser.id }">
+	
+	<form action="removeLogComment.do" method="post" id="removeLogComment">
+	<input  type="hidden" id="logCommentId" name="logCommentId" value="${comment.id }" />
+	
+	<input class="button" type="submit" value="Delete Comment" />
+</form>
+	
+	</c:if>
 	</td>
 	</c:forEach>          
 </tr>
@@ -82,11 +100,11 @@
 
 </table>
 <c:if test="${ ! empty loggedInUser }">
-<form action="submitLogComment.do" method="post" id="createLogComment">
+<form action="submitLogComment.do" method="post" id="createLogComment${log.id }">
 	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
 	<input  type="hidden" id="logId" name="logId" value="${log.id }" />
 	<label>Comment:</label>
-	<textarea name="content" form="createLogComment" rows="3" cols="80"></textarea>
+	<textarea name="content" form="createLogComment${log.id }" rows="3" cols="80"></textarea>
 	<input class="button" type="submit" value="Submit Comment" />
 </form>
 </c:if>

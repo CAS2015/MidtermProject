@@ -13,61 +13,86 @@
 <!-- NavBar -->
 <jsp:include page="bootstrapNavBarJSP/navBar.jsp" />
 
-	<form action="createLog.do" method="POST" id="createLog">
+	<form action="${update== true ? 'updateLog.do' : 'createLog.do'}" method="POST" id="createLog">
 		<div class="newLog">
-			<h4>Add Your Log</h4>
+			<c:choose>
+				<c:when test="${update == true }">
+					<h4>Update Your Log</h4>
+				</c:when>
+				<c:otherwise>
+					<h4>Add Your Log</h4>
+				</c:otherwise>
+			</c:choose>
+			
 		</div>
 		
 		<!-- Log Form -->
 		<div class="createALogForm">
 			<label>Title:</label> 
-			<input type="text" name="title"/><br>
+			<input type="text" name="title" value="${log.title}"/><br>
 			
 			<label>Dive Site Name:</label> 
-			<input type="text" name="diveSiteName"/><br>
+			<input type="text" name="diveSiteName" value="${log.site.name}"/><br>
 			
 			<label>Log Content:</label>
-			<textarea name="logContent" form="createLog" rows="3" cols="80"></textarea>
+			<textarea name="logContent" form="createLog" rows="3" cols="80" >${log.logContent}</textarea>
 			<label>Dive Date:</label> 
-			<input type="date" name="diveDate"/><br>
+			<input type="date" name="diveDate" value="${log.diveDate}"/><br>
 			<label>Entry Time:</label> 
-			<input type="time" name="entryTime"/><br>
+			<input type="time" name="entryTime" value="${log.entryTime}"/><br>
 			<label>End Time:</label> 
-			<input type="time" name="endTime"/><br>
+			<input type="time" name="endTime" value="${log.endTime}"/><br>
 
-			<label for="rating">Rating:</label> <select id="rating" name="rating">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
+			<label for="rating">Rating:</label> <select id="rating" name="rating" >
+				<option value="1" ${(log.rating == 1) ? "selected='selected'" : ""}>1</option>
+				<option value="2" ${(log.rating == 2) ? "selected='selected'" : ""}>2</option>
+				<option value="3" ${(log.rating == 3) ? "selected='selected'" : ""}>3</option>
+				<option value="4" ${(log.rating == 4) ? "selected='selected'" : ""}>4</option>
+				<option value="5" ${(log.rating == 5) ? "selected='selected'" : ""}>5</option>
 			</select>
 			<br> 
 			<label>Max Depth (meters):</label> 
-			<input type="number" name="maxDepthMeters"/><br> 
+			<input type="number" name="maxDepthMeters" value="${log.maxDepthMeters}"/><br> 
 			<label>Equipment:</label> 
-			<input type="text" name="equipment"/><br> 
+			<input type="text" name="equipment" value="${log.equipment}"/><br> 
 			
 			<label>URL to your Photo:</label> 
-			<input type="text" name="imageUrl"/><br> 
+			<input type="text" name="imageUrl" value="${log.imageUrl}"/><br> 
 			
 			<label for="visibility">Visibility:</label>
-			<select id="visibility" name="visibility">
-				<option value="Poor">Poor</option>
-				<option value="Fair">Fair</option>
-				<option value="Excellent">Excellent</option>
+			<select id="visibility" name="visibility" >
+				<option value="poor" ${(log.rating == poor) ? "selected='selected'" : ""}>Poor</option>
+				<option value="fair" ${(log.rating == fair) ? "selected='selected'" : ""}>Fair</option>
+				<option value="excellent" ${(log.rating == excellent) ? "selected='selected'" : ""}>Excellent</option>
 			</select> 
 			<label>Starting Pressure (bar):</label> 
-			<input type="number" name="startPressureBar"/><br> 
+			<input type="number" name="startPressureBar" value="${log.startPressureBar}"/><br> 
 			<label>Ending Pressure (bar):</label> 
-			<input type="number" name="endPressureBar"/><br> 
+			<input type="number" name="endPressureBar" value="${log.endPressureBar}"/><br> 
 			<label>Air Type:</label> 
-			<input type="text" name="airType" value="air, nitrox, etc."/><br>			
+			<c:choose>
+			<c:when test="${update == true}">
+				<input type="text" name="airType" value="${log.airType}"/><br>			
+			</c:when> 
+			<c:otherwise>
+				<input type="text" name="airType" value="air, nitrox, etc."/><br>			
+			</c:otherwise>
+			</c:choose>
 			<label>Attractions:</label>
-			<textarea name="attraction" form="createLog" rows="3" cols="80"></textarea>
-			
+			<textarea name="attraction" form="createLog" rows="3" cols="80" >${log.attraction}</textarea>
+			<c:if test="${update == true }">
+			<input type="hidden" name="id" value="${log.id}">
+			</c:if>
 			<!-- Submit Button  -->
-			<input class="button" type="submit" value="Submit Your Log" />
+			
+			<c:choose>
+				<c:when test="${update == true }">
+					<input class="button" type="submit" value="Update Your Log" />
+				</c:when>
+				<c:otherwise>
+					<input class="button" type="submit" value="Submit Your Log" />
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</form>
 
