@@ -29,7 +29,7 @@ public class UserController {
 		
 		if (newUser == null) {
 			mv.setViewName("register");
-			mv.addObject("failed", true);
+			redir.addFlashAttribute("failed", true);
 		}
 		else {
 			session.setAttribute("loggedInUser", newUser);
@@ -52,8 +52,8 @@ public class UserController {
 		User user = userDao.login(username, password);
 		
 		if (user == null) {
-			mv.setViewName("login");
-			mv.addObject("failed", true);
+			redir.addFlashAttribute("failed", true);
+			mv.setViewName("redirect:home.do");
 		}
 		else {
 			session.setAttribute("loggedInUser", user);
