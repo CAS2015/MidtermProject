@@ -8,11 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Location Details</title>
-<jsp:include page="bootstrapHead.jsp" />
+<jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
 </head>
 <body>
 <!-- NavBar -->
-<jsp:include page="navBar.jsp" />
+<jsp:include page="bootstrapNavBarJSP/navBar.jsp" />
 <c:if test="${registered==true}">Successfully Registered!</c:if>
 
 
@@ -95,6 +95,6 @@
 
 
 <!-- Footer  -->
-<jsp:include page="bootstrapFoot.jsp" />
+<jsp:include page="bootstrapNavBarJSP/bootstrapFoot.jsp" />
 </body>
 </html>

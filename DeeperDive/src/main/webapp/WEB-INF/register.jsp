@@ -8,11 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Register</title>
-<jsp:include page="bootstrapHead.jsp" />
+<jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
 </head>
 <body>
 <!-- NavBar -->
-<jsp:include page="navBar.jsp" />
+<jsp:include page="bootstrapNavBarJSP/navBar.jsp" />
 <c:if test="${failed == true }"> Invalid Username! Registration failed.</c:if>
 
 
@@ -46,6 +46,6 @@
 	</form>
 
 <!-- Footer  -->
-<jsp:include page="bootstrapFoot.jsp" />
+<jsp:include page="bootstrapNavBarJSP/bootstrapFoot.jsp" />
 </body>
 </html>

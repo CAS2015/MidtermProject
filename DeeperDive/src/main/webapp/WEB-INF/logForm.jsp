@@ -7,11 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Log Form</title>
-<jsp:include page="bootstrapHead.jsp" />
+<jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
 </head>
 <body>
 <!-- NavBar -->
-<jsp:include page="navBar.jsp" />
+<jsp:include page="bootstrapNavBarJSP/navBar.jsp" />
 
 	<form action="createLog.do" method="POST" id="createLog">
 		<div class="newLog">
@@ -73,6 +73,6 @@
 
 
 <!-- Footer  -->
-<jsp:include page="bootstrapFoot.jsp" />
+<jsp:include page="bootstrapNavBarJSP/bootstrapFoot.jsp" />
 </body>
 </html>
