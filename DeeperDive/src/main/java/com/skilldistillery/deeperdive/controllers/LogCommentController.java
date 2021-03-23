@@ -59,17 +59,20 @@ public class LogCommentController {
 		
 		@RequestMapping(path= "removeLogComment.do", method = RequestMethod.POST)
 		public String removeComment(int logCommentId, RedirectAttributes redir) {
+			
 			LogComment	logComment = logCommentDao.findById(logCommentId);
 			int locationId = logComment.getLogEntry().getSite().getLocation().getId();
+			
 			boolean commentDeleted = logCommentDao.removeLogComment(logComment);
 			redir.addFlashAttribute("commentDeleted", commentDeleted);
+			
 			return "redirect:commentRemoved.do?locationId="  + locationId;
 		}
 		
 		@RequestMapping(path = "commentRemoved.do")
 		public String commentRemoved(int locationId) {
-			
 			return "redirect:getLocation.do?id=" + locationId;
+
 		}
 		
 		
