@@ -54,7 +54,12 @@
 </form>
 </c:if>
 <c:forEach items="${logs}"  var="log" >
-
+<c:if test="${log.user.id == loggedInUser.id}">
+<form id="updateLog" action="updateLogForm.do" method="GET">
+	<input type="hidden" name="logId" value="${log.id}">
+	<input class="btn btn-primary" type="submit" value="UpdateLog"/>
+</form>
+</c:if>
 <table>
 <tr>
 	<td>${log.site.name}</td>
