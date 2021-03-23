@@ -2,6 +2,7 @@ package com.skilldistillery.deeperdive.controllers;
 
 import java.beans.PropertyEditorSupport;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -24,6 +25,7 @@ import com.skilldistillery.deeperdive.dao.UserDAO;
 import com.skilldistillery.deeperdive.entities.LogEntry;
 import com.skilldistillery.deeperdive.entities.Site;
 
+
 @Controller
 public class LogEntryController {
 	@Autowired
@@ -32,6 +34,24 @@ public class LogEntryController {
 	private SiteDAO siteDao;
 	@Autowired
 	private UserDAO userDao;
+	
+	@RequestMapping(path = "getLog.do", method = RequestMethod.GET)
+	public ModelAndView getALog(int id) {
+		ModelAndView mv = new ModelAndView();
+		
+		LogEntry log = logEntryDao.findById(id);
+		mv.addObject("log",log);
+		
+		LocalTime start = log.getEntryTime();
+		LocalTime end = log.getEndTime();
+		
+		int duration = (int) Duration.between(start, end).toMinutes();
+		
+		
+		mv.addObject("duration",duration);
+		mv.setViewName("logDetails");
+		return mv;
+	}
 	
 	@RequestMapping(path = "logForm.do", method = RequestMethod.GET)
 	public String addALog() {
