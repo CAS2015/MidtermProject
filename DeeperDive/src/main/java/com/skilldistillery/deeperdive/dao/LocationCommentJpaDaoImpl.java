@@ -21,7 +21,7 @@ public class LocationCommentJpaDaoImpl implements LocationCommentDAO {
 	
 	
 	@Override
-	public LocationComment createLocationComment(LocationComment locationComment, Integer responseId) {
+	public LocationComment createLocationCommentResponse(LocationComment locationComment, Integer responseId) {
 		
 		LocationComment	originalComment = em.find(LocationComment.class, responseId);
 		
@@ -35,7 +35,7 @@ public class LocationCommentJpaDaoImpl implements LocationCommentDAO {
 	}
 
 	@Override
-	public LocationComment findLocationCommentById(int id) {
+	public LocationComment findById(int id) {
 		return em.find(LocationComment.class, id);
 	}
 
@@ -48,5 +48,27 @@ public class LocationCommentJpaDaoImpl implements LocationCommentDAO {
 		
 		return locationComments;
 	}
+
+	@Override
+	public boolean removeLocationComment(LocationComment locationComment) {
+		 em.remove(locationComment);
+			
+		 if(em.contains(locationComment)) {
+			 return false;
+		 }
+		 else {
+			 return true;
+		 }
+	}
+
+	@Override
+	public LocationComment createLocationComment(LocationComment locationComment) {
+		
+		em.persist(locationComment);
+		
+		return locationComment;
+	}
+
+	
 
 }

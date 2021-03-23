@@ -47,6 +47,97 @@
 <h5> AVG RATING FIXME</h5>
 <h5> Water Type: ${location.waterType}, Temperature Range: ${location.minTemp} - ${location.maxTemp} degrees C</h5>
 
+
+<div style="width:700px;height:200px;border:1px solid #000;">
+
+<h2>Location Comments</h2>
+<c:if test="${ empty location.locationComments }"> <h2>There are no comments about this location yet</h2>      </c:if>
+<c:if test="${not empty location.locationComments }">    
+
+<c:forEach var="locationComment" items="${location.locationComments }">
+<c:if test="${ empty locationComment.originalPost }">
+<table>
+<thead></thead>
+
+<tr>
+<td>Created by:  ${locationComment.user.username} at: ${locationComment.createdAt } </td>
+
+<td>  ${locationComment.content}   </td>
+
+</tr>
+</table>
+</c:if>
+<c:if test="${not empty locationComment.responses }">
+<c:forEach items = "${locationComment.responses }" var = "response">
+
+<table>
+<tr>
+<td colspan="2">        White Space Here                           </td>
+
+<td>Response by:  ${response.user.username}  at: ${response.createdAt } </td>
+
+<td>  ${response.content}   </td>
+
+</tr>
+</table>
+</c:forEach>
+</c:if>
+
+
+
+<c:if test="${locationComment.user.id == loggedInUser.id && empty locationComment.responses}">
+	
+	<form action="removeLocationComment.do" method="post" id="removeLocationComment">
+	<input  type="hidden" id="locationCommentId" name="locationCommentId" value="${locationComment.id }" />
+	
+	<input class="button" type="submit" value="Delete Comment" />
+</form>
+	
+	</c:if>
+	
+	     <c:if test="${ ! empty loggedInUser && empty locationComment.originalPost}">
+<form action="LocationCommentResponse.do" method="post" id="createLocationCommentResponse${locationComment.id }">
+	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
+	<input  type="hidden" id="locationId" name="locationId" value="${location.id }" />
+	<input  type="hidden" id="locationId" name="responseId" value="${locationComment.id }" />
+	<label>Create Response:</label>
+	<textarea name="content" form="createLocationCommentResponse${locationComment.id }" rows="2" cols="60"></textarea>
+	<input class="button" type="submit" value="Submit Comment" />
+</form>
+</c:if>
+	
+	
+	
+</c:forEach>
+
+    </c:if>
+     
+     <c:if test="${ ! empty loggedInUser }">
+<form action="newLocationComment.do" method="post" id="createLocationComment${location.id }">
+	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
+	<input  type="hidden" id="locationId" name="locationId" value="${location.id }" />
+	<label>Add New Comment:</label>
+	<textarea name="content" form="createLocationComment${location.id }" rows="3" cols="80"></textarea>
+	<input class="button" type="submit" value="Submit Comment" />
+</form>
+</c:if>
+     
+     
+     
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 <!-- Add Log Button  -->
 <c:if test="${ ! empty loggedInUser }">
 <form action="logForm.do" method="GET">
