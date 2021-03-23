@@ -9,10 +9,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Deeper Dive</title>
+<jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
+<link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
+<!-- NavBar -->
+<jsp:include page="bootstrapNavBarJSP/navBar.jsp" />
+<c:if test="${registered==true}">Successfully Registered!</c:if>
 
-<c:if test="${registered == true}">Successfully Registered!</c:if>
 
 
 <c:if test="${failed == true }">Invalid Username or Password! Login failed.</c:if>
@@ -100,5 +104,7 @@ ${TEST }
 
 </div>
 
+<!-- Footer  -->
+<jsp:include page="bootstrapNavBarJSP/bootstrapFoot.jsp" />
 </body>
 </html>
