@@ -57,24 +57,26 @@ public class LogEntryController {
 			redir.addFlashAttribute("failed", true);
 			mv.setViewName("redirect:logForm.do");
 		} else {
-			redir.addFlashAttribute("logEntry", newLog);
-			mv.setViewName("redirect:logCreated.do");
+			redir.addFlashAttribute("log", newLog);
+			mv.setViewName("redirect:logCreated.do?id=" + newLog.getSite().getLocation().getId());
 		}
 		return mv;
 	}
 	
 	@RequestMapping(path = "logCreated.do", method = RequestMethod.GET)
-	public ModelAndView logCreated() {
+	public ModelAndView logCreated(int id) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("locationDetails");
+		mv.setViewName("redirect:getLocation.do?id=" + id);
 		return mv;
 	}
 	
 	
 	@RequestMapping(path = "updateLogForm.do", method = RequestMethod.GET)
-	public ModelAndView updateALog() {
+	public ModelAndView updateALog(int logId) {
 		ModelAndView mv = new ModelAndView();
+		LogEntry entry = logEntryDao.findById(logId);
 		mv.addObject("update", true);
+		mv.addObject("log", entry);
 		mv.setViewName("logForm");
 		return mv;
 	}
@@ -82,6 +84,7 @@ public class LogEntryController {
 	@RequestMapping(path = "updateLog.do", method = RequestMethod.POST)
 	public ModelAndView updateLog(LogEntry logEntry, String diveSiteName, RedirectAttributes redir) {
 		// add site_id, and user_id (HARCODED FOR NOW)
+		System.out.println("*******************" + logEntry);
 		ModelAndView mv = new ModelAndView();
 		Site site = siteDao.findSitesByName(diveSiteName);
 		if (site == null) {
@@ -99,15 +102,15 @@ public class LogEntryController {
 			mv.setViewName("redirect:logForm.do");
 		} else {
 			redir.addFlashAttribute("logEntry", updateLog);
-			mv.setViewName("redirect:logUpdate.do");
+			mv.setViewName("redirect:logUpdate.do?id=" + updateLog.getSite().getLocation().getId());
 		}
 		return mv;
 	}
 	
 	@RequestMapping(path = "logUpdate.do", method = RequestMethod.GET)
-	public ModelAndView logUpdated() {
+	public ModelAndView logUpdated(int id) {
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("locationDetails");
+		mv.setViewName("redirect:getLocation.do?id=" + id);
 		return mv;
 	}
 	
