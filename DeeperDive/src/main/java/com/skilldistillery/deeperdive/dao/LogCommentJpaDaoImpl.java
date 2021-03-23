@@ -22,4 +22,30 @@ public class LogCommentJpaDaoImpl implements LogCommentDAO {
 		return logComment;
 	}
 
+
+	@Override
+	public boolean removeLogComment(LogComment logComment) {
+
+	 em.remove(logComment);
+	
+	 if(em.contains(logComment)) {
+		 return false;
+	 }
+	 else {
+		 return true;
+	 }
+		
+	}
+
+
+	@Override
+	public LogComment findById(int id) {
+		
+		LogComment logComment = em.find(LogComment.class, id);
+		
+		return logComment;
+	}
+
+	
+	
 }
