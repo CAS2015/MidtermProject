@@ -30,9 +30,12 @@
 		<div class="createALogForm">
 			<label>Title:</label> 
 			<input type="text" name="title" value="${log.title}"/><br>
-			
-			<label>Dive Site Name:</label> 
-			<input type="text" name="diveSiteName" value="${log.site.name}"/><br>
+
+			<label for="diveSiteName">Dive Site Name:</label> <select id="diveSiteName" name="diveSiteName" >
+			<c:forEach items="${sites}" var="diveSite">
+				<option value="${diveSite.name}" ${(log.site.name == diveSite.name) ? "selected='selected'" : ""}>${diveSite.name}</option>
+			</c:forEach>
+			</select>
 			
 			<label>Log Content:</label>
 			<textarea name="logContent" form="createLog" rows="3" cols="80" >${log.logContent}</textarea>
