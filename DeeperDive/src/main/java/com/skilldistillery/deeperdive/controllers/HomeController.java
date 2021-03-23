@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.skilldistillery.deeperdive.dao.LocationDAO;
-import com.skilldistillery.deeperdive.dao.UserDAO;
 
 @Controller
 public class HomeController {

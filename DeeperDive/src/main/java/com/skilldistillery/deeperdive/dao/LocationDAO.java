@@ -3,7 +3,7 @@ package com.skilldistillery.deeperdive.dao;
 import java.util.List;
 
 import com.skilldistillery.deeperdive.entities.Location;
-import com.skilldistillery.deeperdive.entities.Site;
+import com.skilldistillery.deeperdive.entities.LogEntry;
 
 public interface LocationDAO {
 
@@ -18,6 +18,8 @@ public interface LocationDAO {
 	List<Location> findLocationsByRating();
 	
 	List<Location> findLocationsByKeyword(String keyword);
+	
+	List<LogEntry> getThreeMostRecentLogEntries(Location location);
 	
 	
 }
