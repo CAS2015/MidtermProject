@@ -9,4 +9,6 @@ public interface LogEntryDAO {
 	LogEntry findById(int id);
 	
 	LogEntry updateLog(LogEntry logEntry);
+	
+	boolean deleteLog(LogEntry logEntry);
 }
