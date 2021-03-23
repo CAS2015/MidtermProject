@@ -8,39 +8,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Location Details</title>
+<jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
 </head>
 <body>
+<!-- NavBar -->
+<jsp:include page="bootstrapNavBarJSP/navBar.jsp" />
 
 <c:if test="${registered==true}">Successfully Registered!</c:if>
 
 
 <c:if test="${failed == true }">Invalid Username or Password! Login failed.</c:if>
-<c:choose>
-<c:when test="${empty loggedInUser }">
-<form action="login.do" method="POST" id="loginUserForm">
-		<div class="loginUser">
-		<h4>Login</h4>
-		</div>
-		
-		<div class="loginFormBody">
-		<b>Username:</b>
-		<input type="text"  name="username" required="required"/><br> 
-		<b>Password:</b>
-		<input type="password" name="password" required="required"/><br> 
-		</div>
 
-		<input class="button" type="submit" value="Login" />
-	</form>
-	<form action="register.do" method="get">
-	<input class="button" type="submit" value="Sign Up" />
-</form>
-</c:when>
-<c:when test="${ ! empty loggedInUser }">Welcome ${loggedInUser.firstName}!
-<form action="logout.do" >
-	<input class="button" type="submit" value="Logout" />
-</form>
-</c:when>
-</c:choose>
 
 <h2>${location.locationName } </h2>
 <h3>${location.region }, ${location.country } </h3>
@@ -126,17 +104,8 @@
      
 </div>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
+<h2>Location Dive Logs</h2>
 
 <!-- Add Log Button  -->
 <c:if test="${ ! empty loggedInUser }">
@@ -162,8 +131,11 @@
 	<td>${log.rating}/5</td>
 </tr>
 <tr>
+	<td colspan="3"><a href="getLog.do?id=${log.id}">${log.title}</a></td>
+</tr>
+<tr>
 	<td rowspan="2">${log.imageUrl}</td>
-<td>${log.user.firstName} ${log.user.lastName}</td>
+<td>${log.user.username}</td>
 	<td>${log.diveDate}</td>
 </tr>
 <tr>
@@ -201,6 +173,7 @@
 
 
 
-
+<!-- Footer  -->
+<jsp:include page="bootstrapNavBarJSP/bootstrapFoot.jsp" />
 </body>
 </html>
