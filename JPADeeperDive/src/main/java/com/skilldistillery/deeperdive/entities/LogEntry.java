@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -75,7 +75,7 @@ public class LogEntry {
 	@JoinColumn(name="site_id")
 	private Site site;
 	
-	@OneToMany(mappedBy="logEntry")
+	@OneToMany(mappedBy="logEntry", cascade = CascadeType.REMOVE)
 	private List<LogComment> logComments;
 	
 	public LogEntry() {
