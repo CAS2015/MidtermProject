@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.skilldistillery.deeperdive.dao.LocationDAO;
 import com.skilldistillery.deeperdive.dao.LogCommentDAO;
 import com.skilldistillery.deeperdive.dao.LogEntryDAO;
 import com.skilldistillery.deeperdive.dao.UserDAO;
@@ -27,18 +26,27 @@ public class LogCommentController {
 		
 		
 		@RequestMapping(path = "submitLogComment.do", method = RequestMethod.POST)
-		public String submitLogComment(LogComment logComment, int userId, int logId) {
+		public String submitLogComment(String content, int userId, int logId) {
+			
+			LogComment logComment = new LogComment();
+			logComment.setContent(content);
+			
+			System.out.println(content);
+			System.out.println(logComment);
+			System.out.println(userId);
+			System.out.println(logId);
+			
 			
 			User user = userDao.findById(userId);
 			LogEntry logEntry = logEntryDao.findById(logId);
 			
-			if(logComment != null && logComment.getContent().length() > 0) {
+			if(logComment.getContent() != null && logComment.getContent().length() > 0) {
 			logComment.setLogEntry(logEntry);
 			logComment.setUser(user);
 			logComment.setCreateAt(LocalDateTime.now());
 			logCommentDao.createLogComment(logComment);
 			} 
-			return "redirect:newComment.do?locationId=" + logComment.getLogEntry().getSite().getLocation().getId();
+			return "redirect:newComment.do?locationId=" + logEntry.getSite().getLocation().getId();
 			
 		}
 		
@@ -48,6 +56,21 @@ public class LogCommentController {
 			return "redirect:getLocation.do?id=" + locationId;
 		}
 		
+		
+		@RequestMapping(path= "removeLogComment.do", method = RequestMethod.POST)
+		public String removeComment(int logCommentId, RedirectAttributes redir) {
+			LogComment	logComment = logCommentDao.findById(logCommentId);
+			int locationId = logComment.getLogEntry().getSite().getLocation().getId();
+			boolean commentDeleted = logCommentDao.removeLogComment(logComment);
+			redir.addFlashAttribute("commentDeleted", commentDeleted);
+			return "redirect:commentRemoved.do?locationId="  + locationId;
+		}
+		
+		@RequestMapping(path = "commentRemoved.do")
+		public String commentRemoved(int locationId) {
+			
+			return "redirect:getLocation.do?id=" + locationId;
+		}
 		
 		
 }
