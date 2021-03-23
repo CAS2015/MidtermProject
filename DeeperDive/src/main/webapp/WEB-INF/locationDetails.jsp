@@ -57,7 +57,11 @@
 <c:if test="${log.user.id == loggedInUser.id}">
 <form id="updateLog" action="updateLogForm.do" method="GET">
 	<input type="hidden" name="logId" value="${log.id}">
-	<input class="btn btn-primary" type="submit" value="UpdateLog"/>
+	<input class="btn btn-primary" type="submit" value="Update Log"/>
+</form>
+<form id="removeLog" action="removeLog.do" method="POST">
+	<input type="hidden" name="logId" value="${log.id}">
+	<input class="btn btn-primary" type="submit" value="Delete Log"/>
 </form>
 </c:if>
 <table>

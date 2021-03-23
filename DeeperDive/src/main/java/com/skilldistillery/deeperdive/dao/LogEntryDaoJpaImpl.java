@@ -56,4 +56,24 @@ public class LogEntryDaoJpaImpl implements LogEntryDAO {
 		}
 	}
 
+	@Override
+	public boolean deleteLog(LogEntry logEntry) {
+		try {
+			LogEntry managedLog = em.find(LogEntry.class, logEntry.getId());
+			
+			em.remove(managedLog);
+			
+			 if(em.contains(managedLog)) {
+				 return false;
+			 }
+			 else {
+				 return true;
+			 }
+			
+		} catch (Exception e) {
+			return false;
+		}
+	
+	}
+
 }

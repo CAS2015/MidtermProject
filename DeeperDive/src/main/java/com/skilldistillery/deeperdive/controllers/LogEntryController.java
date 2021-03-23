@@ -84,7 +84,6 @@ public class LogEntryController {
 	@RequestMapping(path = "updateLog.do", method = RequestMethod.POST)
 	public ModelAndView updateLog(LogEntry logEntry, String diveSiteName, RedirectAttributes redir) {
 		// add site_id, and user_id (HARCODED FOR NOW)
-		System.out.println("*******************" + logEntry);
 		ModelAndView mv = new ModelAndView();
 		Site site = siteDao.findSitesByName(diveSiteName);
 		if (site == null) {
@@ -113,6 +112,32 @@ public class LogEntryController {
 		mv.setViewName("redirect:getLocation.do?id=" + id);
 		return mv;
 	}
+	
+	
+	@RequestMapping(path = "removeLog.do", method = RequestMethod.POST)
+	public ModelAndView deleteLog(int logId, RedirectAttributes redir) {
+		// add site_id, and user_id (HARCODED FOR NOW)
+		ModelAndView mv = new ModelAndView();
+		LogEntry logEntry = logEntryDao.findById(logId);
+
+		boolean success = logEntryDao.deleteLog(logEntry);
+		
+		if (success == false) {
+			mv.addObject("failed", true);
+			mv.setViewName("redirect:logDelete.do?id=" + logEntry.getSite().getLocation().getId());
+		} else {
+			mv.addObject("success", true);
+			mv.setViewName("redirect:logDelete.do?id=" + logEntry.getSite().getLocation().getId());
+		}
+		return mv;
+	}
+	
+	@RequestMapping(path = "logDelete.do", method = RequestMethod.GET)
+	public ModelAndView logUpdated(int id, ModelAndView mv) {
+		mv.setViewName("redirect:getLocation.do?id=" + id);
+		return mv;
+	}
+	
 	
 	// From ROB ---------------------------------
 	
