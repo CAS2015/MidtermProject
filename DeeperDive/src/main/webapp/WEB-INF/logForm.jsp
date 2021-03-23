@@ -7,8 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Log Form</title>
+<jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
 </head>
 <body>
+<!-- NavBar -->
+<jsp:include page="bootstrapNavBarJSP/navBar.jsp" />
 
 	<form action="${update== true ? 'updateLog.do' : 'createLog.do'}" method="POST" id="createLog">
 		<div class="newLog">
@@ -94,6 +97,7 @@
 	</form>
 
 
-
+<!-- Footer  -->
+<jsp:include page="bootstrapNavBarJSP/bootstrapFoot.jsp" />
 </body>
 </html>
