@@ -32,20 +32,20 @@ public class LogCommentController {
 			User user = userDao.findById(userId);
 			LogEntry logEntry = logEntryDao.findById(logId);
 			
-			
 			if(logComment != null && logComment.getContent().length() > 0) {
 			logComment.setLogEntry(logEntry);
 			logComment.setUser(user);
 			logComment.setCreateAt(LocalDateTime.now());
 			logCommentDao.createLogComment(logComment);
 			} 
-			return "redirect:newComment.do";
+			return "redirect:newComment.do?locationId=" + logComment.getLogEntry().getSite().getLocation().getId();
 			
 		}
 		
 		@RequestMapping(path= "newComment.do", method = RequestMethod.GET)
-		public String newComment() {
-			return "locationDetails";
+		public String newComment(int locationId) {
+			
+			return "redirect:getLocation.do?id=" + locationId;
 		}
 		
 		

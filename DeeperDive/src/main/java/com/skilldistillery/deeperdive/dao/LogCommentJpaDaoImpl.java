@@ -19,7 +19,6 @@ public class LogCommentJpaDaoImpl implements LogCommentDAO {
 	@Override
 	public LogComment createLogComment(LogComment logComment) {
 		em.persist(logComment);
-		em.flush();
 		return logComment;
 	}
 

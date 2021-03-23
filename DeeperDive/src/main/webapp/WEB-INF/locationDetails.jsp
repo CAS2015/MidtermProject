@@ -68,10 +68,25 @@
 <tr>
 	<td colspan="2">${log.logContent}</td>
 </tr>
+<tr>
+	 <c:forEach items= "${log.logComments }" var= "comment">
+	 <td colspan="2">
+	${comment.content }
+	</td>
+	</c:forEach>          
+</tr>
 	
 
 </table>
-
+<c:if test="${ ! empty loggedInUser }">
+<form action="submitLogComment.do" method="post" id="createLogComment">
+	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
+	<input  type="hidden" id="logId" name="logId" value="${log.id }" />
+	<label>Comment:</label>
+	<textarea name="content" form="createLogComment" rows="3" cols="80"></textarea>
+	<input class="button" type="submit" value="Submit Comment" />
+</form>
+</c:if>
 </c:forEach>
 
 
