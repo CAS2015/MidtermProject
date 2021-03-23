@@ -50,10 +50,11 @@
 <h5> Water Type: ${location.waterType}, Temperature Range: ${location.minTemp} - ${location.maxTemp} degrees C</h5>
 
 <!-- Add Log Button  -->
+<c:if test="${ ! empty loggedInUser }">
 <form action="logForm.do" method="GET">
 	<input class="btn btn-primary" type="submit" value="Add A New Log!"/>
 </form>
-
+</c:if>
 <c:forEach items="${logs}"  var="log" >
 
 <table>

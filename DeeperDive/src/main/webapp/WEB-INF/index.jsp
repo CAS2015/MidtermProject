@@ -12,9 +12,14 @@
 <jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
+<<<<<<< HEAD
 <!-- NavBar -->
 <jsp:include page="navBar.jsp" />
 <c:if test="${registered==true}">Successfully Registered!</c:if>
+=======
+
+<c:if test="${registered == true}">Successfully Registered!</c:if>
+>>>>>>> 7830803f5003121abbc417e34646ab9d3fa6cb27
 
 
 <c:if test="${failed == true }">Invalid Username or Password! Login failed.</c:if>

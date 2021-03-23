@@ -71,10 +71,12 @@ public class UserDaoJpaImpl implements UserDAO {
 					getResultList().get(0);
 			
 		} catch (Exception e) {
+			System.out.println("********************* error catch");
 			return null;
 		}
 		
 		if(validUser == null || !validUser.getPassword().equals(password)) {
+			System.out.println("********************if statement");
 			return null;	
 		}
 		else {
