@@ -23,10 +23,10 @@ public class LocationDaoJpaImpl implements LocationDAO {
 
 		Location location = null;
 
-		String jpql = "SELECT l FROM Location l JOIN l.sites si JOIN si.logEntries";
+		String jpql = "SELECT l FROM Location l JOIN l.sites si JOIN si.logEntries WHERE l.id = :id";
 
 		try {
-			location = em.createQuery(jpql, Location.class).getSingleResult();
+			location = em.createQuery(jpql, Location.class).setParameter("id",id).getSingleResult();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
