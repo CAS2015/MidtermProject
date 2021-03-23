@@ -52,6 +52,30 @@
 	<input class="btn btn-primary" type="submit" value="Add A New Log!"/>
 </form>
 
+<c:forEach items="${logs}"  var="log" >
+
+<table>
+<tr>
+	<td>${log.site.name}</td>
+	<td>Dive Type: ${log.site.diveType.name}, Minimum Cert.: ${log.site.minimumCert}</td>
+	<td>${log.rating}/5</td>
+</tr>
+<tr>
+	<td rowspan="2">${log.imageUrl}</td>
+<td>${log.user.firstName} ${log.user.lastName}</td>
+	<td>${log.diveDate}</td>
+</tr>
+<tr>
+	<td colspan="2">${log.logContent}</td>
+</tr>
+	
+
+</table>
+
+</c:forEach>
+
+
+
 
 </body>
 </html>

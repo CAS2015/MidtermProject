@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.deeperdive.entities.Location;
+import com.skilldistillery.deeperdive.entities.LogEntry;
 
 @Service
 @Transactional
@@ -89,5 +90,18 @@ public class LocationDaoJpaImpl implements LocationDAO {
 
 		return sites;
 	}
-
+	
+	
+	@Override
+	public List<LogEntry> getThreeMostRecentLogEntries(Location location) {
+		List<LogEntry> logs;
+		
+		String jpql = "SELECT le FROM LogEntry le JOIN le.site si JOIN si.location l WHERE l.id= :id";
+		logs = em.createQuery(jpql, LogEntry.class).setParameter("id",location.getId()).setMaxResults(3).getResultList();
+		
+		return logs;
+	}
+	
+	
+	
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.skilldistillery.deeperdive.dao.LocationDAO;
 import com.skilldistillery.deeperdive.entities.Location;
+import com.skilldistillery.deeperdive.entities.LogEntry;
 
 @Controller
 public class LocationController {
@@ -48,7 +49,9 @@ public class LocationController {
 	public String getLocation(int id, Model model) {
 		
 		Location loc = dao.findLocationById(id);
-		
+		List<LogEntry> logs = dao.getThreeMostRecentLogEntries(loc);
+
+		model.addAttribute("logs",logs);
 		model.addAttribute("location", loc);
 		
 		return "locationDetails";
