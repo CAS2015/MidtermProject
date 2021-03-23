@@ -26,7 +26,7 @@
 <h5> Water Type: ${location.waterType}, Temperature Range: ${location.minTemp} - ${location.maxTemp} degrees C</h5>
 
 
-<div style="width:700px;height:200px;border:1px solid #000;">
+<div>
 
 <h2>Location Comments</h2>
 <c:if test="${ empty location.locationComments }"> <h2>There are no comments about this location yet</h2>      </c:if>
@@ -103,13 +103,16 @@
      
      
 </div>
+
 <br>
 
+<div>
 <h2>Location Dive Logs</h2>
 
 <!-- Add Log Button  -->
 <c:if test="${ ! empty loggedInUser }">
 <form action="logForm.do" method="GET">
+	<input type="hidden" name="locId" value="${location.id}">
 	<input class="btn btn-primary" type="submit" value="Add A New Log!"/>
 </form>
 </c:if>
@@ -160,6 +163,7 @@
 	
 
 </table>
+
 <c:if test="${ ! empty loggedInUser }">
 <form action="submitLogComment.do" method="post" id="createLogComment${log.id }">
 	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
@@ -171,6 +175,7 @@
 </c:if>
 </c:forEach>
 
+</div>
 
 
 <!-- Footer  -->

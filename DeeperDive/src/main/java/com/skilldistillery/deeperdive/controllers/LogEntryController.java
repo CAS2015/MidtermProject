@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.skilldistillery.deeperdive.dao.LocationDAO;
 import com.skilldistillery.deeperdive.dao.LogEntryDAO;
 import com.skilldistillery.deeperdive.dao.SiteDAO;
 import com.skilldistillery.deeperdive.dao.UserDAO;
@@ -34,6 +36,8 @@ public class LogEntryController {
 	private SiteDAO siteDao;
 	@Autowired
 	private UserDAO userDao;
+	@Autowired
+	private LocationDAO locationDao;
 	
 	@RequestMapping(path = "getLog.do", method = RequestMethod.GET)
 	public ModelAndView getALog(int id) {
@@ -54,8 +58,12 @@ public class LogEntryController {
 	}
 	
 	@RequestMapping(path = "logForm.do", method = RequestMethod.GET)
-	public String addALog() {
-		return "logForm";
+	public ModelAndView addALog(int locId) {
+		ModelAndView mv = new ModelAndView();
+		List<Site> sites = locationDao.findLocationById(locId).getSites();
+		mv.addObject("sites", sites);
+		mv.setViewName("logForm");
+		return mv;
 	}
 	
 	@RequestMapping(path = "createLog.do", method = RequestMethod.POST)
@@ -95,6 +103,10 @@ public class LogEntryController {
 	public ModelAndView updateALog(int logId) {
 		ModelAndView mv = new ModelAndView();
 		LogEntry entry = logEntryDao.findById(logId);
+		
+		List<Site> sites = locationDao.findLocationById(entry.getSite().getLocation().getId()).getSites();
+		mv.addObject("sites", sites);
+		
 		mv.addObject("update", true);
 		mv.addObject("log", entry);
 		mv.setViewName("logForm");
@@ -106,11 +118,8 @@ public class LogEntryController {
 		// add site_id, and user_id (HARCODED FOR NOW)
 		ModelAndView mv = new ModelAndView();
 		Site site = siteDao.findSitesByName(diveSiteName);
-		if (site == null) {
-			logEntry.setSite(siteDao.findSiteById(1));			
-		} else {
+
 			logEntry.setSite(site);			
-		}
 		// add created_at, last_updated hidden fields
 		logEntry.setLastUpdated(LocalDateTime.now());
 		
