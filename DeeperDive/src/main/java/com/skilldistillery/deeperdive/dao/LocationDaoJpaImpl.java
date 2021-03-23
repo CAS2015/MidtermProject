@@ -101,6 +101,23 @@ public class LocationDaoJpaImpl implements LocationDAO {
 		
 		return logs;
 	}
+
+	
+	//select AVG(rating) from log_entry join site on log_entry.site_id = site.id join location on site.location_id = 
+	//location.id where location.id =1 ;
+	@Override
+	public Double getLocationRatingsAverage(int id) {
+		Double average = 0.0;
+		String jpql = "SELECT AVG(le.rating) FROM LogEntry le JOIN Site s ON le.site.id = s.id JOIN Location l ON s.location.id = l.id WHERE l.id = :id";
+		try {
+			 average = em.createQuery(jpql, Double.class).setParameter("id", id).getSingleResult();
+		} catch (Exception e) {
+		return average;
+		}
+		
+		return average;		
+		
+	}
 	
 	
 	

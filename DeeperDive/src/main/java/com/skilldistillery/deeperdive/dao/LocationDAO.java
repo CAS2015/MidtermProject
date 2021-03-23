@@ -21,5 +21,5 @@ public interface LocationDAO {
 	
 	List<LogEntry> getThreeMostRecentLogEntries(Location location);
 	
-	
+	Double getLocationRatingsAverage(int id);
 }

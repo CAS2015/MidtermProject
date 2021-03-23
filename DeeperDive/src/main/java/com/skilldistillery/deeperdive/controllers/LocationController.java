@@ -49,7 +49,9 @@ public class LocationController {
 	public String getLocation(int id, Model model) {
 		Location loc = dao.findLocationById(id);
 		List<LogEntry> logs = dao.getThreeMostRecentLogEntries(loc);
-
+		Double rating = dao.getLocationRatingsAverage(loc.getId());
+		
+		model.addAttribute("averageRating", rating);
 		model.addAttribute("logs",logs);
 		model.addAttribute("location", loc);
 		
