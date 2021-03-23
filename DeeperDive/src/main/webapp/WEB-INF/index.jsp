@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<c:if test="${registered==true}">Successfully Registered!</c:if>
+<c:if test="${registered == true}">Successfully Registered!</c:if>
 
 
 <c:if test="${failed == true }">Invalid Username or Password! Login failed.</c:if>
