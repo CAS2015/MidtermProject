@@ -9,9 +9,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Deeper Dive</title>
+<jsp:include page="bootstrapHead.jsp" />
 </head>
 <body>
-
+<!-- NavBar -->
+<jsp:include page="navBar.jsp" />
 <c:if test="${registered==true}">Successfully Registered!</c:if>
 
 
@@ -100,5 +102,7 @@ ${TEST }
 
 </div>
 
+<!-- Footer  -->
+<jsp:include page="bootstrapFoot.jsp" />
 </body>
 </html>
