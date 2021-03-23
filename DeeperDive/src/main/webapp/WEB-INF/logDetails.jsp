@@ -8,8 +8,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Location Details</title>
+<jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
 </head>
 <body>
+<!-- NavBar -->
+<jsp:include page="bootstrapNavBarJSP/navBar.jsp" />
 
 <h2>${log.title}</h2>
 <h4>${log.site.name}</h4>
@@ -105,5 +108,7 @@
 
 
 
+<!-- Footer  -->
+<jsp:include page="bootstrapNavBarJSP/bootstrapFoot.jsp" />
 </body>
 </html>

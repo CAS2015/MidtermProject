@@ -20,44 +20,9 @@
 
 
 <c:if test="${failed == true }">Invalid Username or Password! Login failed.</c:if>
-<c:choose>
-<c:when test="${empty loggedInUser }">
-<form action="login.do" method="POST" id="loginUserForm">
-		<div class="loginUser">
-		<h4>Login</h4>
-		</div>
-		
-		<div class="loginFormBody">
-		<b>Username:</b>
-		<input type="text"  name="username" required="required"/><br> 
-		<b>Password:</b>
-		<input type="password" name="password" required="required"/><br> 
-		</div>
 
-		<input class="button" type="submit" value="Login" />
-	</form>
-	<form action="register.do" method="get">
-	<input class="button" type="submit" value="Sign Up" />
-</form>
-</c:when>
-<c:when test="${ ! empty loggedInUser }">Welcome ${loggedInUser.firstName}!
-<form action="logout.do" >
-	<input class="button" type="submit" value="Logout" />
-</form>
-</c:when>
-</c:choose>
 
 <h1>Dive Deeper with Deeper Dive!</h1>
-
-
-
-${TEST }
-
-<c:if test="${empty loggedInUser }">
-<form action="login.do" method="get">
-	<input class="button" type="submit" value="Login" />
-</form>
-</c:if>
 
 
 <br>
@@ -78,7 +43,7 @@ ${TEST }
 
 
 
-<div style="width:700px;height:200px;border:1px solid #000;">
+<div class="listLocationsBox">
 
 <c:if test="${ isTopFive == true}"> <h3>Top Five Locations by Rating</h3>      </c:if>
 <c:if test="${ isAlphabetical == true}"> <h3>Locations Sorted Alphabetically</h3>      </c:if>
