@@ -12,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class SiteTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Site site;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,45 +31,40 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		site = em.find(Site.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		site = null;
 	}
 
 	@Test
-	void test_User_entitiy_mapping() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
-		assertEquals("Robert", user.getFirstName());
-		assertEquals("Roberts", user.getLastName());
-		assertEquals(2021, user.getCreateDate().getYear());
-		assertEquals("www.freephotos.com/sunfish.jpg", user.getImageUrl());
+	void test_Site_entitiy_mapping() {
+		assertNotNull(site);
+		assertEquals("Fake Lake ", site.getName());
+		assertEquals("open water", site.getMinimumCert());
+		assertEquals("Lots of stuff in this great diving site", site.getDescription());
 		
 	}
 	
 	@Test
-	void test_User_to_LocationComment_entitiy_mapping() {
-		assertNotNull(user.getLocationComments());
-		assertEquals(1, user.getLocationComments().size());
-		
+	void test_Site_to_Location_entitiy_mapping() {
+		assertNotNull(site.getLocation());
+		assertEquals(1, site.getLocation().getId());
 	}
 	
 	@Test
-	void test_User_to_LogComment_entitiy_mapping() {
-		assertNotNull(user.getLogComments());
-		assertEquals(1, user.getLogComments().size());
-		
+	void test_Site_to_DiveType_entitiy_mapping() {
+		assertNotNull(site.getDiveType());
+		assertEquals(1, site.getDiveType().getId());
 	}
 	
 	@Test
-	void test_User_to_LogEntry_entitiy_mapping() {
-		assertNotNull(user.getLogEntries());
-		assertEquals(1, user.getLogEntries().size());
-		
+	void test_Site_to_LogEntry_entitiy_mapping() {
+		assertNotNull(site.getLogEntries());
+		assertEquals(1, site.getLogEntries().size());
 	}
 
 }

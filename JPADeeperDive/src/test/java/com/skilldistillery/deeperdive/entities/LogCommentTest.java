@@ -12,11 +12,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class LogCommentTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private LogComment logComment;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -31,45 +31,34 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		logComment = em.find(LogComment.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		logComment = null;
 	}
 
 	@Test
-	void test_User_entitiy_mapping() {
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
-		assertEquals("Robert", user.getFirstName());
-		assertEquals("Roberts", user.getLastName());
-		assertEquals(2021, user.getCreateDate().getYear());
-		assertEquals("www.freephotos.com/sunfish.jpg", user.getImageUrl());
-		
+	void test_LogComment_entitiy_mapping() {
+		assertNotNull(logComment);
+		assertNotNull(logComment.getContent());
+		assertTrue(logComment.getContent().length() > 0);
+		assertEquals(1, logComment.getId());
 	}
 	
 	@Test
-	void test_User_to_LocationComment_entitiy_mapping() {
-		assertNotNull(user.getLocationComments());
-		assertEquals(1, user.getLocationComments().size());
-		
+	void test_LogComment_to_User_entitiy_mapping() {
+		assertNotNull(logComment.getUser());
+		assertEquals(1, logComment.getUser().getId());
 	}
 	
 	@Test
-	void test_User_to_LogComment_entitiy_mapping() {
-		assertNotNull(user.getLogComments());
-		assertEquals(1, user.getLogComments().size());
-		
-	}
-	
-	@Test
-	void test_User_to_LogEntry_entitiy_mapping() {
-		assertNotNull(user.getLogEntries());
-		assertEquals(1, user.getLogEntries().size());
-		
+	void test_LogComment_to_LogEntry_entity_mapping() {
+		assertNotNull(logComment.getLogEntry());
+		assertEquals("Where do I being? I was there all alone, and then I saw all of these wonderful things on this dive", logComment.getLogEntry().getLogContent());
+		assertEquals(31, logComment.getLogEntry().getDiveDate().getDayOfMonth());
 	}
 
 }
