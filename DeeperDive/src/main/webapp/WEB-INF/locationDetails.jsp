@@ -89,7 +89,7 @@
 
 
 
-<c:if test="${locationComment.user.id == loggedInUser.id && empty locationComment.responses}">
+<c:if test="${(locationComment.user.id == loggedInUser.id || loggedInUser.role == 'administrator') && empty locationComment.responses}">
 	
 	<form action="removeLocationComment.do" method="post" id="removeLocationComment">
 	<input  type="hidden" id="locationCommentId" name="locationCommentId" value="${locationComment.id }" />
@@ -143,7 +143,7 @@
 </form>
 </c:if>
 <c:forEach items="${logs}"  var="log" >
-<c:if test="${log.user.id == loggedInUser.id}">
+<c:if test="${log.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
 <form id="updateLog" action="updateLogForm.do" method="GET">
 	<input type="hidden" name="logId" value="${log.id}">
 	<input class="btn btn-primary" type="submit" value="Update Log"/>
@@ -174,7 +174,7 @@
 	 <c:forEach items= "${log.logComments }" var= "comment">
 	 <td colspan="2">
 	${comment.content }
-	<c:if test="${comment.user.id == loggedInUser.id }">
+	<c:if test="${comment.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
 	
 	<form action="removeLogComment.do" method="post" id="removeLogComment">
 	<input  type="hidden" id="logCommentId" name="logCommentId" value="${comment.id }" />
