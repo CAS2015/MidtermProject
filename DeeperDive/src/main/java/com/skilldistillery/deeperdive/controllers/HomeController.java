@@ -31,4 +31,16 @@ public class HomeController {
 		return "register";
 	}
 	
+	@RequestMapping(path = {"aboutPage.do"})
+	public String aboutPage() {
+		
+		return "about";
+	}
+	
+	@RequestMapping(path = {"contactPage.do"})
+	public String contactPage() {
+		
+		return "contact";
+	}
+	
 }
