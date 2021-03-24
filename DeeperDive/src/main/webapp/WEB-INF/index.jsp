@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <title>Deeper Dive</title>
 <jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
-<!-- <link rel="stylesheet" href="../css/main.css"> -->
+ <link rel="stylesheet" href="../css/main.css"> 
 </head>
 <body>
 <!-- NavBar -->
@@ -23,7 +23,7 @@
 
 
 
-<h1>Dive Deeper with Deeper Dive!</h1>
+<div class = "cover-image" > <div class = "cover-txt" >Deeper Dive</div> </div>
 
 
 <br>
