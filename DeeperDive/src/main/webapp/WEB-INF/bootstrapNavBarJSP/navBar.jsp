@@ -50,15 +50,3 @@
 	</nav>
 
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>NavBar</title>
-</head>
-<body>
-
-
-
-</body>
-</html>

@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Location Details</title>
 <jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
+<link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 <!-- NavBar -->

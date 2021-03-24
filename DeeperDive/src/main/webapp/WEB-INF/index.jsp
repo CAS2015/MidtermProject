@@ -4,8 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     
-<!DOCTYPE html>
-<html>
+<!-- https://getbootstrap.com/docs/5.0/getting-started/introduction/ htlm template -->
+<!doctype html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Deeper Dive</title>
