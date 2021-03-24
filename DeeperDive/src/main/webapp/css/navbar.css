@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+/*End of Global*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    /* font-size: 10px; */
+    font-family: 'Roboto', sans-serif;
+    color: #e9e9e9;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    /* Image by <a href="https://pixabay.com/users/bluegroper-6277984/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2683184">Des Kerrigan</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2683184">Pixabay</a> */
+    background: url("images/underwater.jpg") no-repeat center fixed;
+    background-size: cover;
+}
+
+.loginFormBody {
+	text-align: right;
+	font-size: 12pt;
+}
+
