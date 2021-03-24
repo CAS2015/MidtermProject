@@ -25,6 +25,7 @@ public class UserController {
 	@RequestMapping(path = "register.do", method= RequestMethod.POST)
 	public ModelAndView register(User user, HttpSession session, RedirectAttributes redir) {
 		ModelAndView mv = new ModelAndView();
+		
 		user.setCreateDate(LocalDateTime.now());
 		
 		User newUser = userDao.create(user);
@@ -53,9 +54,13 @@ public class UserController {
 		
 		User user = userDao.login(username, password);
 		
-		if (user == null) {
+		if (user == null ) {
 			redir.addFlashAttribute("failed", true);
 			mv.setViewName("redirect:home.do");
+		}
+		else if (user.isEnabled() == false) {
+			redir.addFlashAttribute("locked", true);
+			mv.setViewName("redirect:home.do");	
 		}
 		else {
 			session.setAttribute("loggedInUser", user);
