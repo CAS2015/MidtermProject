@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+
+.logTable {
+	background-color: whitesmoke;
+}
+
+.logTable tbody, td, tfoot, th, thead, tr {
+	padding: 10px;
+}
+
+.tableSectionLabel {
+	background-color: #074999;
+	color: white;
+	font-size: 30px;
+	font-weight: bold;
+	font-family: fantasy;
+	padding: 10px;
+}
+
+.tableUsername {
+	font-weight: bold;
+}
+
+.tableDate {
+	font-style: italic;
+	text-align: right;
+}
+
+/* p{
+	color: pink;
+} */
+/*End of Global*/
+
