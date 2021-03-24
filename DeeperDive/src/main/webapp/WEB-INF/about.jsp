@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<!DOCTYPE html>
-<html>
+
+<!doctype html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>About US</title>
@@ -33,10 +34,7 @@ feats and the number of locations.</p>
 <p>Overall, the Deeper Dive site is an exciting and welcoming place for anybody to view and/or post about their diving passion. 
 Having a common-place (Deep Dive website) for fellow divers creates a strong bond and enhances the overall experience.</p>
 
-
-
-
 <!-- Footer  -->
 <jsp:include page="bootstrapNavBarJSP/bootstrapFoot.jsp" />
 </body>
-</html>
+</html> 
