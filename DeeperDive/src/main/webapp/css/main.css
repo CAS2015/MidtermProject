@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/*End of Global*/
+/*Start of Global*/
 *{
     margin: 0;
     padding: 0;
@@ -24,4 +24,5 @@ body{
 p{
 	color: pink;
 }
+/*End of Global*/
 
