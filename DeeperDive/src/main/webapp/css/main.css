@@ -17,8 +17,48 @@ body{
     width: 100%;
     height: 100%;
     /* Image by <a href="https://pixabay.com/users/bluegroper-6277984/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2683184">Des Kerrigan</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2683184">Pixabay</a> */
-    background: url("../images/underwater.jpg") no-repeat center fixed;
+    background-color: dark blue;
     background-size: cover;
+}
+
+.cover-image {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+		url("../images/underwater.jpg");
+	height: 50vh;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+}
+.cover-txt {
+	color: white;
+	font-size: 80px;
+	font-weight: bold;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-family: fantasy;
+}
+
+
+.location-details {
+	font-size: 30px;
+	top: 60%;
+
+}
+
+.location-name {
+	font-size: 60px;
+	top: 40%;
+	
+}
+
+.location-cover {
+	
+	font-size: 50px;
+	top: 45%;
 }
 
 /* p{

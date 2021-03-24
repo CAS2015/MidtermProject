@@ -22,11 +22,21 @@
 
 <c:if test="${failed == true }">Invalid Username or Password! Login failed.</c:if>
 
+<div class = "cover-image" >
 
-<h2>${location.locationName } </h2>
-<h3>${location.region }, ${location.country } </h3>
-<h5> AVG RATING: <fmt:formatNumber pattern="##.#"  value = "${averageRating }"/>  </h5>
-<h5> Water Type: ${location.waterType}, Temperature Range: ${location.minTemp} - ${location.maxTemp} degrees C</h5>
+ <div class = "row cover-txt location-name" >${location.locationName}</div> 
+ <div class = "row cover-txt location-cover">
+ ${location.region }, ${location.country }
+ 
+ </div>
+ <div class = "row cover-txt location-details">
+
+ AVG RATING: <fmt:formatNumber pattern="##.#"  value = "${averageRating }"/> 
+ <br>
+  Water Type: ${location.waterType}, Temperature Range: ${location.minTemp} - ${location.maxTemp} degrees C
+ </div>
+</div>
+
 
 
 <div class="mapouter">
