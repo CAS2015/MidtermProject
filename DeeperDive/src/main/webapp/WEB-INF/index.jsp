@@ -4,13 +4,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Deeper Dive</title>
 <jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
-<link rel="stylesheet" href="../css/main.css">
+<!-- <link rel="stylesheet" href="../css/main.css"> -->
 </head>
 <body>
 <!-- NavBar -->
