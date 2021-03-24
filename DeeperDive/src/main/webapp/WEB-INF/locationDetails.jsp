@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Location Details</title>
 <jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
+
 <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
@@ -38,7 +39,7 @@
 </div>
 </div>
 
-<div>
+<div class = "section">
 
 <h2>Location Comments</h2>
 <c:if test="${ empty location.locationComments }"> <h2>There are no comments about this location yet</h2>      </c:if>
@@ -118,11 +119,11 @@
 
 <br>
 
-<div>
+<div class = "section">
 <h2>Location Dive Logs</h2>
 
 <!-- Add Log Button  -->
-<c:if test="${ ! empty loggedInUser }">
+<c:if test="${ ! empty loggedInUser && (loggedInUser.role == 'data_writer' || loggedInUser.role == 'administrator')}">
 <form action="logForm.do" method="GET">
 	<input type="hidden" name="locId" value="${location.id}">
 	<input class="btn btn-primary" type="submit" value="Add A New Log!"/>
@@ -139,7 +140,7 @@
 	<input class="btn btn-primary" type="submit" value="Delete Log"/>
 </form>
 </c:if>
-<table>
+<table id = "logEntry">
 <tr>
 	<td>${log.site.name}</td>
 	<td>Dive Type: ${log.site.diveType.name}, Minimum Cert.: ${log.site.minimumCert}</td>
