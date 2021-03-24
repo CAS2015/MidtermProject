@@ -67,9 +67,9 @@ ${log.rating}/5
 	<td class="tableSectionLabel" colspan="3">Dive Times</td>
 </tr>
 <tr>
-	<td>Entry Time: ${log.entryTime }</td>
-	<td>Exit Time: ${log.endTime }</td>
-	<td>Duration: ${duration } minutes</td>
+	<td><b>Entry Time:</b> ${log.entryTime }</td>
+	<td><b>Exit Time:</b> ${log.endTime }</td>
+	<td><b>Duration: </b>${duration } minutes</td>
 </tr>
 <tr>
 	<td class="tableSectionLabel" colspan="3">Dive Information</td>
@@ -78,7 +78,7 @@ ${log.rating}/5
 	<td colspan="3">Visibility: ${log.visibility }</td>
 </tr>
 <tr>
-	<td colspan="3">Maximum Depth Reached: ${log.maxDepthMeters } meters</td>
+	<td colspan="3">Maximum Depth Reached:</b> ${log.maxDepthMeters } meters</td>
 </tr>
 <tr>
 	<td class="tableSectionLabel" colspan="3">Equipment</td>
@@ -87,9 +87,9 @@ ${log.rating}/5
 	<td colspan="3">${log.equipment}</td>
 </tr>
 <tr>
-	<td>Air Type: ${log.airType }</td>
-	<td>Starting Cylinder Pressure: ${log.startPressureBar } bar</td>
-	<td>Ending Cylinder Pressure: ${log.endPressureBar} bar</td>
+	<td><b>Air Type:</b> ${log.airType }</td>
+	<td><b>Start Air Pressure:</b> ${log.startPressureBar } bar</td>
+	<td><b>End Air Pressure:</b> ${log.endPressureBar} bar</td>
 </tr>
 <tr>
 	<td class="tableSectionLabel" colspan="3">Comments</td>
@@ -113,15 +113,18 @@ ${log.rating}/5
 </table>
 </div>
 
+
+<div class="filter-section">
 <c:if test="${ ! empty loggedInUser }">
 <form action="submitLogComment.do" method="post" id="createLogComment${log.id }">
 	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
 	<input  type="hidden" id="logId" name="logId" value="${log.id }" />
-	<label>Comment:</label>
+	<label class="commentLabel">Comment:</label>
 	<textarea name="content" form="createLogComment${log.id }" rows="3" cols="80"></textarea>
 	<input class="button" type="submit" value="Submit Comment" />
 </form>
 </c:if>
+</div>
 
 
 
