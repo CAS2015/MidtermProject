@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../css/navbar.css">
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/navbar-top-fixed.css" rel="stylesheet">
+
 
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 	  <div class="container-fluid">
@@ -25,30 +27,45 @@
 	        </li>
 	      </ul>
 					      <%-- Sign in Register  --%>
-					<form class="d-flex" action="login.do" method="POST" id="loginUserForm">
-          </form>
-					Username: <input form="loginUserForm" type="text" name="username"
-						required="required" />
-						<div class="col loginFormBody">
-              Username: <input form="loginUserForm" type="text" name="username"
-                required="required" />
-            </div>
-            <div class="col loginFormBody">
-              Password: <input
-              type="password" form="loginUserForm" name="password" required="required" /><br>
-            </div>
-            <div class="col-auto">
-            <input class="button" form="loginUserForm" type="submit" value="Login" />
+								<div class="col"></div>
+						    <div class="col-auto">
+						      <c:choose>
+						        <c:when test="${empty loggedInUser }">
+						        <div class="row">
+						          <form action="login.do" method="POST" id="loginUserForm">
+						          </form>
+						            <div class="col loginFormBody">
+						               <input form="loginUserForm" placeholder="Username"type="text" name="username"
+						                required="required" />
+						            </div>
+						            <div class="col loginFormBody">
+						               <input type="password" form="loginUserForm" placeholder="Password" name="password" required="required" />
+						            </div>
 
-						<%-- OG from Bootstrap  --%>
-					<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-	        <button class="btn btn-outline-success" type="submit">Search</button>
+						            <div class="col">
+						            <input class="btn btn-secondary" form="loginUserForm" type="submit" value="Login" />
+												</div>
+												<div class="col">
+						          <form action="register.do" method="get">
+						            <input class="btn btn-secondary" type="submit" value="Sign Up" />
+						          </form>
+						          </div>
+						        </div>
 
-					<form class="d-flex" action="register.do" method="get">
-            <input class="button" type="submit" value="Sign Up" />
-          </form>
+						        </c:when>
+						        <c:when test="${ ! empty loggedInUser }">Welcome ${loggedInUser.firstName}!
+						          <a href="profile.do" class="nav-link">Profile</a>
+						          <form action="logout.do">
+						            <input class="btn btn-secondary" type="submit" value="Logout" />
+						          </form>
+						        </c:when>
+						      </c:choose>
+						    </div>
+
+
+						  </div>
+
 					<%-- Ends Sign in Register  --%>
-	      </form>
 	    </div>
 	  </div>
 	</nav>
