@@ -36,6 +36,10 @@ public class Location {
 	@Column(name="img_url")
 	private String imgUrl;
 	
+	private double latitude;
+	
+	private double longitude;
+	
 	@OneToMany(mappedBy= "location")
 	private List<Site> sites;
 	
@@ -112,6 +116,22 @@ public class Location {
 
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 
 	public List<Site> getSites() {

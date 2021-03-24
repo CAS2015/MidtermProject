@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Location Details</title>
 <jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
+<link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 <!-- NavBar -->
@@ -26,6 +27,16 @@
 <h5> AVG RATING: <fmt:formatNumber pattern="##.#"  value = "${averageRating }"/>  </h5>
 <h5> Water Type: ${location.waterType}, Temperature Range: ${location.minTemp} - ${location.maxTemp} degrees C</h5>
 
+
+<div class="mapouter">
+<div class="gmap_canvas">
+<iframe width="800" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=${location.latitude},%20${location.longitude}&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+</iframe><a href="https://embedgooglemap.net/maps/91"></a>
+<br>
+<style>.mapouter{position:relative;text-align:right;height:500px;width:800px;}</style>
+<style>.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:800px;}</style>
+</div>
+</div>
 
 <div>
 
