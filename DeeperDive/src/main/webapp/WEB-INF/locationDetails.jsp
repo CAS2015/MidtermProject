@@ -121,7 +121,7 @@
 <h2>Location Dive Logs</h2>
 
 <!-- Add Log Button  -->
-<c:if test="${ ! empty loggedInUser }">
+<c:if test="${ ! empty loggedInUser && (loggedInUser.role == 'data_writer' || loggedInUser.role == 'administrator')}">
 <form action="logForm.do" method="GET">
 	<input type="hidden" name="locId" value="${location.id}">
 	<input class="btn btn-primary" type="submit" value="Add A New Log!"/>

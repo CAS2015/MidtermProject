@@ -33,10 +33,16 @@
 		<b>Profile Image URL:</b>
 		<input type="text" name="imgUrl" /><br> 
 		
+		<input type="radio" id="data_reader" name="role" value="data_reader">
+		<label for="true">View and Comment</label><br>
+		<input type="radio" id="data_writer" name="role" value="data_writer">
+		<label for="female">Content Creator</label><br>
+		
 		</div>
 		
+
 		<input type="hidden" name="enabled" value="true">
-		<input type="hidden" name="role" value="user">
+		
 		
 		<p>
 		*Required Field

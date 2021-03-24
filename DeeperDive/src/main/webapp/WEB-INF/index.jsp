@@ -18,8 +18,9 @@
 <c:if test="${registered==true}">Successfully Registered!</c:if>
 
 
-
 <c:if test="${failed == true }">Invalid Username or Password! Login failed.</c:if>
+<c:if test="${locked == true }">Account Disabled! Please contact us to enable.</c:if>
+
 
 
 <h1>Dive Deeper with Deeper Dive!</h1>
