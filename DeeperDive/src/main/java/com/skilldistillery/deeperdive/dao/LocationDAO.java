@@ -19,7 +19,7 @@ public interface LocationDAO {
 	
 	List<Location> findLocationsByKeyword(String keyword);
 	
-	List<LogEntry> getThreeMostRecentLogEntries(Location location);
+	List<LogEntry> getAllLogEntries(Location location);
 	
 	Double getLocationRatingsAverage(int id);
 }

@@ -41,6 +41,7 @@
 				</form>
 			</c:when>
 			<c:when test="${ ! empty loggedInUser }">Welcome ${loggedInUser.firstName}!
+				<a href="profile.do" class="nav-link">Profile</a>
 				<form action="logout.do">
 					<input class="button" type="submit" value="Logout" />
 				</form>

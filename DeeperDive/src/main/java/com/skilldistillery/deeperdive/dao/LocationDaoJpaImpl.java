@@ -93,11 +93,11 @@ public class LocationDaoJpaImpl implements LocationDAO {
 	
 	
 	@Override
-	public List<LogEntry> getThreeMostRecentLogEntries(Location location) {
+	public List<LogEntry> getAllLogEntries(Location location) {
 		List<LogEntry> logs;
 		
 		String jpql = "SELECT le FROM LogEntry le JOIN le.site si JOIN si.location l WHERE l.id= :id";
-		logs = em.createQuery(jpql, LogEntry.class).setParameter("id",location.getId()).setMaxResults(3).getResultList();
+		logs = em.createQuery(jpql, LogEntry.class).setParameter("id",location.getId()).getResultList();
 		
 		return logs;
 	}
