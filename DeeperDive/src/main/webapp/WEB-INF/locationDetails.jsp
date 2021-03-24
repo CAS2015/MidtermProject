@@ -10,6 +10,7 @@
 <meta charset="UTF-8">
 <title>Location Details</title>
 <jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
+<link rel="stylesheet" href="locationDetails.css">
 </head>
 <body>
 <!-- NavBar -->
@@ -37,7 +38,7 @@
 </div>
 </div>
 
-<div>
+<div class = "section">
 
 <h2>Location Comments</h2>
 <c:if test="${ empty location.locationComments }"> <h2>There are no comments about this location yet</h2>      </c:if>
@@ -117,7 +118,7 @@
 
 <br>
 
-<div>
+<div class = "section">
 <h2>Location Dive Logs</h2>
 
 <!-- Add Log Button  -->
@@ -138,7 +139,7 @@
 	<input class="btn btn-primary" type="submit" value="Delete Log"/>
 </form>
 </c:if>
-<table>
+<table id = "logEntry">
 <tr>
 	<td>${log.site.name}</td>
 	<td>Dive Type: ${log.site.diveType.name}, Minimum Cert.: ${log.site.minimumCert}</td>

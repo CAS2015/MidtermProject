@@ -29,6 +29,7 @@ Total logs: ${logs.size() }
 <br>
 
 <div>
+<br>
 <h2>My Dive Logs</h2>
 <br>
 <c:forEach items="${logs}"  var="log" >
