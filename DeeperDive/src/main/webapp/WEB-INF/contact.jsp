@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>About US</title>
 <link rel="stylesheet" href="../css/main.css">
+<jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
 </head>
 <body>
 <!-- NavBar -->
