@@ -12,6 +12,7 @@
 <jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
 
 <link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/locationDetails.css">
 </head>
 <body>
 <!-- NavBar -->
@@ -52,7 +53,7 @@
 </div>
 </div>
 
-<div>
+<div class = "section">
 
 <h2>Location Comments</h2>
 <c:if test="${ empty location.locationComments }"> <h2>There are no comments about this location yet</h2>      </c:if>
@@ -60,7 +61,7 @@
 
 <c:forEach var="locationComment" items="${location.locationComments }">
 <c:if test="${ empty locationComment.originalPost }">
-<table>
+<table class = "location-comment">
 <thead></thead>
 
 <tr>
@@ -74,7 +75,7 @@
 <c:if test="${not empty locationComment.responses }">
 <c:forEach items = "${locationComment.responses }" var = "response">
 
-<table>
+<table class = "location-comment-response">
 <tr>
 <td colspan="2">        White Space Here                           </td>
 
@@ -132,7 +133,7 @@
 
 <br>
 
-<div>
+<div  class = "section">
 <h2>Location Dive Logs</h2>
 
 <!-- Add Log Button  -->
@@ -153,7 +154,7 @@
 	<input class="btn btn-primary" type="submit" value="Delete Log"/>
 </form>
 </c:if>
-<table id = "logEntry">
+<table class = "log-entry">
 <tr>
 	<td>${log.site.name}</td>
 	<td>Dive Type: ${log.site.diveType.name}, Minimum Cert.: ${log.site.minimumCert}</td>
