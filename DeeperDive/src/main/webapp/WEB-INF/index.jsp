@@ -26,30 +26,34 @@
 <div class = "cover-image" > <div class = "cover-txt" >Deeper Dive</div> </div>
 
 
-<br>
-<div>
-
+<div class = "row filter-section">
+<div class = "col">
 <form action="locationsAlphabetically.do" method="get">
-	<input class="button" type="submit" value="Sort Locations Alphabetically" />
+	<input class="button" type="submit" value="Sort A-Z" />
 </form>
+</div>
+<div class = "col">
 <form action="locationsByRating.do" method="get">
-	<input class="button" type="submit" value="Sort Locations By Rating" />
+	<input class="button" type="submit" value="Sort By Rating" />
 </form>
+</div>
+<div class = "col-auto">
 <form action="locationsByKeyword.do" method="get">
-	Enter a keyword to search:
-    			<input type="text" name="keyword" size="30"/> 
-    			<input type="submit" value="search by keyword"/>
+	Keyword Search:
+    			<input class="mediumInputBox" type="text" name="keyword" size="30"/> 
+    			<input class="button" type="submit" value="Search"/>
 </form>
+</div>
 </div>
 
 
 
-<div class="listLocationsBox">
-
+<div id="listLocationBoxHeader">
 <c:if test="${ isTopFive == true}"> <h3>Top Five Locations by Rating</h3>      </c:if>
 <c:if test="${ isAlphabetical == true}"> <h3>Locations Sorted Alphabetically</h3>      </c:if>
 <c:if test="${ isByRating == true}"> <h3>Locations Sorted By Rating - Highest to Lowest</h3>      </c:if>
-
+</div>
+<div class="listLocationsBox">
 <c:if test="${ isByKeyword == true}"> 
 
 <c:if test="${ empty locations }"> <h3>No Locations Found</h3>      </c:if>

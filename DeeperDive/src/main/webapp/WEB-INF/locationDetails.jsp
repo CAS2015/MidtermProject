@@ -12,6 +12,7 @@
 <jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
 
 <link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/locationDetails.css">
 </head>
 <body>
 <!-- NavBar -->
@@ -23,22 +24,25 @@
 <c:if test="${failed == true }">Invalid Username or Password! Login failed.</c:if>
 
 <div class = "cover-image" >
+<div class = "cover-txt" >
 
- <div class = "row cover-txt location-name" >${location.locationName}</div> 
- <div class = "row cover-txt location-cover">
- ${location.region }, ${location.country }
- 
- </div>
- <div class = "row cover-txt location-details">
 
- AVG RATING: <fmt:formatNumber pattern="##.#"  value = "${averageRating }"/> 
+ <div class = "location-name">${location.locationName}</div>
+<br>
+<div class = "location-cover"> ${location.region }, ${location.country } </div> 
+
+ <br>
+
+<div class= "location-details"> AVG RATING: <fmt:formatNumber pattern="##.#"  value = "${averageRating }"/> 
  <br>
   Water Type: ${location.waterType}, Temperature Range: ${location.minTemp} - ${location.maxTemp} degrees C
  </div>
-</div>
+ </div>
+ </div>
 
+ 
 
-
+ 
 <div class="mapouter">
 <div class="gmap_canvas">
 <iframe width="800" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=${location.latitude},%20${location.longitude}&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
@@ -57,7 +61,7 @@
 
 <c:forEach var="locationComment" items="${location.locationComments }">
 <c:if test="${ empty locationComment.originalPost }">
-<table>
+<table class = "location-comment">
 <thead></thead>
 
 <tr>
@@ -71,7 +75,7 @@
 <c:if test="${not empty locationComment.responses }">
 <c:forEach items = "${locationComment.responses }" var = "response">
 
-<table>
+<table class = "location-comment-response">
 <tr>
 <td colspan="2">        White Space Here                           </td>
 
@@ -86,7 +90,7 @@
 
 
 
-<c:if test="${locationComment.user.id == loggedInUser.id && empty locationComment.responses}">
+<c:if test="${(locationComment.user.id == loggedInUser.id || loggedInUser.role == 'administrator') && empty locationComment.responses}">
 	
 	<form action="removeLocationComment.do" method="post" id="removeLocationComment">
 	<input  type="hidden" id="locationCommentId" name="locationCommentId" value="${locationComment.id }" />
@@ -129,7 +133,7 @@
 
 <br>
 
-<div class = "section">
+<div  class = "section">
 <h2>Location Dive Logs</h2>
 
 <!-- Add Log Button  -->
@@ -140,7 +144,7 @@
 </form>
 </c:if>
 <c:forEach items="${logs}"  var="log" >
-<c:if test="${log.user.id == loggedInUser.id}">
+<c:if test="${log.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
 <form id="updateLog" action="updateLogForm.do" method="GET">
 	<input type="hidden" name="logId" value="${log.id}">
 	<input class="btn btn-primary" type="submit" value="Update Log"/>
@@ -150,7 +154,7 @@
 	<input class="btn btn-primary" type="submit" value="Delete Log"/>
 </form>
 </c:if>
-<table id = "logEntry">
+<table class = "log-entry">
 <tr>
 	<td>${log.site.name}</td>
 	<td>Dive Type: ${log.site.diveType.name}, Minimum Cert.: ${log.site.minimumCert}</td>
@@ -171,7 +175,7 @@
 	 <c:forEach items= "${log.logComments }" var= "comment">
 	 <td colspan="2">
 	${comment.content }
-	<c:if test="${comment.user.id == loggedInUser.id }">
+	<c:if test="${comment.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
 	
 	<form action="removeLogComment.do" method="post" id="removeLogComment">
 	<input  type="hidden" id="logCommentId" name="logCommentId" value="${comment.id }" />
