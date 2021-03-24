@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Location Details</title>
+<title>Profile Details</title>
 <jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
 </head>
 <body>
@@ -16,22 +16,22 @@
 <jsp:include page="bootstrapNavBarJSP/navBar.jsp" />
 
 <h1>Profile Details</h1>
-<h4> ${loggedInUser.firstName } ${ loggedInUser.lastName}  </h4>
+<br>
+<h4> ${loggedInUser.firstName } ${ loggedInUser.lastName}  </h4> <br>
 Username: ${loggedInUser.username }
-
+<br>
 <c:if test="${not empty loggedInUser.role }">
 Role: ${loggedInUser.role }
-</c:if>
-Account created at: ${loggedInUser.createdAt }
-Total logs: ${loggedInUser.logEntries.size() }
-Total comments: ${loggedInUser.locationComments.size()  + loggedInUser.logComments.size() }
+</c:if><br>
+Account created at: ${loggedInUser.createDate }<br>
+Total logs: ${logs.size() }
 
 <br>
 
 <div>
 <h2>My Dive Logs</h2>
-
-<c:forEach items="${loggedInUser.logEntries}"  var="log" >
+<br>
+<c:forEach items="${logs}"  var="log" >
 <form id="updateLog" action="updateLogForm.do" method="GET">
 	<input type="hidden" name="logId" value="${log.id}">
 	<input class="btn btn-primary" type="submit" value="Update Log"/>
