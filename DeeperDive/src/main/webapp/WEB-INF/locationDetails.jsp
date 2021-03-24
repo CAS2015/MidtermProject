@@ -23,22 +23,25 @@
 <c:if test="${failed == true }">Invalid Username or Password! Login failed.</c:if>
 
 <div class = "cover-image" >
+<div class = "cover-txt" >
 
- <div class = "row cover-txt location-name" >${location.locationName}</div> 
- <div class = "row cover-txt location-cover">
- ${location.region }, ${location.country }
- 
- </div>
- <div class = "row cover-txt location-details">
 
- AVG RATING: <fmt:formatNumber pattern="##.#"  value = "${averageRating }"/> 
+ <div class = "location-name">${location.locationName}</div>
+<br>
+<div class = "location-cover"> ${location.region }, ${location.country } </div> 
+
+ <br>
+
+<div class= "location-details"> AVG RATING: <fmt:formatNumber pattern="##.#"  value = "${averageRating }"/> 
  <br>
   Water Type: ${location.waterType}, Temperature Range: ${location.minTemp} - ${location.maxTemp} degrees C
  </div>
-</div>
+ </div>
+ </div>
 
+ 
 
-
+ 
 <div class="mapouter">
 <div class="gmap_canvas">
 <iframe width="800" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=${location.latitude},%20${location.longitude}&t=&z=11&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
@@ -49,7 +52,7 @@
 </div>
 </div>
 
-<div class = "section">
+<div>
 
 <h2>Location Comments</h2>
 <c:if test="${ empty location.locationComments }"> <h2>There are no comments about this location yet</h2>      </c:if>
@@ -129,7 +132,7 @@
 
 <br>
 
-<div class = "section">
+<div>
 <h2>Location Dive Logs</h2>
 
 <!-- Add Log Button  -->
