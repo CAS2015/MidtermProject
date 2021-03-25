@@ -197,9 +197,6 @@
 </tr>
 
 <tr>
-<td>${log.user.username}</td>
-	<td>${log.diveDate}</td> </tr>
-<tr>
 	<td colspan="2">${log.logContent}</td>
 </tr>
 </table>
