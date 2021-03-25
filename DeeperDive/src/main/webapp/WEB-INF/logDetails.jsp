@@ -37,8 +37,10 @@ ${log.rating}/5
  </div>
  </div>
 
+
 <div class="logTable">
 <c:if test="${log.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
+
 <form id="updateLog" action="updateLogForm.do" method="GET">
 	<input type="hidden" name="logId" value="${log.id}">
 	<input class="btn btn-primary" type="submit" value="Update Log"/>
@@ -48,9 +50,11 @@ ${log.rating}/5
 	<input class="btn btn-primary" type="submit" value="Delete Log"/>
 </form>
 </c:if>
+
+
 <table class="logTable">
 <tr>
-	<td rowspan="2">${log.imageUrl}</td>
+	<td rowspan="2"><img src="${log.imageUrl}"/> </td>
 <td class="tableUsername">${log.user.username}</td>
 	<td class="tableDate">${log.diveDate}</td>
 </tr>

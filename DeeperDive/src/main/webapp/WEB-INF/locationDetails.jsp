@@ -70,25 +70,8 @@
 <td>  ${locationComment.content}   </td>
 
 </tr>
-</table>
-</c:if>
-<c:if test="${not empty locationComment.responses }">
-<c:forEach items = "${locationComment.responses }" var = "response">
-
-<table class = "location-comment-response">
 <tr>
-<td colspan="2">        White Space Here                           </td>
-
-<td>Response by:  ${response.user.username}  at: ${response.createdAt } </td>
-
-<td>  ${response.content}   </td>
-
-</tr>
-</table>
-</c:forEach>
-</c:if>
-
-
+<td>
 
 <c:if test="${(locationComment.user.id == loggedInUser.id || loggedInUser.role == 'administrator') && empty locationComment.responses}">
 	
@@ -99,6 +82,45 @@
 </form>
 	
 	</c:if>
+
+</td>
+
+</tr>
+</table>
+</c:if>
+<c:if test="${not empty locationComment.responses }">
+<c:forEach items = "${locationComment.responses }" var = "response">
+
+<table class = "location-comment-response">
+<tr>
+<td>Response by:  ${response.user.username}  at: ${response.createdAt } </td>
+
+<td>  ${response.content}   </td>
+
+</tr>
+<tr>
+<td>
+
+<c:if test="${(response.user.id == loggedInUser.id || loggedInUser.role == 'administrator') && empty response.responses}">
+	
+	<form  action="removeLocationComment.do" method="post" id="removeLocationComment">
+	<input  type="hidden" id="locationCommentId" name="locationCommentId" value="${locationComment.id }" />
+	
+	<input class="button" type="submit" value="Delete Comment" />
+</form>
+	
+	</c:if>
+
+</td>
+
+</tr>
+</table>
+</c:forEach>
+</c:if>
+
+
+
+
 	
 	     <c:if test="${ ! empty loggedInUser && empty locationComment.originalPost}">
 <form class = "new-loc-response" action="LocationCommentResponse.do" method="post" id="createLocationCommentResponse${locationComment.id }">
@@ -118,10 +140,10 @@
      
      <c:if test="${ ! empty loggedInUser }">
      <br>
+     <h4> Create New Comment:  </h4>
 <form class = "new-loc-comment" action="newLocationComment.do" method="post" id="createLocationComment${location.id }">
 	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
 	<input  type="hidden" id="locationId" name="locationId" value="${location.id }" />
-	<label>Create New Comment:</label>
 	<textarea name="content" form="createLocationComment${location.id }" rows="3" cols="80"></textarea>
 	<input class="button comment-button" type="submit" value="Submit" />
 </form>
@@ -164,7 +186,7 @@
 	<td colspan="3"><a href="getLog.do?id=${log.id}">${log.title}</a></td>
 </tr>
 <tr>
-	<td rowspan="2">${log.imageUrl}</td>
+	<td rowspan="2"><img src="${log.imageUrl}"/></td>
 <td>${log.user.username}</td>
 	<td>${log.diveDate}</td>
 </tr>
