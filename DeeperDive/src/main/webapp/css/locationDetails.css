@@ -20,6 +20,7 @@
 	border: 1px solid black;
 	height: auto;
 	width: auto;
+	display: flex;
 }
 
 .location-comment {
@@ -27,7 +28,8 @@
 		border: 1px solid black;
 	height: auto;
 	width: auto;
-	display: flex;	
+	display: flex;
+	overflow-wrap: anywhere;	
 	 
 	
 }
@@ -37,6 +39,7 @@
 	width: auto;
 	margin-left: 70px;
 	display: flex;
+	overflow-wrap: anywhere;
 }
 
 
@@ -49,6 +52,10 @@
 .new-loc-response {
 	display: grid;
 	margin-left: auto;
+}
+.new-log-comment{
+	margin-left: inherit;
+	display: flex;
 }
 
 .new-loc-comment{
