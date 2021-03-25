@@ -160,41 +160,53 @@
 
 <!-- Add Log Button  -->
 <c:if test="${ ! empty loggedInUser && (loggedInUser.role == 'data_writer' || loggedInUser.role == 'administrator')}">
-<form action="logForm.do" method="GET">
+<form class = "new-log-button" action="logForm.do" method="GET">
 	<input type="hidden" name="locId" value="${location.id}">
 	<input class="btn btn-primary" type="submit" value="Add A New Log!"/>
 </form>
 </c:if>
 <c:forEach items="${logs}"  var="log" >
-<c:if test="${log.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
-<form id="updateLog" action="updateLogForm.do" method="GET">
-	<input type="hidden" name="logId" value="${log.id}">
-	<input class="btn btn-primary" type="submit" value="Update Log"/>
-</form>
-<form id="removeLog" action="removeLog.do" method="POST">
-	<input type="hidden" name="logId" value="${log.id}">
-	<input class="btn btn-primary" type="submit" value="Delete Log"/>
-</form>
-</c:if>
+
 <table class = "log-entry">
 <thead>
 <tr>
 <th> ${log.site.name}    </th>
+<c:if test="${log.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
+
+<th>
+<form id="updateLog" action="updateLogForm.do" method="GET">
+	<input type="hidden" name="logId" value="${log.id}">
+	<input class="btn btn-primary" type="submit" value="Update Log"/>
+</form>
+</th> <th>
+<form id="removeLog" action="removeLog.do" method="POST">
+	<input type="hidden" name="logId" value="${log.id}">
+	<input class="btn btn-primary" type="submit" value="Delete Log"/>
+</form> </th>
+</c:if>
 </tr>
+
 <tr>
 	<td colspan="3"><a href="getLog.do?id=${log.id}">${log.title}</a></td>
 </tr>
 <tr>
-
-	<td rowspan="2"><img class="locDetailsImg" src="${log.imageUrl}"/></td>
-</tr>
-</thead>
+	<td> <strong>Dive Type:</strong> ${log.site.diveType.name} </td><td> <strong>Minimum Cert.:</strong> ${log.site.minimumCert}</td>
+	 <td>  <strong>Rating:</strong>   ${log.rating}/5</td> </tr>
 <tr>
-	<td> <strong>Dive Type:</strong> ${log.site.diveType.name} <br> <strong>Minimum Cert.:</strong> ${log.site.minimumCert}</td>
-	<td>  <strong>Rating:</strong>   ${log.rating}/5</td>
 <td>${log.user.username}</td>
 	<td>${log.diveDate}</td>
 </tr>
+
+</thead>
+
+
+
+<tr>
+
+	<td rowspan="2"><img class="locDetailsImg" src="${log.imageUrl}"/></td>
+</tr>
+
+
 
 <tr>
 	<td colspan="2">${log.logContent}</td>
