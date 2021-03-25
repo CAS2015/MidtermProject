@@ -65,9 +65,9 @@
 <thead></thead>
 
 <tr>
+<td colspan="2">  ${locationComment.content}   </td>
 <td>Created by:  ${locationComment.user.username} at: ${locationComment.createdAt } </td>
 
-<td>  ${locationComment.content}   </td>
 
 </tr>
 <tr>
@@ -93,9 +93,9 @@
 
 <table class = "location-comment-response">
 <tr>
+<td colspan="2">  ${response.content}   </td>
 <td>Response by:  ${response.user.username}  at: ${response.createdAt } </td>
 
-<td>  ${response.content}   </td>
 
 </tr>
 <tr>
@@ -177,47 +177,65 @@
 </form>
 </c:if>
 <table class = "log-entry">
+<thead>
 <tr>
-	<td>${log.site.name}</td>
-	<td>Dive Type: ${log.site.diveType.name}, Minimum Cert.: ${log.site.minimumCert}</td>
-	<td>${log.rating}/5</td>
+<th> ${log.site.name}    </th>
 </tr>
 <tr>
 	<td colspan="3"><a href="getLog.do?id=${log.id}">${log.title}</a></td>
 </tr>
 <tr>
 	<td rowspan="2">${log.imageUrl}</td>
-<td>${log.user.username}</td>
-	<td>${log.diveDate}</td>
 </tr>
+</thead>
+<tr>
+	<td> <strong>Dive Type:</strong> ${log.site.diveType.name} <br> <strong>Minimum Cert.:</strong> ${log.site.minimumCert}</td>
+	<td>  <strong>Rating:</strong>   ${log.rating}/5</td>
+</tr>
+
+<tr>
+<td>${log.user.username}</td>
+	<td>${log.diveDate}</td> </tr>
 <tr>
 	<td colspan="2">${log.logContent}</td>
 </tr>
-<tr>
+</table>
+
 	 <c:forEach items= "${log.logComments }" var= "comment">
-	 <td colspan="2">
-	${comment.content }
-	<c:if test="${comment.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
+
+	 <table class = "location-comment-response">
+<tr>
+<td colspan="2">  ${comment.content}   </td>
+<td>Comment by:  ${comment.user.username}  at: ${comment.createAt } </td>
+
+
+</tr>
+<tr>
+<td>
+
+<c:if test="${(comment.user.id == loggedInUser.id || loggedInUser.role == 'administrator')}">
 	
-	<form action="removeLogComment.do" method="post" id="removeLogComment">
+	<form  action="removeLogComment.do" method="post" id="removeLocationComment">
 	<input  type="hidden" id="logCommentId" name="logCommentId" value="${comment.id }" />
 	
 	<input class="button" type="submit" value="Delete Comment" />
 </form>
 	
 	</c:if>
-	</td>
-	</c:forEach>          
+
+</td>
+
 </tr>
+</table>
+	</c:forEach>          
+
 	
 
-</table>
 
 <c:if test="${ ! empty loggedInUser }">
-<form action="submitLogComment.do" method="post" id="createLogComment${log.id }">
+<form class = "new-loc-comment" action="submitLogComment.do" method="post" id="createLogComment${log.id }">
 	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
 	<input  type="hidden" id="logId" name="logId" value="${log.id }" />
-	<label>Comment:</label>
 	<textarea name="content" form="createLogComment${log.id }" rows="3" cols="80"></textarea>
 	<input class="button" type="submit" value="Submit Comment" />
 </form>
