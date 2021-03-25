@@ -48,7 +48,7 @@ ${log.rating}/5
 	<input class="btn btn-primary" type="submit" value="Delete Log"/>
 </form>
 </c:if>
-<table>
+<table class="logTable">
 <tr>
 	<td rowspan="2">${log.imageUrl}</td>
 <td class="tableUsername">${log.user.username}</td>
