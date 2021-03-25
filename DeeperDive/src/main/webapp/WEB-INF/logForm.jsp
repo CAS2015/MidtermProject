@@ -13,38 +13,52 @@
 <!-- NavBar -->
 <jsp:include page="bootstrapNavBarJSP/navBar.jsp" />
 
-	<form action="${update== true ? 'updateLog.do' : 'createLog.do'}" method="POST" id="createLog">
-		<div class="newLog">
-			<c:choose>
-				<c:when test="${update == true }">
-					<h4>Update Your Log</h4>
-				</c:when>
-				<c:otherwise>
-					<h4>Add Your Log</h4>
-				</c:otherwise>
-			</c:choose>
+			<div class = "cover-image" > 
+				<div class = "cover-txt mainTitle" >
+				Deeper Dive
+				</div> 
+			</div>
 			
-		</div>
+	<form action="${update== true ? 'updateLog.do' : 'createLog.do'}" method="POST" id="createLog">
 		
 		<!-- Log Form -->
-		<div class="createALogForm">
+		<div class="pageContent logTable">
+			<div class="newLog tableSectionLabel">
+				
+						<c:choose>
+							<c:when test="${update == true }">
+								Update Your Log
+							</c:when>
+							<c:otherwise>
+								Add Your Log
+							</c:otherwise>
+						</c:choose>
+				
+			</div>
+			<div class="createForm" >
 			<label>Title:</label> 
-			<input type="text" name="title" value="${log.title}"/><br>
-
+			<input type="text" name="title" value="${log.title}"/>
+			<br>
+		
 			<label for="diveSiteName">Dive Site Name:</label> <select id="diveSiteName" name="diveSiteName" >
 			<c:forEach items="${sites}" var="diveSite">
 				<option value="${diveSite.name}" ${(log.site.name == diveSite.name) ? "selected='selected'" : ""}>${diveSite.name}</option>
 			</c:forEach>
 			</select>
+			<br>
 			
 			<label>Log Content:</label>
 			<textarea name="logContent" form="createLog" rows="3" cols="80" >${log.logContent}</textarea>
+			<br>
 			<label>Dive Date:</label> 
-			<input type="date" name="diveDate" value="${log.diveDate}"/><br>
+			<input type="date" name="diveDate" value="${log.diveDate}"/>
+			<br>
 			<label>Entry Time:</label> 
-			<input type="time" name="entryTime" value="${log.entryTime}"/><br>
+			<input type="time" name="entryTime" value="${log.entryTime}"/>
+			<br>
 			<label>End Time:</label> 
-			<input type="time" name="endTime" value="${log.endTime}"/><br>
+			<input type="time" name="endTime" value="${log.endTime}"/>
+			<br>
 
 			<label for="rating">Rating:</label> <select id="rating" name="rating" >
 				<option value="1" ${(log.rating == 1) ? "selected='selected'" : ""}>1</option>
@@ -55,12 +69,15 @@
 			</select>
 			<br> 
 			<label>Max Depth (meters):</label> 
-			<input type="number" name="maxDepthMeters" value="${log.maxDepthMeters}"/><br> 
+			<input type="number" name="maxDepthMeters" value="${log.maxDepthMeters}"/>
+			<br> 
 			<label>Equipment:</label> 
-			<input type="text" name="equipment" value="${log.equipment}"/><br> 
+			<input type="text" name="equipment" value="${log.equipment}"/>
+			<br> 
 			
 			<label>URL to your Photo:</label> 
-			<input type="text" name="imageUrl" value="${log.imageUrl}"/><br> 
+			<input type="text" name="imageUrl" value="${log.imageUrl}"/>
+			<br> 
 			
 			<label for="visibility">Visibility:</label>
 			<select id="visibility" name="visibility" >
@@ -68,10 +85,13 @@
 				<option value="fair" ${(log.rating == fair) ? "selected='selected'" : ""}>Fair</option>
 				<option value="excellent" ${(log.rating == excellent) ? "selected='selected'" : ""}>Excellent</option>
 			</select> 
+			<br>
 			<label>Starting Pressure (bar):</label> 
-			<input type="number" name="startPressureBar" value="${log.startPressureBar}"/><br> 
+			<input type="number" name="startPressureBar" value="${log.startPressureBar}"/>
+			<br> 
 			<label>Ending Pressure (bar):</label> 
-			<input type="number" name="endPressureBar" value="${log.endPressureBar}"/><br> 
+			<input type="number" name="endPressureBar" value="${log.endPressureBar}"/>
+			<br> 
 			<label>Air Type:</label> 
 			<c:choose>
 			<c:when test="${update == true}">
@@ -87,16 +107,17 @@
 			<input type="hidden" name="id" value="${log.id}">
 			</c:if>
 			<!-- Submit Button  -->
-			
+			<br>
 			<c:choose>
 				<c:when test="${update == true }">
-					<input class="button" type="submit" value="Update Your Log" />
+					<input class="buttonAlt" type="submit" value="Update Your Log" />
 				</c:when>
 				<c:otherwise>
-					<input class="button" type="submit" value="Submit Your Log" />
+					<input class="buttonAlt" type="submit" value="Submit Your Log" />
 				</c:otherwise>
 			</c:choose>
 		</div>
+			</div>
 	</form>
 
 

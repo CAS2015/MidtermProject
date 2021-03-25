@@ -44,22 +44,25 @@ ${log.rating}/5
 
 <table class="logTable">
 <tr class="tableSectionLabel">
-	<td >Log Details</td>
-	<c:if test="${log.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
-		<td >
-			
-			<form id="updateLog" action="updateLogForm.do" method="GET">
-				<input type="hidden" name="logId" value="${log.id}">
-				<input class="button" type="submit" value="Update Log"/>
-			</form>
-		</td>
-		<td >
-			<form id="removeLog" action="removeLog.do" method="POST">
-				<input type="hidden" name="logId" value="${log.id}">
-				<input class="button" type="submit" value="Delete Log"/>
-			</form>
-		</td>
-	</c:if>
+	
+	<c:choose>
+		<c:when test="${log.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
+			<td >Log Details</td>
+			<td >
+				<form id="updateLog" action="updateLogForm.do" method="GET">
+					<input type="hidden" name="logId" value="${log.id}">
+					<input class="button" type="submit" value="Update Log"/>
+				</form>
+			</td>
+			<td >
+				<form id="removeLog" action="removeLog.do" method="POST">
+					<input type="hidden" name="logId" value="${log.id}">
+					<input class="button" type="submit" value="Delete Log"/>
+				</form>
+			</td>
+		</c:when>
+		<c:otherwise><td colspan="3">Log Details</td></c:otherwise>
+	</c:choose>
 </tr>
 <tr>
 	<td rowspan="2"><img class="logDetailsImg" src="${log.imageUrl}"/> </td>
