@@ -40,20 +40,27 @@ ${log.rating}/5
 <div class="pageContent">
 
 <div class="logTable">
-<c:if test="${log.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
-
-<form id="updateLog" action="updateLogForm.do" method="GET">
-	<input type="hidden" name="logId" value="${log.id}">
-	<input class="btn btn-primary" type="submit" value="Update Log"/>
-</form>
-<form id="removeLog" action="removeLog.do" method="POST">
-	<input type="hidden" name="logId" value="${log.id}">
-	<input class="btn btn-primary" type="submit" value="Delete Log"/>
-</form>
-</c:if>
 
 
 <table class="logTable">
+<tr class="tableSectionLabel">
+	<td >Log Details</td>
+	<c:if test="${log.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
+		<td >
+			
+			<form id="updateLog" action="updateLogForm.do" method="GET">
+				<input type="hidden" name="logId" value="${log.id}">
+				<input class="button" type="submit" value="Update Log"/>
+			</form>
+		</td>
+		<td >
+			<form id="removeLog" action="removeLog.do" method="POST">
+				<input type="hidden" name="logId" value="${log.id}">
+				<input class="button" type="submit" value="Delete Log"/>
+			</form>
+		</td>
+	</c:if>
+</tr>
 <tr>
 	<td rowspan="2"><img class="logDetailsImg" src="${log.imageUrl}"/> </td>
 <td class="tableUsername">${log.user.username}</td>
@@ -108,7 +115,7 @@ ${log.rating}/5
 	<form action="removeLogComment.do" method="post" id="removeLogComment">
 	<input  type="hidden" id="logCommentId" name="logCommentId" value="${comment.id }" />
 	
-	<input class="button" type="submit" value="Delete Comment" />
+	<input class="buttonAlt" type="submit" value="Delete Comment" />
 </form>
 	
 	</c:if>
