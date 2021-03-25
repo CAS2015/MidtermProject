@@ -222,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `friend` (
 ENGINE = InnoDB;
 
 SET SQL_MODE = '';
-DROP USER IF EXISTS dduser@localhost;
+-- DROP USER IF EXISTS dduser@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 CREATE USER 'dduser'@'localhost' IDENTIFIED BY 'dduser';
 
@@ -363,4 +363,3 @@ USE `deeperdivedb`;
 INSERT INTO `friend` (`user_id`, `friend_id`) VALUES (1, 1);
 
 COMMIT;
-

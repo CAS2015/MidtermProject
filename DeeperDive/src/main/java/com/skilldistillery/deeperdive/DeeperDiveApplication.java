@@ -2,9 +2,15 @@ package com.skilldistillery.deeperdive;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class DeeperDiveApplication {
+public class DeeperDiveApplication  extends SpringBootServletInitializer {
+	  @Override
+	  protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+	    return application.sources(DeeperDiveApplication.class);
+	  }
 
 	public static void main(String[] args) {
 		SpringApplication.run(DeeperDiveApplication.class, args);
