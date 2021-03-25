@@ -53,6 +53,10 @@
 	display: grid;
 	margin-left: auto;
 }
+.new-log-comment{
+	margin-left: inherit;
+	display: flex;
+}
 
 .new-loc-comment{
 	display: flex;

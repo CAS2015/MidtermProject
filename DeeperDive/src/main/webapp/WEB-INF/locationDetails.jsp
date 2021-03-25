@@ -187,13 +187,13 @@
 <tr>
 
 	<td rowspan="2"><img class="locDetailsImg" src="${log.imageUrl}"/></td>
-<td>${log.user.username}</td>
-	<td>${log.diveDate}</td>
 </tr>
 </thead>
 <tr>
 	<td> <strong>Dive Type:</strong> ${log.site.diveType.name} <br> <strong>Minimum Cert.:</strong> ${log.site.minimumCert}</td>
 	<td>  <strong>Rating:</strong>   ${log.rating}/5</td>
+<td>${log.user.username}</td>
+	<td>${log.diveDate}</td>
 </tr>
 
 <tr>
@@ -233,7 +233,7 @@
 
 
 <c:if test="${ ! empty loggedInUser }">
-<form class = "new-loc-comment" action="submitLogComment.do" method="post" id="createLogComment${log.id }">
+<form class = "new-log-comment" action="submitLogComment.do" method="post" id="createLogComment${log.id }">
 	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
 	<input  type="hidden" id="logId" name="logId" value="${log.id }" />
 	<textarea name="content" form="createLogComment${log.id }" rows="3" cols="80"></textarea>
