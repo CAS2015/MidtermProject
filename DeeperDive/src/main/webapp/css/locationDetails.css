@@ -36,6 +36,31 @@
 	border: 1px solid black;
 	height: auto;
 	width: auto;
+	margin-left: 70px;
 	
 }
 
+
+.response-button {
+	
+	display: block;
+	margin-left: auto;
+}
+
+.new-loc-response {
+	display: grid;
+	margin-left: auto;
+}
+
+.new-loc-comment{
+	display: block;
+}
+
+.comment-button{
+	display: block;
+}
+
+.delete-button{
+	display: inline-block;
+	
+}

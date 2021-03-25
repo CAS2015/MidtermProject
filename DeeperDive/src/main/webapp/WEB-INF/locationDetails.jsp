@@ -92,7 +92,7 @@
 
 <c:if test="${(locationComment.user.id == loggedInUser.id || loggedInUser.role == 'administrator') && empty locationComment.responses}">
 	
-	<form action="removeLocationComment.do" method="post" id="removeLocationComment">
+	<form  action="removeLocationComment.do" method="post" id="removeLocationComment">
 	<input  type="hidden" id="locationCommentId" name="locationCommentId" value="${locationComment.id }" />
 	
 	<input class="button" type="submit" value="Delete Comment" />
@@ -101,13 +101,12 @@
 	</c:if>
 	
 	     <c:if test="${ ! empty loggedInUser && empty locationComment.originalPost}">
-<form action="LocationCommentResponse.do" method="post" id="createLocationCommentResponse${locationComment.id }">
+<form class = "new-loc-response" action="LocationCommentResponse.do" method="post" id="createLocationCommentResponse${locationComment.id }">
 	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
 	<input  type="hidden" id="locationId" name="locationId" value="${location.id }" />
 	<input  type="hidden" id="locationId" name="responseId" value="${locationComment.id }" />
-	<label>Create Response:</label>
 	<textarea name="content" form="createLocationCommentResponse${locationComment.id }" rows="2" cols="60"></textarea>
-	<input class="button" type="submit" value="Submit Comment" />
+	<input class="button response-button" type="submit" value="Submit Response" />
 </form>
 </c:if>
 	
@@ -118,12 +117,13 @@
     </c:if>
      
      <c:if test="${ ! empty loggedInUser }">
-<form action="newLocationComment.do" method="post" id="createLocationComment${location.id }">
+     <br>
+<form class = "new-loc-comment" action="newLocationComment.do" method="post" id="createLocationComment${location.id }">
 	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
 	<input  type="hidden" id="locationId" name="locationId" value="${location.id }" />
-	<label>Add New Comment:</label>
+	<label>Create New Comment:</label>
 	<textarea name="content" form="createLocationComment${location.id }" rows="3" cols="80"></textarea>
-	<input class="button" type="submit" value="Submit Comment" />
+	<input class="button comment-button" type="submit" value="Submit" />
 </form>
 </c:if>
      
