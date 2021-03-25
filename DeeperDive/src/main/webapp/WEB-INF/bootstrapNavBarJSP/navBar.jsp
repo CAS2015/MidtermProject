@@ -2,10 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<link rel="stylesheet" href="../css/main.css">
-<link rel="stylesheet" href="../css/navbar.css">
 <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/navbar-top-fixed.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/navbar.css">
 
 
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
