@@ -25,6 +25,7 @@
 
 <div class = "cover-image" > <div class = "cover-txt mainTitle" >Deeper Dive</div> </div>
 
+<div class= "pageContent">
 
 <div class = "row filter-section">
 <div class = "col">
@@ -72,6 +73,7 @@
 </c:forEach>
 
 
+</div>
 </div>
 
 <!-- Footer  -->
