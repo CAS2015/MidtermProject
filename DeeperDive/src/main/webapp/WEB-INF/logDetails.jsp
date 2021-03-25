@@ -37,7 +37,7 @@ ${log.rating}/5
  </div>
  </div>
 
-<div class="logDetailsPageContent">
+<div class="pageContent">
 
 <div class="logTable">
 <c:if test="${log.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
