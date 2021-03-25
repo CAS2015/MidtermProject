@@ -3,6 +3,9 @@
 
 .logTable {
 	background-color: whitesmoke;
+	width: 80%;
+	margin: auto;
+	border: solid black 1px;
 }
 
 .logTable table {
