@@ -70,6 +70,7 @@ body{
 	color: white;
 	font-weight: bold;
 	background-color: #074999;
+	border: solid #212529 1px;
 }
 
 .listLocationsBox {

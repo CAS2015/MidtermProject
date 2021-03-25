@@ -30,6 +30,10 @@
 	padding: 10px;
 }
 
+.tableSectionLabel td .button {
+	font-size: initial;
+}
+
 .tableUsername {
 	font-weight: bold;
 }
