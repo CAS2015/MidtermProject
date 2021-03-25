@@ -185,7 +185,10 @@
 	<td colspan="3"><a href="getLog.do?id=${log.id}">${log.title}</a></td>
 </tr>
 <tr>
-	<td rowspan="2">${log.imageUrl}</td>
+
+	<td rowspan="2"><img class="locDetailsImg" src="${log.imageUrl}"/></td>
+<td>${log.user.username}</td>
+	<td>${log.diveDate}</td>
 </tr>
 </thead>
 <tr>

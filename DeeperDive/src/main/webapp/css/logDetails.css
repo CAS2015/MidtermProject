@@ -3,6 +3,9 @@
 
 .logTable {
 	background-color: whitesmoke;
+	width: 80%;
+	margin: auto;
+	border: solid black 1px;
 }
 
 .logTable table {
@@ -36,6 +39,11 @@
 	vertical-align: center;
 }
 
+
+.logDetailsImg {
+	width: 500px;
+	
+}
 /* p{
 	color: pink;
 } */
