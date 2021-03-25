@@ -5,16 +5,21 @@
 	background-color: whitesmoke;
 	width: 80%;
 	margin: auto;
-	border: solid black 1px;
+	margin-top: 50px;
+
+	
+	
 }
 
 .logTable table {
 	width: 100%;
+	border: solid #212529 1px;
 }
 
 .logTable tbody, td, tfoot, th, thead, tr {
 	padding: 10px;
 }
+
 
 .tableSectionLabel {
 	background-color: #074999;
@@ -44,6 +49,15 @@
 	width: 500px;
 	
 }
+
+.logDetailsPageContent {
+	margin-bottom: 50px;
+}
+
+.logCommentSection form textarea {
+	margin: 0 10px;
+}
+
 /* p{
 	color: pink;
 } */

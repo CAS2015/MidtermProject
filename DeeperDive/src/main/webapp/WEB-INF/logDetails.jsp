@@ -37,6 +37,7 @@ ${log.rating}/5
  </div>
  </div>
 
+<div class="logDetailsPageContent">
 
 <div class="logTable">
 <c:if test="${log.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
@@ -114,21 +115,27 @@ ${log.rating}/5
 	</td>
 	</c:forEach>          
 </tr>
+<tr>
+	<td colspan="3">
+		<c:if test="${ ! empty loggedInUser }">
+		<div class="logCommentSection">
+		<form action="submitLogComment.do" method="post" id="createLogComment${log.id }">
+			<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
+			<input  type="hidden" id="logId" name="logId" value="${log.id }" />
+			<label class="commentLabel">Comment:</label>
+			<textarea name="content" form="createLogComment${log.id }" rows="3" cols="80"></textarea>
+			<input class="buttonAlt" type="submit" value="Submit" />
+		</form>
+		</div>
+		</c:if>
+		
+	</td>
+</tr>
+
 </table>
 </div>
-
-
-<div class="filter-section">
-<c:if test="${ ! empty loggedInUser }">
-<form action="submitLogComment.do" method="post" id="createLogComment${log.id }">
-	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
-	<input  type="hidden" id="logId" name="logId" value="${log.id }" />
-	<label class="commentLabel">Comment:</label>
-	<textarea name="content" form="createLogComment${log.id }" rows="3" cols="80"></textarea>
-	<input class="button" type="submit" value="Submit Comment" />
-</form>
-</c:if>
 </div>
+
 
 
 
