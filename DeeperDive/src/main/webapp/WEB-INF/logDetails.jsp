@@ -54,7 +54,7 @@ ${log.rating}/5
 
 <table class="logTable">
 <tr>
-	<td rowspan="2"><img src="${log.imageUrl}"/> </td>
+	<td rowspan="2"><img class="logDetailsImg" src="${log.imageUrl}"/> </td>
 <td class="tableUsername">${log.user.username}</td>
 	<td class="tableDate">${log.diveDate}</td>
 </tr>
