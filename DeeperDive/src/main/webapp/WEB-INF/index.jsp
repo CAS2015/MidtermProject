@@ -76,6 +76,7 @@
 </div>
 </div>
 
+
 <!-- Footer  -->
 <jsp:include page="bootstrapNavBarJSP/bootstrapFoot.jsp" />
 </body>
