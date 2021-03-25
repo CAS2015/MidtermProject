@@ -13,42 +13,47 @@
 <body>
 <!-- NavBar -->
 <jsp:include page="bootstrapNavBarJSP/navBar.jsp" />
+
+<div class="errorMessage">
 <c:if test="${failed == true }"> Invalid Username! Registration failed.</c:if>
+</div>
 
+<div class = "cover-image" > <div class = "cover-txt mainTitle" >Deeper Dive</div> </div>
 
-<form action="register.do" method="POST" id="addUserForm">
-		<div class="registerNewUser">
-		<h4>Register New User</h4>
+<form class="pageContent logTable"action="register.do" method="POST" id="addUserForm">
+		<div class="registerNewUser tableSectionLabel">
+		Register New User
 		</div>
 		
-		<div class="registrationFormBody">
-		<b>Username*:</b>
+		<div class="registrationFormBody createForm">
+		<label>Username*:</label>
 		<input type="text"  name="username" required="required"/><br> 
-		<b>Password*:</b>
+		<label>Password*:</label>
 		<input type="password" name="password" required="required"/><br> 
-		<b>First Name*:</b>
+		<label>First Name*:</label>
 		<input type="text" name="firstName" required="required"/><br> 
-		<b>Last Name*:</b>
+		<label>Last Name*:</label>
 		<input type="text" name="lastName" required="required" /><br> 
-		<b>Profile Image URL:</b>
+		<label>Profile Image URL:</label>
 		<input type="text" name="imgUrl" /><br> 
 		
-		<input type="radio" id="data_reader" name="role" value="data_reader">
-		<label for="true">View and Comment</label><br>
+		<label>User Role:</label><br>
+		<input type="radio" id="data_reader" name="role" value="data_reader" checked="checked">
+		<label id="registerRadioLabel" for="true">View and Comment</label><br>
 		<input type="radio" id="data_writer" name="role" value="data_writer">
-		<label for="female">Content Creator</label><br>
+		<label id="registerRadioLabel" for="female">Content Creator</label><br>
 		
-		</div>
 		
 
 		<input type="hidden" name="enabled" value="true">
 		
-		
+		<br>
 		<p>
 		*Required Field
 		</p>
 
-		<input class="button" type="submit" value="Register" />
+		<input class="buttonAlt" type="submit" value="Register" />
+		</div>
 	</form>
 
 <!-- Footer  -->
