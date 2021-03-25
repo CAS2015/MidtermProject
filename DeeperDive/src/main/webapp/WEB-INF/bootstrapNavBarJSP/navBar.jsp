@@ -3,10 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!-- <link rel="stylesheet" href="../css/main.css"> -->
-<!-- <link rel="stylesheet" href="../css/navbar.css"> --> 
+<!-- <link rel="stylesheet" href="../css/navbar.css"> -->
 <!-- <link href="../css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/navbar-top-fixed.css" rel="stylesheet"> -->
-
 
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 	  <div class="container-fluid">
@@ -52,6 +51,8 @@
 						          </div>
 						        </div>
 
+
+
 						        </c:when>
 						        <c:when test="${ ! empty loggedInUser }">Welcome ${loggedInUser.firstName}!
 						          <a href="profile.do" class="nav-link">Profile</a>
@@ -60,6 +61,7 @@
 						          </form>
 						        </c:when>
 						      </c:choose>
+
 						    </div>
 
 
