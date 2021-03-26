@@ -43,3 +43,6 @@ Although there are some groups and other website that have diving as an "interes
 - Team Name: Futile Tranquility (randomly generated, btw)  
 - Team project within the Skill Distillery SD28 cohort which is the MidTerm Project that showcases most, if not all, of technologies, topis, and practices covered up until mid curriculum. 
 - Futile Tranquility is awesome!
+
+### Deeper Dive Database Schema:
+![deeperdivedb](https://user-images.githubusercontent.com/23218378/112658244-3a69a880-8e21-11eb-843d-fcf9c6fafb3c.png)
