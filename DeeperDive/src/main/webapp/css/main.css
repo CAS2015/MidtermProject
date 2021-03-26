@@ -24,6 +24,10 @@ body{
 
 }
 
+.blueBody {
+	background-color:  #074999
+}
+
 .cover-image {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
 		url("../images/underwater.jpg");
