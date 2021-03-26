@@ -108,10 +108,11 @@ ${log.rating}/5
 <tr>
 	<td class="tableSectionLabel" colspan="3">Comments</td>
 </tr>
-<tr>
 	 <c:forEach items= "${log.logComments }" var= "comment">
+<tr>
 	 <td colspan="2">
 	${comment.content }
+
 	<c:if test="${comment.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
 	
 	<form action="removeLogComment.do" method="post" id="removeLogComment">
@@ -122,8 +123,9 @@ ${log.rating}/5
 	
 	</c:if>
 	</td>
-	</c:forEach>          
+	<td class="signature">~${comment.user.username}  (${comment.createAt.month.value}-${comment.createAt.dayOfMonth}-${comment.createAt.year}) </td>
 </tr>
+	</c:forEach>          
 <tr>
 	<td colspan="3">
 		<c:if test="${ ! empty loggedInUser }">
