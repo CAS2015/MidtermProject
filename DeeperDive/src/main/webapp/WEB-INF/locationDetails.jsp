@@ -23,7 +23,8 @@
 
 <c:if test="${failed == true }">Invalid Username or Password! Login failed.</c:if>
 
-<div class = "cover-image" >
+<div class = "cover-image" id="locationImg">
+
 <div class = "cover-txt" >
 
 

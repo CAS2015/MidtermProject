@@ -66,15 +66,19 @@
 	<c:forEach items = "${locations }"  var= "loc" >
 
 		<tr>
-			<td>
+			<td id="locationNameCol">
 			<a href="getLocation.do?id=${loc.id}">${loc.locationName }</a>
 			</td>
-			<td>
+			<td rowspan="2">
 			<img class="locDetailsImg" src="${loc.imgUrl}"/>
 			</td>
-
-
 		</tr>
+		<tr>
+		<td id="locationNameCol">
+			${loc.description }
+			</td>
+		</tr>
+
 	</c:forEach>
 </table>
 

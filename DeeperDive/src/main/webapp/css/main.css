@@ -153,6 +153,10 @@ body{
 	margin: auto;
 }
 
+.locationNameCol {
+	width: 30%;
+}
+
 /* p{
 	color: pink;
 } */
