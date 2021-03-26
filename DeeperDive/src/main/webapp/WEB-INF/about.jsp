@@ -10,6 +10,7 @@
 <title>About US</title>
 <jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
 <link rel="stylesheet" href="../css/about.css">
+<link rel="stylesheet" href="./css/about.css">
 </head>
 <body class="blueBody">
 <!-- NavBar -->
@@ -49,7 +50,7 @@
 <div class="row">
   <div class="column">
     <div class="card">
-      <img src="../images/diver1.jpg" alt="Diver under the sea" style="width:100%">
+      <img src="./images/diver1.jpg" alt="Diver under the sea" style="width:100%">
         <p style="font-size:10px">Photo by <a href="https://unsplash.com/@olgatsai?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Olga Tsai</a> on <a href="https://unsplash.com/s/photos/divers?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
 
       <div class="container">
@@ -65,7 +66,7 @@
 
     <div class="column">
       <div class="card">
-        <img src="../images/diver2.jpg" alt="Diver under the sea" style="width:100%">
+        <img src="./images/diver2.jpg" alt="Diver under the sea" style="width:100%">
           <p style="font-size:10px">Photo by <a href="https://unsplash.com/@cristianpalmer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Cristian Palmer</a> on <a href="https://unsplash.com/s/photos/divers?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
         <div class="container">
           <h2>Nick Bird</h2>
@@ -80,7 +81,7 @@
 
       <div class="column">
         <div class="card">
-          <img src="../images/diver3.jpg" alt="Diver under the sea" style="width:100%">
+          <img src="./images/diver3.jpg" alt="Diver under the sea" style="width:100%">
             <p style="font-size:10px">Photo by <a href="https://unsplash.com/@almosbech?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Almos Bechtold</a> on <a href="https://unsplash.com/s/photos/divers?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></p>
           <div class="container">
             <h2>Walter Valdez</h2>

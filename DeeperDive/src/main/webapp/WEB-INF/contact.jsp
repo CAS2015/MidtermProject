@@ -9,6 +9,7 @@
 <title>Contact US</title>
 <jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
 <link rel="stylesheet" href="../css/contact.css">
+<link rel="stylesheet" href="./css/contact.css">
 </head>
 <body class="blueBody">
 <!-- NavBar -->
