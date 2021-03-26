@@ -17,6 +17,7 @@ Although there are some groups and other website that have diving as an "interes
 - Java / J2EE / JUnit /Java Persistance API (JPA)
 - SQL, MySQL, HTML5, CSS3, XML 
 - Git / GitHub
+- Agile / Scrum
 - Bootstrap
 - Spring Boot (Open Source Java-based Frameworks)
 - Gradle
