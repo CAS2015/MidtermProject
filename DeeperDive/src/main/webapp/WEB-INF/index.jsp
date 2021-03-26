@@ -62,15 +62,21 @@
      
 </c:if>
 
-<c:forEach items = "${locations }"  var= "loc" >
+<table>
+	<c:forEach items = "${locations }"  var= "loc" >
 
-<ul>
+		<tr>
+			<td>
+			<a href="getLocation.do?id=${loc.id}">${loc.locationName }</a>
+			</td>
+			<td>
+			<img class="locDetailsImg" src="${loc.imgUrl}"/>
+			</td>
 
-<li><a href="getLocation.do?id=${loc.id}">${loc.locationName }</a></li>
 
-</ul>
-
-</c:forEach>
+		</tr>
+	</c:forEach>
+</table>
 
 
 </div>
