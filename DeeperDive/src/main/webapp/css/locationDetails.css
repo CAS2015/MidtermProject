@@ -17,6 +17,17 @@
 	margin-bottom: 50px;
 }
 
+.user-profile{
+	border: 1px solid black;
+	background-color: white;
+	color: black;
+	height: auto;
+	width: calc(100% - 20px);
+	margin:10px;
+	display: block;
+    overflow-wrap: break-word;
+}
+
 .log-entry {
 	border: 1px solid black;
 	background-color: white;
