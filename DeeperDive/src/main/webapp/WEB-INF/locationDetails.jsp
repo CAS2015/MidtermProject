@@ -55,7 +55,7 @@
 
 <div class = "section">
 
-<h2>Location Comments</h2>
+<div class="tableSectionLabel scrollBoxHeader">Location Comments</div>
 <c:if test="${ empty location.locationComments }"> <h2>There are no comments about this location yet</h2>      </c:if>
 <c:if test="${not empty location.locationComments }">    
 
@@ -66,9 +66,7 @@
 
 <tr>
 <td colspan="2">  ${locationComment.content}   </td>
-<td>Created by:  ${locationComment.user.username} at: ${locationComment.createdAt } </td>
-
-
+<td class="signature">~${locationComment.user.username}  (${locationComment.createdAt.month.value}-${locationComment.createdAt.dayOfMonth}-${locationComment.createdAt.year}) </td>
 </tr>
 <tr>
 <td>
@@ -78,7 +76,7 @@
 	<form  action="removeLocationComment.do" method="post" id="removeLocationComment">
 	<input  type="hidden" id="locationCommentId" name="locationCommentId" value="${locationComment.id }" />
 	
-	<input class="button" type="submit" value="Delete Comment" />
+	<input class="buttonAlt" type="submit" value="Delete Comment" />
 </form>
 	
 	</c:if>
@@ -94,9 +92,8 @@
 <table class = "location-comment-response">
 <tr>
 <td colspan="2">  ${response.content}   </td>
-<td>Response by:  ${response.user.username}  at: ${response.createdAt } </td>
 
-
+<td class="signature">~${locationComment.user.username}  (${locationComment.createdAt.month.value}-${locationComment.createdAt.dayOfMonth}-${locationComment.createdAt.year}) </td>
 </tr>
 <tr>
 <td>
@@ -106,8 +103,8 @@
 	<form  action="removeLocationComment.do" method="post" id="removeLocationComment">
 	<input  type="hidden" id="locationCommentId" name="locationCommentId" value="${locationComment.id }" />
 	
-	<input class="button" type="submit" value="Delete Comment" />
-</form>
+	<input class="buttonAlt" type="submit" value="Delete Comment" />
+	</form>
 	
 	</c:if>
 
@@ -127,8 +124,8 @@
 	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
 	<input  type="hidden" id="locationId" name="locationId" value="${location.id }" />
 	<input  type="hidden" id="locationId" name="responseId" value="${locationComment.id }" />
-	<textarea name="content" form="createLocationCommentResponse${locationComment.id }" rows="2" cols="60"></textarea>
-	<input class="button response-button" type="submit" value="Submit Response" />
+	<textarea name="content" form="createLocationCommentResponse${locationComment.id }" rows="2" cols="60" placeholder="Response"></textarea>
+	<input class="buttonAlt response-button" type="submit" value="Submit Response" />
 </form>
 </c:if>
 	
@@ -140,15 +137,14 @@
      
      <c:if test="${ ! empty loggedInUser }">
      <br>
-     <h4> Create New Comment:  </h4>
 <form class = "new-loc-comment" action="newLocationComment.do" method="post" id="createLocationComment${location.id }">
 	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
 	<input  type="hidden" id="locationId" name="locationId" value="${location.id }" />
-	<textarea name="content" form="createLocationComment${location.id }" rows="3" cols="80"></textarea>
-	<input class="button comment-button" type="submit" value="Submit" />
+	<textarea name="content" form="createLocationComment${location.id }" rows="3" cols="80" placeholder="Comment"></textarea>
+	<input class="buttonAlt comment-button" type="submit" value="Submit" />
 </form>
 </c:if>
-     
+     <br>
      
      
 </div>
@@ -156,61 +152,66 @@
 <br>
 
 <div  class = "section">
-<h2>Location Dive Logs</h2>
+<div class="row">
+<div class="col tableSectionLabel scrollBoxHeader">Location Dive Logs</div>
 
 <!-- Add Log Button  -->
+<div class="col-auto tableSectionLabel  scrollBoxButton">
 <c:if test="${ ! empty loggedInUser && (loggedInUser.role == 'data_writer' || loggedInUser.role == 'administrator')}">
 <form class = "new-log-button" action="logForm.do" method="GET">
 	<input type="hidden" name="locId" value="${location.id}">
-	<input class="btn btn-primary" type="submit" value="Add A New Log!"/>
+	<input class="button" type="submit" value="Add A New Log!"/>
 </form>
 </c:if>
+</div>
+</div>
+
+
 <c:forEach items="${logs}"  var="log" >
 
-<table class = "log-entry">
-<thead>
+<table class = "log-entry" onclick="window.location='getLog.do?id=${log.id}'" >
+	<thead class = "tableSectionLabel">
+		<tr>
+			<c:choose>
+				<c:when test="${log.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">	
+					<th class="tableSectionLabel"> ${log.title}    </th>
+					<th>
+					<form class = "new-log-button" id="updateLog" action="updateLogForm.do" method="GET">
+						<input type="hidden" name="logId" value="${log.id}">
+						<input class="button" type="submit" value="Update Log"/>
+					</form>
+					</th>
+					 <th>
+					<form class = "new-log-button" id="removeLog" action="removeLog.do" method="POST">
+						<input type="hidden" name="logId" value="${log.id}">
+						<input class="button" type="submit" value="Delete Log"/>
+					</form> 
+					</th>
+				</c:when>
+				<c:otherwise>
+					<th colspan="3" class="tableSectionLabel"> ${log.title} </th>
+				</c:otherwise>
+			</c:choose>
+		</tr>
+	</thead>
+	
+<tbody class="log-entry-body">
 <tr>
-<th> ${log.site.name}    </th>
-<c:if test="${log.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">
-
-<th>
-<form id="updateLog" action="updateLogForm.do" method="GET">
-	<input type="hidden" name="logId" value="${log.id}">
-	<input class="btn btn-primary" type="submit" value="Update Log"/>
-</form>
-</th> <th>
-<form id="removeLog" action="removeLog.do" method="POST">
-	<input type="hidden" name="logId" value="${log.id}">
-	<input class="btn btn-primary" type="submit" value="Delete Log"/>
-</form> </th>
-</c:if>
+	<td class="tableSiteName" > <strong> Site:</strong> ${log.site.name}</td>
 </tr>
-
-<tr>
-	<td colspan="3"><a href="getLog.do?id=${log.id}">${log.title}</a></td>
-</tr>
-<tr>
+<tr class = "breakForSite">
 	<td> <strong>Dive Type:</strong> ${log.site.diveType.name} </td><td> <strong>Minimum Cert.:</strong> ${log.site.minimumCert}</td>
 	 <td>  <strong>Rating:</strong>   ${log.rating}/5</td> </tr>
-<tr>
-<td>${log.user.username}</td>
-	<td>${log.diveDate}</td>
-</tr>
-
-</thead>
-
-
-
-<tr>
-
+<tr >
 	<td rowspan="2"><img class="locDetailsImg" src="${log.imageUrl}"/></td>
+	<td class="tableUsername">${log.user.username}</td>
+	<td  class="tableDate">${log.diveDate}</td>
 </tr>
-
-
 
 <tr>
 	<td colspan="2">${log.logContent}</td>
 </tr>
+</tbody>
 </table>
 
 	 <c:forEach items= "${log.logComments }" var= "comment">
@@ -218,10 +219,9 @@
 	 <table class = "location-comment-response">
 <tr>
 <td colspan="2">  ${comment.content}   </td>
-<td>Comment by:  ${comment.user.username}  at: ${comment.createAt } </td>
-
-
+<td class="signature">~${comment.user.username}  (${comment.createAt.month.value}-${comment.createAt.dayOfMonth}-${comment.createAt.year}) </td>
 </tr>
+
 <tr>
 <td>
 
@@ -230,7 +230,7 @@
 	<form  action="removeLogComment.do" method="post" id="removeLocationComment">
 	<input  type="hidden" id="logCommentId" name="logCommentId" value="${comment.id }" />
 	
-	<input class="button" type="submit" value="Delete Comment" />
+	<input class="buttonAlt" type="submit" value="Delete" />
 </form>
 	
 	</c:if>
@@ -248,12 +248,12 @@
 <form class = "new-log-comment" action="submitLogComment.do" method="post" id="createLogComment${log.id }">
 	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
 	<input  type="hidden" id="logId" name="logId" value="${log.id }" />
-	<textarea name="content" form="createLogComment${log.id }" rows="3" cols="80"></textarea>
-	<input class="button" type="submit" value="Submit Comment" />
+	<textarea name="content" form="createLogComment${log.id }" rows="3" cols="80" placeholder="Comment"></textarea>
+	<input class="buttonAlt" type="submit" value="Submit" />
 </form>
 </c:if>
 </c:forEach>
-
+<br>
 </div>
 
 

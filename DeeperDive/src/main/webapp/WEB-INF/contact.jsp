@@ -10,7 +10,7 @@
 <jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
 <link rel="stylesheet" href="../css/contact.css">
 </head>
-<body>
+<body class="blueBody">
 <!-- NavBar -->
 <jsp:include page="bootstrapNavBarJSP/navBar.jsp" />
 

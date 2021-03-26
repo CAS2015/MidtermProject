@@ -14,10 +14,7 @@
 <!-- NavBar -->
 <jsp:include page="bootstrapNavBarJSP/navBar.jsp" />
 
-<h2></h2>
-<h4></h4>
-<h4></h4>
-<h4></h4>
+
 
 <div class = "cover-image" >
 <div class = "cover-txt" >
@@ -42,7 +39,7 @@ ${log.rating}/5
 <div class="logTable">
 
 
-<table class="logTable">
+<table class="logTable logTableTop">
 <tr class="tableSectionLabel">
 	
 	<c:choose>
@@ -72,6 +69,8 @@ ${log.rating}/5
 <tr>
 	<td colspan="2">${log.logContent}</td>
 </tr>
+</table>
+<table class="logTable">
 <tr>
 	<td class="tableSectionLabel" colspan="3">Attractions</td>
 </tr>

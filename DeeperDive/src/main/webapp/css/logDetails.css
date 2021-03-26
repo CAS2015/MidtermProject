@@ -4,11 +4,12 @@
 .logTable {
 	background-color: whitesmoke;
 	width: 80%;
-	margin: auto;
-	margin-top: 50px;
+	margin: auto;	
+	
+}
 
-	
-	
+.logTableTop {
+	margin-top: 50px;
 }
 
 .logTable table {
@@ -76,6 +77,12 @@
 #registerRadioLabel {
 	font-weight: normal;
 	
+}
+
+.mapouter {
+	margin: auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
 /* p{
