@@ -62,19 +62,19 @@
      
 </c:if>
 
-<table>
+<table id="homepageLocationsTable">
 	<c:forEach items = "${locations }"  var= "loc" >
 
-		<tr>
-			<td id="locationNameCol">
-			<a href="getLocation.do?id=${loc.id}">${loc.locationName }</a>
+		<tr onclick="window.location='getLocation.do?id=${loc.id}'">
+			<td class="homepageLocationName" id="locationNameCol">
+			${loc.locationName }
 			</td>
 			<td rowspan="2">
 			<img class="locDetailsImg" src="${loc.imgUrl}"/>
 			</td>
 		</tr>
-		<tr>
-		<td id="locationNameCol">
+		<tr onclick="window.location='getLocation.do?id=${loc.id}'">
+		<td class="bottomLNC" id="locationNameCol">
 			${loc.description }
 			</td>
 		</tr>

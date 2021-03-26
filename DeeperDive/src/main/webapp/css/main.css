@@ -153,10 +153,33 @@ body{
 	margin: auto;
 }
 
-.locationNameCol {
+#locationNameCol {
 	width: 30%;
+	background-color: #212529;
+	color:white;
 }
 
+#homepageLocationsTable td:last-child {
+	padding-left:0px;
+}
+#homepageLocationsTable tr:first-child td:first-child {
+	border-top: solid whitesmoke 3px;
+}
+#homepageLocationsTable td:first-child {
+	padding-left: 10px;
+    padding-top: 10px;
+    vertical-align: super;
+}
+.bottomLNC#locationNameCol {
+	border-bottom: solid whitesmoke 4px;
+}
+
+.homepageLocationName#locationNameCol {
+	font-size: 30px;
+	font-weight: bold;
+	color: white;
+	font-family: fantasy;
+}
 /* p{
 	color: pink;
 } */
