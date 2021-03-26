@@ -15,6 +15,8 @@
 <!-- NavBar -->
 <jsp:include page="bootstrapNavBarJSP/navBar.jsp" />
 
+<div class = "cover-image" > <div class = "cover-txt mainTitle" >Deeper Dive</div> </div>
+
 <h1>Profile Details</h1>
 <br>
 <h4> ${loggedInUser.firstName } ${ loggedInUser.lastName}  </h4> <br>
