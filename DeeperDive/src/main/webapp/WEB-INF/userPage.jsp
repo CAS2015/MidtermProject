@@ -10,6 +10,8 @@
 <meta charset="UTF-8">
 <title>Profile Details</title>
 <jsp:include page="bootstrapNavBarJSP/bootstrapHead.jsp" />
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/locationDetails.css">
 </head>
 <body>
 <!-- NavBar -->
@@ -17,58 +19,148 @@
 
 <div class = "cover-image" > <div class = "cover-txt mainTitle" >Deeper Dive</div> </div>
 
-<h1>Profile Details</h1>
-<br>
-<h4> ${loggedInUser.firstName } ${ loggedInUser.lastName}  </h4> <br>
-Username: ${loggedInUser.username }
-<br>
+
+<div class = "section">
+
+<div class="tableSectionLabel scrollBoxHeader">User Profile</div>
+
+<table class = "user-profile">
+<thead></thead>
+
+<tr>
+<td> <h4> ${loggedInUser.firstName } ${ loggedInUser.lastName}  </h4> </td>
+</tr> 
+<tr>
+
+<td> Username: ${loggedInUser.username } </td>
+
+</tr>
 <c:if test="${not empty loggedInUser.role }">
+<tr>
+<td> 
 Role: ${loggedInUser.role }
-</c:if><br>
-Account created at: ${loggedInUser.createDate }<br>
-Total logs: ${logs.size() }
+</td>
+</tr>
+</c:if>
+
+<tr>
+<td>
+Account created at: ${loggedInUser.createDate }
+
+ </td>
+ </tr> <tr>
+ <td>
+ Total logs: ${logs.size() }
+ 
+  </td>
+</tr>
+
+</table>    
+     
+</div>
+
+
+
+
 
 <br>
 
-<div>
-<br>
-<h2>My Dive Logs</h2>
-<br>
+<div  class = "section">
+<div class="row">
+<div class="col tableSectionLabel scrollBoxHeader">My Dive Logs</div>
+
+<!-- Add Log Button  -->
+
+</div>
+
+
 <c:forEach items="${logs}"  var="log" >
-<form id="updateLog" action="updateLogForm.do" method="GET">
-	<input type="hidden" name="logId" value="${log.id}">
-	<input class="btn btn-primary" type="submit" value="Update Log"/>
-</form>
-<form id="removeLog" action="removeLog.do" method="POST">
-	<input type="hidden" name="logId" value="${log.id}">
-	<input class="btn btn-primary" type="submit" value="Delete Log"/>
-</form>
 
-<table>
+<table class = "log-entry" onclick="window.location='getLog.do?id=${log.id}'" >
+	<thead class = "tableSectionLabel">
+		<tr>
+			<c:choose>
+				<c:when test="${log.user.id == loggedInUser.id || loggedInUser.role == 'administrator'}">	
+					<th class="tableSectionLabel"> ${log.title}    </th>
+					<th>
+					<form class = "new-log-button" id="updateLog" action="updateLogForm.do" method="GET">
+						<input type="hidden" name="logId" value="${log.id}">
+						<input class="button" type="submit" value="Update Log"/>
+					</form>
+					</th>
+					 <th>
+					<form class = "new-log-button" id="removeLog" action="removeLog.do" method="POST">
+						<input type="hidden" name="logId" value="${log.id}">
+						<input class="button" type="submit" value="Delete Log"/>
+					</form> 
+					</th>
+				</c:when>
+				<c:otherwise>
+					<th colspan="3" class="tableSectionLabel"> ${log.title} </th>
+				</c:otherwise>
+			</c:choose>
+		</tr>
+	</thead>
+	
+<tbody class="log-entry-body">
 <tr>
-	<td>${log.site.name}, ${log.site.location.locationName }</td>
-	<td>Dive Type: ${log.site.diveType.name}, Minimum Cert.: ${log.site.minimumCert}</td>
-	<td>${log.rating}/5</td>
+	<td class="tableSiteName" > <strong> Site:</strong> ${log.site.name}</td>
 </tr>
-<tr>
-	<td colspan="3"><a href="getLog.do?id=${log.id}">${log.title}</a></td>
+<tr class = "breakForSite">
+	<td> <strong>Dive Type:</strong> ${log.site.diveType.name} </td><td> <strong>Minimum Cert.:</strong> ${log.site.minimumCert}</td>
+	 <td>  <strong>Rating:</strong>   ${log.rating}/5</td> </tr>
+<tr >
+	<td rowspan="2"><img class="locDetailsImg" src="${log.imageUrl}"/></td>
+	<td class="tableUsername">${log.user.username}</td>
+	<td  class="tableDate">${log.diveDate}</td>
 </tr>
-<tr>
-	<td rowspan="2">${log.imageUrl}</td>
-<td>${log.user.username}</td>
-	<td>${log.diveDate}</td>
-</tr>
+
 <tr>
 	<td colspan="2">${log.logContent}</td>
 </tr>
-<tr>
-	           
-</tr>
-	
+</tbody>
 </table>
 
-</c:forEach>
+	 <c:forEach items= "${log.logComments }" var= "comment">
 
+	 <table class = "location-comment-response">
+<tr>
+<td colspan="2">  ${comment.content}   </td>
+<td class="signature">~${comment.user.username}  (${comment.createAt.month.value}-${comment.createAt.dayOfMonth}-${comment.createAt.year}) </td>
+</tr>
+
+<tr>
+<td>
+
+<c:if test="${(comment.user.id == loggedInUser.id || loggedInUser.role == 'administrator')}">
+	
+	<form  action="removeLogComment.do" method="post" id="removeLocationComment">
+	<input  type="hidden" id="logCommentId" name="logCommentId" value="${comment.id }" />
+	
+	<input class="buttonAlt" type="submit" value="Delete" />
+</form>
+	
+	</c:if>
+
+</td>
+
+</tr>
+</table>
+	</c:forEach>          
+
+	
+
+
+<c:if test="${ ! empty loggedInUser }">
+<form class = "new-log-comment" action="submitLogComment.do" method="post" id="createLogComment${log.id }">
+	<input  type="hidden" id ="userId" name="userId" value="${loggedInUser.id }" />
+	<input  type="hidden" id="logId" name="logId" value="${log.id }" />
+	<textarea name="content" form="createLogComment${log.id }" rows="3" cols="80" placeholder="Comment"></textarea>
+	<input class="buttonAlt" type="submit" value="Submit" />
+</form>
+</c:if>
+</c:forEach>
+<br>
 </div>
 
 
