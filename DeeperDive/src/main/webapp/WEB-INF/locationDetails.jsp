@@ -53,6 +53,8 @@
 </div>
 </div>
 
+<!-- LOCATION COMMENTS SECTION  -->
+
 <div class = "section">
 
 <div class="tableSectionLabel scrollBoxHeader">Location Comments</div>
@@ -151,6 +153,7 @@
 
 <br>
 
+<!-- DIVE LOG SECTION  -->
 <div  class = "section">
 <div class="row">
 <div class="col tableSectionLabel scrollBoxHeader">Location Dive Logs</div>
