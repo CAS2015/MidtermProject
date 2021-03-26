@@ -19,38 +19,38 @@
 
 <div class = "cover-image" > <div class = "cover-txt mainTitle" >Deeper Dive</div> </div>
 
-
+<br>
 <div class = "section">
 
 <div class="tableSectionLabel scrollBoxHeader">User Profile</div>
-
+<br>
 <table class = "user-profile">
 <thead></thead>
 
 <tr>
-<td> <h4> ${loggedInUser.firstName } ${ loggedInUser.lastName}  </h4> </td>
+<td> <h3> ${loggedInUser.firstName } ${ loggedInUser.lastName}  </h3> </td>
 </tr> 
 <tr>
 
-<td> Username: ${loggedInUser.username } </td>
+<td> <strong> Username: </strong>    ${loggedInUser.username } </td>
 
 </tr>
 <c:if test="${not empty loggedInUser.role }">
 <tr>
 <td> 
-Role: ${loggedInUser.role }
+<strong>Role:</strong>  ${loggedInUser.role }
 </td>
 </tr>
 </c:if>
 
 <tr>
 <td>
-Account created at: ${loggedInUser.createDate }
+<strong>Account created at: </strong> ${loggedInUser.createDate.month.value}-${loggedInUser.createDate.dayOfMonth}-${loggedInUser.createDate.year}
 
  </td>
  </tr> <tr>
  <td>
- Total logs: ${logs.size() }
+ <strong> Total logs: ${logs.size() } </strong> 
  
   </td>
 </tr>
