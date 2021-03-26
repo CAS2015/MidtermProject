@@ -26,40 +26,48 @@
 	        </li>
 	      </ul>
 					      <%-- Sign in Register  --%>
-								<div class="col"></div>
+							<div class="col"></div>
 						    <div class="col-auto">
 						      <c:choose>
 						        <c:when test="${empty loggedInUser }">
-						        <div class="row">
-						          <form action="login.do" method="POST" id="loginUserForm">
-						          </form>
-						            <div class="col loginFormBody">
-						               <input form="loginUserForm" placeholder="Username"type="text" name="username"
-						                required="required" />
-						            </div>
-						            <div class="col loginFormBody">
-						               <input type="password" form="loginUserForm" placeholder="Password" name="password" required="required" />
-						            </div>
-
-						            <div class="col">
-						            <input class="btn btn-secondary" form="loginUserForm" type="submit" value="Login" />
-												</div>
-												<div class="col">
-						          <form action="register.do" method="get">
-						            <input class="btn btn-secondary" type="submit" value="Sign Up" />
-						          </form>
-						          </div>
-						        </div>
-
-
-
+							        <div class="row">
+							          <form action="login.do" method="POST" id="loginUserForm">
+							          </form>
+							            <div class="col loginFormBody">
+							               <input form="loginUserForm" placeholder="Username"type="text" name="username"
+							                required="required" />
+							            </div>
+							            <div class="col loginFormBody">
+							               <input type="password" form="loginUserForm" placeholder="Password" name="password" required="required" />
+							            </div>
+	
+							            <div class="col">
+							            <input class="btn btn-secondary" form="loginUserForm" type="submit" value="Login" />
+													</div>
+													<div class="col">
+							          <form action="register.do" method="get">
+							            <input class="btn btn-secondary" type="submit" value="Sign Up" />
+							          </form>
+							          </div>
+							        </div>
 						        </c:when>
-						        <c:when test="${ ! empty loggedInUser }">Welcome ${loggedInUser.firstName}!
-						          <a href="profile.do" class="nav-link">Profile</a>
+						      
+						        <c:when test="${ ! empty loggedInUser }">
+							        <div class="row">
+						            <div class="col-auto welcomeName">
+								        Welcome ${loggedInUser.firstName}!
+								     </div>
+								     <div class="col nav-item">
+						          <a href="profile.do" class="nav-link" id="profile-link">Profile</a>
+						          </div>
+						            <div class="col">
 						          <form action="logout.do">
 						            <input class="btn btn-secondary" type="submit" value="Logout" />
 						          </form>
+						          </div>
+						          </div>
 						        </c:when>
+						 
 						      </c:choose>
 
 						    </div>
