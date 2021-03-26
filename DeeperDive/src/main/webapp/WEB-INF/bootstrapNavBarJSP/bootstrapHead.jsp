@@ -11,3 +11,7 @@
 	<link rel="stylesheet" href="./css/main.css">
 
 	<link rel="stylesheet" href="../css/logDetails.css">
+	<link rel="stylesheet" href="./css/logDetails.css">
+
+	<link rel="stylesheet" href="../css/locationDetails.css">
+	<link rel="stylesheet" href="./css/locationDetails.css">
